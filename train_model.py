@@ -7,8 +7,8 @@ df = pd.read_csv("commute_data.csv")
 
 encoders = {}
 
-# Encode text columns
-for col in ["route","day","stop","crowd_level","departure_decision"]:
+# Encode text columns (including time which is now AM/PM format)
+for col in ["route","time","day","stop","crowd_level","departure_decision"]:
     le = LabelEncoder()
     df[col] = le.fit_transform(df[col])
     encoders[col] = le

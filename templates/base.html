@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ByaHero - Smart Commute Predictor{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-title">
+                    <h1>ByaHero</h1>
+                    <p class="tagline">Smart Commute Predictor</p>
+                    <p class="subtitle">Digos City Mini Bus Transportation</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navigation">
+            <ul class="nav-list">
+                <li><a href="/" class="nav-link">Commute Prediction</a></li>
+                <li><a href="/bus-arrivals" class="nav-link">Bus Arrivals</a></li>
+                <li><a href="/add-arrival" class="nav-link">Add Arrival Record</a></li>
+                <li><a href="/manage-locations" class="nav-link">Manage Locations</a></li>
+                <li><a href="/historical-data" class="nav-link">Historical Data</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>ByaHero - Smart Commute Predictor for Digos City Mini Bus System</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

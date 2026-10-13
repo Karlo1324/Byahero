@@ -1,301 +1,301 @@
-route,time,day,stop,crowd_level,travel_time
-stacruz-digos,10,Sun,Digos,High,30
-kapatagan-binaton,6,Sat,Soong,High,51
-stacruz-digos,15,Sun,Binaton,Medium,25
-stacruz-digos,11,Thu,Digos,Low,13
-kapatagan-digos,20,Wed,Binaton,High,61
-kapatagan-digos,12,Sun,Soong,Medium,36
-stacruz-digos,10,Tue,Soong,Medium,22
-stacruz-binaton,15,Sat,Digos,Low,18
-stacruz-digos,16,Sun,Soong,Low,28
-stacruz-digos,9,Sat,Digos,Medium,25
-stacruz-soong,20,Sat,Digos,High,41
-stacruz-digos,7,Thu,Digos,Medium,32
-stacruz-digos,16,Fri,Digos,Medium,35
-kapatagan-digos,20,Sun,Binaton,Medium,52
-kapatagan-soong,10,Wed,Soong,Medium,37
-stacruz-digos,7,Mon,Digos,Medium,22
-kapatagan-digos,8,Wed,Binaton,Medium,46
-stacruz-soong,18,Tue,Soong,Low,29
-stacruz-digos,12,Wed,Binaton,Low,23
-kapatagan-binaton,6,Tue,Soong,High,60
-kapatagan-soong,15,Wed,Soong,High,51
-kapatagan-soong,19,Sun,Binaton,High,52
-stacruz-soong,11,Sat,Soong,High,31
-kapatagan-soong,12,Sun,Binaton,Medium,45
-stacruz-binaton,9,Tue,Binaton,High,35
-kapatagan-soong,13,Sat,Digos,Low,36
-stacruz-digos,8,Fri,Digos,Low,23
-kapatagan-binaton,9,Mon,Binaton,Medium,39
-kapatagan-binaton,17,Mon,Binaton,Low,45
-kapatagan-binaton,12,Wed,Digos,High,46
-kapatagan-soong,11,Thu,Soong,Medium,49
-stacruz-soong,13,Tue,Digos,Medium,22
-stacruz-digos,20,Sun,Soong,High,29
-stacruz-soong,7,Sat,Soong,Medium,20
-stacruz-soong,12,Mon,Digos,High,34
-stacruz-digos,13,Sat,Digos,High,42
-stacruz-soong,8,Mon,Digos,Medium,35
-stacruz-digos,8,Sun,Binaton,Medium,31
-stacruz-soong,9,Thu,Binaton,Low,19
-stacruz-binaton,11,Sun,Binaton,Medium,30
-kapatagan-digos,17,Wed,Digos,Medium,53
-stacruz-digos,13,Sun,Binaton,High,35
-stacruz-binaton,18,Thu,Soong,High,41
-kapatagan-binaton,14,Mon,Digos,Low,34
-kapatagan-binaton,17,Thu,Digos,Medium,48
-kapatagan-soong,15,Wed,Soong,Medium,48
-stacruz-binaton,10,Fri,Digos,Low,25
-stacruz-soong,6,Tue,Digos,High,37
-stacruz-binaton,9,Fri,Binaton,Low,17
-kapatagan-digos,9,Thu,Binaton,High,55
-kapatagan-binaton,18,Sun,Soong,High,61
-kapatagan-soong,18,Sat,Binaton,Low,46
-kapatagan-soong,10,Sun,Binaton,High,59
-kapatagan-soong,17,Fri,Binaton,High,52
-stacruz-digos,20,Mon,Binaton,Medium,25
-kapatagan-soong,12,Sun,Soong,High,46
-stacruz-soong,9,Mon,Digos,Medium,25
-kapatagan-soong,16,Sun,Digos,Medium,46
-kapatagan-soong,10,Thu,Soong,Medium,50
-kapatagan-digos,15,Fri,Binaton,High,48
-stacruz-digos,9,Tue,Digos,Low,22
-kapatagan-digos,18,Sat,Binaton,Medium,50
-kapatagan-soong,6,Fri,Digos,High,57
-kapatagan-digos,14,Tue,Digos,High,41
-kapatagan-digos,11,Sat,Digos,Low,50
-stacruz-digos,14,Sat,Soong,High,34
-kapatagan-digos,9,Sat,Digos,Low,49
-stacruz-soong,14,Wed,Binaton,High,38
-stacruz-binaton,9,Sun,Binaton,High,40
-kapatagan-soong,6,Thu,Soong,High,53
-stacruz-soong,9,Wed,Soong,Medium,30
-kapatagan-soong,9,Wed,Soong,Medium,48
-stacruz-binaton,17,Sun,Digos,Low,18
-stacruz-digos,19,Sat,Soong,Low,25
-stacruz-binaton,19,Sat,Soong,Low,19
-stacruz-binaton,6,Thu,Soong,High,41
-kapatagan-digos,13,Tue,Digos,Medium,43
-stacruz-binaton,7,Sat,Soong,High,34
-kapatagan-soong,10,Wed,Soong,Medium,35
-stacruz-digos,19,Sun,Binaton,Low,30
-kapatagan-soong,16,Sun,Soong,High,51
-stacruz-soong,20,Thu,Soong,Medium,23
-stacruz-soong,19,Sat,Digos,Medium,32
-stacruz-binaton,18,Mon,Binaton,Medium,26
-stacruz-binaton,14,Sun,Binaton,Medium,21
-stacruz-digos,14,Mon,Binaton,Low,23
-kapatagan-digos,13,Sun,Binaton,Low,30
-stacruz-binaton,13,Sat,Binaton,Medium,23
-stacruz-soong,6,Sat,Soong,Low,30
-stacruz-digos,16,Mon,Soong,High,35
-stacruz-digos,9,Fri,Soong,Low,27
-kapatagan-digos,14,Sun,Binaton,Medium,49
-kapatagan-binaton,18,Fri,Soong,High,57
-kapatagan-soong,11,Wed,Digos,Medium,43
-stacruz-digos,7,Sat,Binaton,Medium,35
-stacruz-binaton,13,Thu,Soong,Medium,22
-kapatagan-soong,15,Sat,Binaton,High,56
-kapatagan-digos,15,Sat,Binaton,Medium,52
-stacruz-binaton,10,Thu,Digos,High,28
-stacruz-soong,15,Thu,Digos,High,29
-stacruz-soong,16,Fri,Digos,Low,23
-kapatagan-digos,13,Tue,Binaton,High,44
-stacruz-digos,14,Wed,Soong,High,28
-stacruz-soong,20,Thu,Soong,Medium,27
-kapatagan-soong,10,Mon,Binaton,Medium,52
-kapatagan-digos,13,Thu,Soong,High,53
-kapatagan-binaton,6,Fri,Digos,Low,39
-kapatagan-digos,19,Fri,Soong,High,60
-kapatagan-soong,20,Fri,Binaton,Medium,52
-kapatagan-soong,16,Mon,Soong,High,52
-stacruz-binaton,8,Wed,Soong,Medium,34
-kapatagan-digos,6,Mon,Binaton,Low,43
-stacruz-binaton,12,Tue,Binaton,Medium,29
-stacruz-binaton,18,Sat,Soong,Medium,35
-stacruz-digos,11,Sun,Soong,Low,20
-kapatagan-binaton,6,Wed,Soong,Low,32
-kapatagan-digos,9,Thu,Digos,Medium,53
-stacruz-soong,15,Sat,Digos,Medium,26
-stacruz-digos,6,Tue,Binaton,Medium,32
-kapatagan-digos,15,Fri,Digos,Low,46
-stacruz-digos,19,Fri,Binaton,High,30
-kapatagan-digos,7,Wed,Digos,Medium,49
-stacruz-binaton,13,Wed,Digos,Medium,29
-kapatagan-soong,12,Wed,Soong,Medium,51
-stacruz-soong,7,Thu,Soong,High,31
-stacruz-soong,6,Thu,Digos,High,43
-kapatagan-soong,14,Tue,Digos,High,46
-stacruz-soong,19,Sat,Digos,Low,22
-kapatagan-binaton,13,Thu,Digos,High,60
-kapatagan-soong,18,Mon,Soong,High,46
-stacruz-soong,12,Wed,Digos,High,34
-stacruz-binaton,9,Thu,Binaton,Low,25
-kapatagan-binaton,18,Tue,Digos,Medium,50
-kapatagan-digos,6,Thu,Digos,Low,45
-stacruz-soong,17,Mon,Soong,High,36
-kapatagan-soong,12,Mon,Binaton,High,46
-stacruz-soong,17,Thu,Binaton,Low,20
-kapatagan-binaton,20,Wed,Digos,Low,43
-kapatagan-binaton,12,Wed,Soong,Medium,43
-stacruz-binaton,7,Mon,Soong,High,29
-kapatagan-binaton,18,Thu,Binaton,Medium,42
-stacruz-soong,17,Thu,Binaton,Medium,33
-stacruz-digos,16,Thu,Soong,Low,26
-kapatagan-binaton,13,Fri,Soong,Medium,51
-kapatagan-digos,19,Mon,Binaton,High,62
-stacruz-soong,7,Mon,Digos,High,30
-kapatagan-soong,9,Sun,Digos,Low,45
-stacruz-digos,7,Fri,Digos,High,32
-kapatagan-binaton,8,Mon,Soong,Low,45
-kapatagan-digos,14,Fri,Soong,Low,52
-stacruz-digos,18,Fri,Digos,Medium,21
-kapatagan-digos,19,Sun,Binaton,Low,41
-stacruz-digos,10,Fri,Soong,Low,18
-stacruz-binaton,10,Sun,Soong,High,25
-kapatagan-soong,9,Fri,Soong,Low,46
-kapatagan-digos,13,Fri,Soong,Low,36
-kapatagan-soong,16,Fri,Digos,Medium,42
-kapatagan-soong,15,Fri,Soong,Medium,53
-stacruz-digos,8,Fri,Binaton,Low,13
-stacruz-soong,12,Mon,Binaton,High,33
-kapatagan-digos,20,Thu,Soong,Medium,41
-kapatagan-binaton,20,Thu,Soong,Medium,43
-kapatagan-binaton,14,Mon,Binaton,Low,40
-stacruz-digos,6,Mon,Digos,Low,17
-kapatagan-digos,11,Thu,Digos,High,51
-kapatagan-soong,7,Mon,Binaton,High,57
-kapatagan-binaton,15,Mon,Digos,Low,37
-stacruz-soong,10,Wed,Digos,Medium,27
-stacruz-soong,20,Sat,Digos,High,25
-stacruz-soong,12,Mon,Binaton,High,29
-kapatagan-soong,13,Wed,Binaton,High,43
-kapatagan-soong,7,Mon,Binaton,Low,51
-kapatagan-digos,15,Mon,Digos,High,55
-kapatagan-digos,20,Thu,Soong,Low,33
-stacruz-binaton,17,Wed,Digos,Medium,25
-stacruz-binaton,20,Sat,Digos,High,42
-stacruz-soong,10,Fri,Soong,Medium,30
-kapatagan-soong,19,Sat,Soong,Low,40
-kapatagan-binaton,10,Sat,Soong,Medium,54
-kapatagan-digos,19,Thu,Binaton,Low,38
-kapatagan-binaton,13,Mon,Digos,Low,37
-kapatagan-soong,6,Mon,Soong,Low,51
-kapatagan-soong,18,Sat,Digos,Low,35
-stacruz-binaton,12,Sat,Soong,High,34
-kapatagan-binaton,8,Wed,Soong,Low,40
-stacruz-soong,9,Fri,Soong,Medium,24
-stacruz-soong,10,Wed,Digos,Low,26
-stacruz-binaton,19,Mon,Soong,Low,31
-kapatagan-soong,14,Fri,Binaton,Medium,43
-stacruz-digos,7,Wed,Digos,Low,27
-stacruz-digos,19,Sun,Digos,Low,27
-kapatagan-binaton,12,Wed,Digos,High,47
-stacruz-binaton,20,Thu,Binaton,Low,30
-kapatagan-binaton,16,Tue,Soong,Medium,37
-kapatagan-soong,17,Thu,Binaton,High,46
-kapatagan-soong,18,Sat,Binaton,Medium,50
-kapatagan-soong,10,Fri,Digos,High,51
-stacruz-soong,10,Mon,Digos,Medium,32
-stacruz-binaton,7,Fri,Soong,High,30
-kapatagan-digos,17,Wed,Binaton,Low,30
-stacruz-digos,16,Sun,Soong,Low,22
-kapatagan-soong,9,Fri,Binaton,High,50
-stacruz-binaton,14,Wed,Digos,High,33
-kapatagan-soong,6,Sat,Digos,High,45
-stacruz-digos,8,Mon,Soong,Low,22
-kapatagan-binaton,12,Sat,Binaton,High,60
-kapatagan-binaton,13,Sat,Digos,Low,38
-stacruz-soong,12,Sun,Binaton,High,39
-kapatagan-soong,19,Mon,Binaton,High,50
-stacruz-digos,14,Thu,Soong,Low,22
-kapatagan-digos,9,Sat,Digos,Medium,46
-kapatagan-soong,10,Sat,Binaton,Medium,40
-kapatagan-binaton,12,Wed,Digos,High,50
-stacruz-digos,19,Mon,Digos,Medium,34
-stacruz-digos,9,Fri,Soong,High,35
-kapatagan-soong,13,Thu,Soong,High,41
-kapatagan-binaton,9,Mon,Soong,Low,32
-kapatagan-soong,16,Thu,Soong,Low,30
-kapatagan-soong,18,Sun,Soong,Medium,50
-kapatagan-digos,10,Mon,Soong,High,58
-stacruz-digos,15,Thu,Digos,Low,17
-kapatagan-binaton,20,Sun,Binaton,Medium,48
-kapatagan-soong,20,Sat,Binaton,Medium,45
-stacruz-digos,6,Sat,Soong,Medium,24
-stacruz-digos,19,Tue,Binaton,High,31
-stacruz-soong,20,Tue,Soong,Low,22
-stacruz-soong,6,Sun,Digos,Low,24
-kapatagan-soong,13,Thu,Digos,Low,28
-kapatagan-soong,13,Thu,Soong,Medium,48
-stacruz-binaton,18,Thu,Binaton,High,37
-kapatagan-binaton,17,Fri,Soong,Low,31
-stacruz-binaton,13,Tue,Soong,High,40
-stacruz-binaton,17,Wed,Digos,Low,18
-kapatagan-binaton,15,Wed,Binaton,Medium,43
-stacruz-soong,14,Fri,Soong,Medium,27
-stacruz-binaton,18,Wed,Binaton,Low,26
-kapatagan-soong,17,Sat,Soong,Medium,44
-stacruz-soong,9,Thu,Binaton,Medium,22
-stacruz-soong,14,Mon,Binaton,Medium,24
-stacruz-soong,20,Sun,Digos,Low,25
-kapatagan-soong,11,Fri,Soong,Medium,40
-kapatagan-digos,8,Mon,Soong,Medium,46
-stacruz-soong,13,Sat,Binaton,Low,28
-stacruz-digos,20,Thu,Soong,Medium,32
-stacruz-digos,19,Wed,Soong,Medium,21
-kapatagan-soong,8,Fri,Soong,High,62
-kapatagan-digos,7,Wed,Binaton,Medium,44
-stacruz-soong,17,Sat,Soong,Medium,26
-stacruz-digos,11,Fri,Binaton,Medium,35
-stacruz-binaton,12,Wed,Soong,High,34
-kapatagan-binaton,6,Sun,Digos,High,47
-stacruz-binaton,14,Sun,Binaton,Medium,23
-kapatagan-binaton,10,Wed,Digos,High,49
-kapatagan-soong,14,Thu,Binaton,Medium,41
-stacruz-binaton,10,Fri,Soong,Medium,28
-kapatagan-soong,9,Wed,Binaton,Low,37
-kapatagan-digos,20,Thu,Soong,High,50
-kapatagan-soong,13,Thu,Soong,High,57
-kapatagan-binaton,14,Sun,Binaton,High,57
-stacruz-soong,8,Sun,Soong,High,30
-stacruz-soong,15,Mon,Binaton,Medium,27
-kapatagan-soong,18,Tue,Digos,Medium,38
-kapatagan-soong,12,Mon,Digos,Low,45
-stacruz-binaton,9,Wed,Digos,Medium,30
-kapatagan-digos,12,Thu,Digos,Low,38
-stacruz-soong,20,Wed,Binaton,High,29
-kapatagan-digos,12,Sat,Soong,High,44
-stacruz-binaton,14,Mon,Soong,Low,18
-stacruz-binaton,14,Sat,Binaton,Medium,34
-stacruz-soong,19,Fri,Soong,High,34
-stacruz-digos,14,Tue,Soong,Low,19
-kapatagan-binaton,14,Wed,Digos,High,52
-stacruz-binaton,19,Tue,Soong,Medium,28
-kapatagan-binaton,10,Mon,Digos,Medium,47
-stacruz-digos,16,Mon,Soong,Medium,23
-stacruz-digos,14,Sun,Soong,High,29
-stacruz-soong,16,Sun,Digos,Low,24
-kapatagan-binaton,18,Mon,Soong,High,48
-stacruz-digos,10,Wed,Binaton,Low,19
-kapatagan-soong,13,Sat,Digos,Medium,48
-stacruz-binaton,19,Sun,Digos,Low,23
-kapatagan-binaton,17,Sat,Digos,High,44
-stacruz-digos,9,Thu,Binaton,High,34
-stacruz-soong,15,Wed,Digos,Low,25
-stacruz-digos,17,Wed,Digos,High,30
-kapatagan-digos,19,Fri,Binaton,Low,37
-kapatagan-binaton,15,Tue,Digos,Medium,54
-kapatagan-binaton,17,Thu,Binaton,Low,48
-stacruz-digos,16,Wed,Digos,Medium,30
-kapatagan-digos,16,Sun,Binaton,Low,40
-stacruz-digos,18,Fri,Binaton,Low,17
-kapatagan-soong,16,Wed,Soong,Low,47
-kapatagan-binaton,9,Fri,Digos,Low,40
-kapatagan-digos,18,Wed,Digos,Low,37
-stacruz-soong,14,Tue,Binaton,Medium,32
-stacruz-digos,18,Sat,Binaton,Low,21
-kapatagan-binaton,16,Tue,Digos,Medium,50
-kapatagan-binaton,20,Sat,Binaton,High,47
-stacruz-digos,20,Tue,Binaton,Low,22
-kapatagan-soong,7,Sun,Soong,High,58
+route,time,day,stop,crowd_level,travel_time,departure_decision
+Barangay Calinog-Digos Terminal,5:00 PM,Monday,Digos Terminal,Low,20,wait
+Barangay Kapatagan-Digos Terminal,3:00 PM,Saturday,Barangay Kapatagan,Low,24,wait
+Barangay Kapatagan-Digos Terminal,8:00 PM,Sunday,Barangay Tipan,Low,35,wait
+Barangay Kapatagan-Digos Terminal,3:00 PM,Tuesday,Barangay Kapatagan,Medium,34,wait
+Barangay Kapatagan-Digos Terminal,7:00 PM,Friday,Digos Terminal,High,43,leave_now
+Barangay Kapatagan-Digos Terminal,5:00 PM,Saturday,Digos Terminal,Low,36,wait
+Barangay Tipan-Digos Terminal,5:00 PM,Sunday,Barangay Kapatagan,Low,35,wait
+Barangay Calinog-Digos Terminal,12:00 PM,Wednesday,Digos Terminal,Medium,24,wait
+Barangay Kapatagan-Digos Terminal,7:00 PM,Monday,Barangay Kapatagan,Medium,33,wait
+Barangay Calinog-Digos Terminal,6:00 PM,Friday,Barangay Tipan,Low,23,wait
+Barangay Calinog-Digos Terminal,4:00 PM,Saturday,Digos Terminal,Medium,34,wait
+Barangay Tipan-Digos Terminal,7:00 AM,Sunday,Digos Terminal,Low,44,wait
+Barangay Tipan-Digos Terminal,3:00 PM,Saturday,Digos Terminal,Medium,42,wait
+Barangay Tipan-Digos Terminal,4:00 PM,Sunday,Barangay Kapatagan,Low,37,wait
+Barangay Tipan-Digos Terminal,11:00 AM,Tuesday,Barangay Kapatagan,Low,44,wait
+Barangay Tipan-Digos Terminal,9:00 AM,Saturday,Barangay Calinog,High,42,leave_now
+Barangay Kapatagan-Digos Terminal,3:00 PM,Friday,Barangay Calinog,High,46,leave_now
+Barangay Kapatagan-Digos Terminal,8:00 AM,Tuesday,Barangay Tipan,Medium,33,wait
+Barangay Kapatagan-Digos Terminal,3:00 PM,Saturday,Barangay Calinog,High,37,leave_now
+Barangay Kapatagan-Digos Terminal,7:00 AM,Sunday,Barangay Kapatagan,High,42,leave_now
+Barangay Calinog-Digos Terminal,6:00 AM,Friday,Digos Terminal,Low,33,wait
+Barangay Tipan-Digos Terminal,6:00 PM,Monday,Barangay Tipan,High,55,leave_now
+Barangay Calinog-Digos Terminal,7:00 AM,Friday,Barangay Calinog,Low,26,wait
+Barangay Calinog-Digos Terminal,9:00 AM,Sunday,Barangay Calinog,Medium,30,wait
+Barangay Kapatagan-Digos Terminal,5:00 PM,Monday,Barangay Calinog,Low,25,wait
+Barangay Tipan-Digos Terminal,1:00 PM,Tuesday,Barangay Calinog,Low,34,wait
+Barangay Kapatagan-Digos Terminal,9:00 AM,Wednesday,Barangay Tipan,Low,25,wait
+Barangay Tipan-Digos Terminal,10:00 AM,Friday,Barangay Kapatagan,Medium,50,wait
+Barangay Tipan-Digos Terminal,6:00 PM,Wednesday,Digos Terminal,Medium,47,wait
+Barangay Tipan-Digos Terminal,8:00 PM,Saturday,Barangay Calinog,Low,40,wait
+Barangay Calinog-Digos Terminal,9:00 AM,Saturday,Barangay Kapatagan,High,29,leave_now
+Barangay Tipan-Digos Terminal,1:00 PM,Saturday,Digos Terminal,Low,42,wait
+Barangay Tipan-Digos Terminal,3:00 PM,Tuesday,Barangay Calinog,Medium,47,wait
+Barangay Calinog-Digos Terminal,1:00 PM,Wednesday,Barangay Tipan,Medium,25,wait
+Barangay Tipan-Digos Terminal,10:00 AM,Tuesday,Barangay Tipan,Low,27,wait
+Barangay Kapatagan-Digos Terminal,10:00 AM,Friday,Barangay Calinog,High,45,leave_now
+Barangay Calinog-Digos Terminal,7:00 AM,Monday,Barangay Kapatagan,Low,22,wait
+Barangay Kapatagan-Digos Terminal,8:00 AM,Wednesday,Barangay Calinog,Low,29,wait
+Barangay Calinog-Digos Terminal,7:00 PM,Thursday,Barangay Kapatagan,Low,23,wait
+Barangay Tipan-Digos Terminal,5:00 PM,Friday,Barangay Tipan,Low,27,wait
+Barangay Kapatagan-Digos Terminal,1:00 PM,Wednesday,Barangay Tipan,Low,32,wait
+Barangay Calinog-Digos Terminal,12:00 PM,Wednesday,Digos Terminal,High,33,leave_now
+Barangay Tipan-Digos Terminal,8:00 AM,Saturday,Barangay Kapatagan,Medium,43,wait
+Barangay Kapatagan-Digos Terminal,6:00 PM,Friday,Digos Terminal,Low,22,wait
+Barangay Kapatagan-Digos Terminal,7:00 PM,Wednesday,Barangay Calinog,Medium,40,wait
+Barangay Kapatagan-Digos Terminal,7:00 PM,Monday,Digos Terminal,High,34,leave_now
+Barangay Calinog-Digos Terminal,8:00 AM,Wednesday,Digos Terminal,Medium,31,wait
+Barangay Tipan-Digos Terminal,6:00 PM,Wednesday,Barangay Kapatagan,Low,32,wait
+Barangay Kapatagan-Digos Terminal,12:00 PM,Wednesday,Barangay Kapatagan,High,42,leave_now
+Barangay Kapatagan-Digos Terminal,6:00 AM,Saturday,Barangay Tipan,High,46,leave_now
+Barangay Calinog-Digos Terminal,6:00 AM,Friday,Barangay Calinog,Medium,26,wait
+Barangay Kapatagan-Digos Terminal,5:00 PM,Sunday,Barangay Kapatagan,High,45,leave_now
+Barangay Tipan-Digos Terminal,9:00 AM,Thursday,Digos Terminal,Low,41,wait
+Barangay Kapatagan-Digos Terminal,9:00 AM,Tuesday,Barangay Tipan,Medium,38,wait
+Barangay Calinog-Digos Terminal,8:00 AM,Friday,Barangay Calinog,Low,24,wait
+Barangay Kapatagan-Digos Terminal,6:00 AM,Wednesday,Digos Terminal,Low,24,wait
+Barangay Calinog-Digos Terminal,6:00 AM,Monday,Barangay Kapatagan,Low,19,wait
+Barangay Kapatagan-Digos Terminal,4:00 PM,Saturday,Barangay Kapatagan,High,38,leave_now
+Barangay Calinog-Digos Terminal,7:00 PM,Saturday,Barangay Tipan,Medium,27,wait
+Barangay Tipan-Digos Terminal,6:00 PM,Wednesday,Barangay Kapatagan,Medium,38,wait
+Barangay Kapatagan-Digos Terminal,9:00 AM,Friday,Barangay Tipan,Medium,30,wait
+Barangay Tipan-Digos Terminal,3:00 PM,Wednesday,Digos Terminal,Medium,33,wait
+Barangay Tipan-Digos Terminal,7:00 AM,Monday,Barangay Calinog,Medium,36,wait
+Barangay Tipan-Digos Terminal,3:00 PM,Saturday,Barangay Kapatagan,Medium,40,wait
+Barangay Calinog-Digos Terminal,7:00 AM,Friday,Barangay Calinog,Low,21,wait
+Barangay Calinog-Digos Terminal,6:00 AM,Wednesday,Barangay Calinog,Medium,33,wait
+Barangay Calinog-Digos Terminal,12:00 PM,Sunday,Barangay Tipan,Low,28,wait
+Barangay Calinog-Digos Terminal,1:00 PM,Tuesday,Barangay Kapatagan,High,29,leave_now
+Barangay Tipan-Digos Terminal,10:00 AM,Friday,Barangay Calinog,Medium,42,wait
+Barangay Kapatagan-Digos Terminal,4:00 PM,Tuesday,Barangay Kapatagan,Medium,32,wait
+Barangay Kapatagan-Digos Terminal,4:00 PM,Friday,Barangay Calinog,High,42,leave_now
+Barangay Tipan-Digos Terminal,11:00 AM,Friday,Barangay Calinog,High,40,leave_now
+Barangay Kapatagan-Digos Terminal,5:00 PM,Wednesday,Barangay Tipan,High,33,leave_now
+Barangay Calinog-Digos Terminal,6:00 PM,Sunday,Barangay Tipan,Low,22,wait
+Barangay Calinog-Digos Terminal,8:00 PM,Tuesday,Barangay Tipan,Low,31,wait
+Barangay Kapatagan-Digos Terminal,7:00 AM,Monday,Barangay Calinog,High,35,leave_now
+Barangay Calinog-Digos Terminal,6:00 PM,Monday,Barangay Tipan,Medium,23,wait
+Barangay Kapatagan-Digos Terminal,6:00 PM,Monday,Barangay Kapatagan,Medium,37,wait
+Barangay Calinog-Digos Terminal,2:00 PM,Wednesday,Barangay Tipan,Medium,35,wait
+Barangay Calinog-Digos Terminal,9:00 AM,Monday,Barangay Tipan,Low,19,wait
+Barangay Kapatagan-Digos Terminal,8:00 AM,Tuesday,Barangay Tipan,Medium,31,wait
+Barangay Tipan-Digos Terminal,7:00 AM,Wednesday,Barangay Calinog,Low,45,wait
+Barangay Kapatagan-Digos Terminal,5:00 PM,Friday,Barangay Calinog,Medium,28,wait
+Barangay Calinog-Digos Terminal,6:00 PM,Friday,Barangay Kapatagan,High,39,leave_now
+Barangay Kapatagan-Digos Terminal,2:00 PM,Friday,Barangay Calinog,Medium,39,wait
+Barangay Calinog-Digos Terminal,7:00 AM,Monday,Barangay Calinog,High,38,leave_now
+Barangay Tipan-Digos Terminal,4:00 PM,Sunday,Digos Terminal,High,40,leave_now
+Barangay Kapatagan-Digos Terminal,6:00 PM,Sunday,Barangay Kapatagan,Low,35,wait
+Barangay Calinog-Digos Terminal,6:00 PM,Monday,Digos Terminal,High,28,leave_now
+Barangay Calinog-Digos Terminal,11:00 AM,Thursday,Digos Terminal,Medium,29,wait
+Barangay Tipan-Digos Terminal,1:00 PM,Monday,Digos Terminal,High,56,leave_now
+Barangay Tipan-Digos Terminal,8:00 AM,Sunday,Barangay Calinog,Low,43,wait
+Barangay Kapatagan-Digos Terminal,10:00 AM,Thursday,Digos Terminal,Low,29,wait
+Barangay Tipan-Digos Terminal,7:00 PM,Saturday,Digos Terminal,Low,34,wait
+Barangay Kapatagan-Digos Terminal,7:00 PM,Tuesday,Barangay Calinog,High,45,leave_now
+Barangay Kapatagan-Digos Terminal,8:00 PM,Tuesday,Barangay Kapatagan,High,39,leave_now
+Barangay Calinog-Digos Terminal,6:00 PM,Monday,Barangay Calinog,Low,24,wait
+Barangay Calinog-Digos Terminal,8:00 PM,Monday,Barangay Kapatagan,Low,25,wait
+Barangay Kapatagan-Digos Terminal,2:00 PM,Wednesday,Barangay Tipan,Medium,25,wait
+Barangay Kapatagan-Digos Terminal,1:00 PM,Thursday,Barangay Calinog,High,35,leave_now
+Barangay Calinog-Digos Terminal,3:00 PM,Sunday,Digos Terminal,Low,28,wait
+Barangay Calinog-Digos Terminal,10:00 AM,Wednesday,Barangay Kapatagan,Low,17,wait
+Barangay Tipan-Digos Terminal,7:00 AM,Monday,Digos Terminal,Medium,50,wait
+Barangay Calinog-Digos Terminal,6:00 PM,Sunday,Barangay Calinog,Medium,32,wait
+Barangay Tipan-Digos Terminal,8:00 AM,Friday,Barangay Calinog,Low,43,wait
+Barangay Calinog-Digos Terminal,9:00 AM,Saturday,Barangay Kapatagan,High,37,leave_now
+Barangay Calinog-Digos Terminal,1:00 PM,Sunday,Barangay Tipan,Medium,23,wait
+Barangay Kapatagan-Digos Terminal,12:00 PM,Thursday,Barangay Kapatagan,Low,36,wait
+Barangay Kapatagan-Digos Terminal,6:00 AM,Saturday,Barangay Calinog,High,39,leave_now
+Barangay Kapatagan-Digos Terminal,2:00 PM,Monday,Barangay Calinog,High,35,leave_now
+Barangay Tipan-Digos Terminal,12:00 PM,Sunday,Barangay Tipan,Low,39,wait
+Barangay Tipan-Digos Terminal,3:00 PM,Friday,Digos Terminal,Low,28,wait
+Barangay Tipan-Digos Terminal,8:00 PM,Monday,Barangay Tipan,Medium,30,wait
+Barangay Kapatagan-Digos Terminal,6:00 PM,Wednesday,Barangay Kapatagan,Low,29,wait
+Barangay Calinog-Digos Terminal,2:00 PM,Friday,Barangay Calinog,High,39,leave_now
+Barangay Calinog-Digos Terminal,7:00 AM,Monday,Barangay Tipan,High,43,leave_now
+Barangay Tipan-Digos Terminal,6:00 PM,Friday,Digos Terminal,Low,39,wait
+Barangay Tipan-Digos Terminal,8:00 AM,Sunday,Barangay Tipan,High,50,leave_now
+Barangay Calinog-Digos Terminal,10:00 AM,Tuesday,Barangay Calinog,High,38,leave_now
+Barangay Tipan-Digos Terminal,8:00 PM,Monday,Barangay Tipan,Low,39,wait
+Barangay Tipan-Digos Terminal,11:00 AM,Monday,Barangay Kapatagan,High,39,leave_now
+Barangay Tipan-Digos Terminal,6:00 AM,Wednesday,Barangay Calinog,High,47,leave_now
+Barangay Kapatagan-Digos Terminal,1:00 PM,Wednesday,Digos Terminal,Medium,36,wait
+Barangay Calinog-Digos Terminal,5:00 PM,Sunday,Barangay Tipan,Low,31,wait
+Barangay Kapatagan-Digos Terminal,9:00 AM,Thursday,Barangay Tipan,Low,33,wait
+Barangay Kapatagan-Digos Terminal,6:00 PM,Tuesday,Barangay Tipan,High,45,leave_now
+Barangay Kapatagan-Digos Terminal,8:00 PM,Friday,Barangay Kapatagan,High,42,leave_now
+Barangay Calinog-Digos Terminal,9:00 AM,Tuesday,Barangay Tipan,High,41,leave_now
+Barangay Tipan-Digos Terminal,5:00 PM,Friday,Barangay Tipan,High,40,leave_now
+Barangay Kapatagan-Digos Terminal,7:00 PM,Monday,Barangay Kapatagan,Medium,25,wait
+Barangay Calinog-Digos Terminal,8:00 AM,Sunday,Barangay Tipan,Low,19,wait
+Barangay Kapatagan-Digos Terminal,8:00 AM,Sunday,Barangay Kapatagan,Medium,39,wait
+Barangay Kapatagan-Digos Terminal,6:00 PM,Saturday,Digos Terminal,High,35,leave_now
+Barangay Tipan-Digos Terminal,3:00 PM,Friday,Barangay Calinog,High,51,leave_now
+Barangay Kapatagan-Digos Terminal,9:00 AM,Sunday,Barangay Tipan,Medium,33,wait
+Barangay Tipan-Digos Terminal,8:00 AM,Wednesday,Digos Terminal,Low,27,wait
+Barangay Calinog-Digos Terminal,4:00 PM,Tuesday,Barangay Calinog,High,37,leave_now
+Barangay Tipan-Digos Terminal,9:00 AM,Saturday,Digos Terminal,Low,45,wait
+Barangay Calinog-Digos Terminal,9:00 AM,Tuesday,Barangay Calinog,Medium,23,wait
+Barangay Calinog-Digos Terminal,12:00 PM,Monday,Barangay Kapatagan,Medium,20,wait
+Barangay Tipan-Digos Terminal,2:00 PM,Sunday,Barangay Calinog,High,49,leave_now
+Barangay Kapatagan-Digos Terminal,9:00 AM,Monday,Barangay Kapatagan,Low,33,wait
+Barangay Tipan-Digos Terminal,6:00 PM,Thursday,Digos Terminal,Low,43,wait
+Barangay Tipan-Digos Terminal,11:00 AM,Tuesday,Barangay Kapatagan,Medium,42,wait
+Barangay Kapatagan-Digos Terminal,12:00 PM,Thursday,Barangay Tipan,Low,23,wait
+Barangay Tipan-Digos Terminal,3:00 PM,Monday,Barangay Tipan,Medium,30,wait
+Barangay Kapatagan-Digos Terminal,6:00 PM,Friday,Barangay Kapatagan,High,39,leave_now
+Barangay Kapatagan-Digos Terminal,11:00 AM,Sunday,Barangay Calinog,Low,38,wait
+Barangay Calinog-Digos Terminal,8:00 AM,Friday,Barangay Calinog,Low,28,wait
+Barangay Kapatagan-Digos Terminal,7:00 AM,Monday,Barangay Kapatagan,Low,24,wait
+Barangay Calinog-Digos Terminal,6:00 PM,Saturday,Barangay Calinog,Medium,22,wait
+Barangay Kapatagan-Digos Terminal,8:00 AM,Thursday,Barangay Kapatagan,Low,29,wait
+Barangay Calinog-Digos Terminal,5:00 PM,Monday,Digos Terminal,Medium,25,wait
+Barangay Tipan-Digos Terminal,5:00 PM,Tuesday,Barangay Kapatagan,Low,37,wait
+Barangay Tipan-Digos Terminal,7:00 AM,Wednesday,Barangay Kapatagan,Low,30,wait
+Barangay Kapatagan-Digos Terminal,5:00 PM,Tuesday,Barangay Calinog,Medium,30,wait
+Barangay Tipan-Digos Terminal,8:00 AM,Tuesday,Barangay Calinog,High,36,leave_now
+Barangay Tipan-Digos Terminal,5:00 PM,Tuesday,Barangay Tipan,Low,40,wait
+Barangay Calinog-Digos Terminal,6:00 PM,Friday,Barangay Calinog,Medium,30,wait
+Barangay Tipan-Digos Terminal,8:00 AM,Saturday,Digos Terminal,Low,37,wait
+Barangay Tipan-Digos Terminal,5:00 PM,Wednesday,Digos Terminal,Low,32,wait
+Barangay Calinog-Digos Terminal,10:00 AM,Saturday,Barangay Tipan,Medium,24,wait
+Barangay Calinog-Digos Terminal,1:00 PM,Saturday,Barangay Calinog,Medium,26,wait
+Barangay Kapatagan-Digos Terminal,6:00 PM,Monday,Barangay Calinog,Medium,27,wait
+Barangay Kapatagan-Digos Terminal,5:00 PM,Wednesday,Barangay Kapatagan,Low,32,wait
+Barangay Calinog-Digos Terminal,4:00 PM,Tuesday,Barangay Tipan,High,38,leave_now
+Barangay Tipan-Digos Terminal,7:00 PM,Tuesday,Barangay Tipan,High,47,leave_now
+Barangay Kapatagan-Digos Terminal,2:00 PM,Saturday,Digos Terminal,Low,35,wait
+Barangay Tipan-Digos Terminal,2:00 PM,Saturday,Barangay Calinog,Low,41,wait
+Barangay Kapatagan-Digos Terminal,3:00 PM,Sunday,Barangay Tipan,Low,23,wait
+Barangay Kapatagan-Digos Terminal,9:00 AM,Saturday,Barangay Calinog,Low,24,wait
+Barangay Tipan-Digos Terminal,2:00 PM,Saturday,Barangay Kapatagan,High,37,leave_now
+Barangay Kapatagan-Digos Terminal,6:00 PM,Wednesday,Digos Terminal,Low,31,wait
+Barangay Calinog-Digos Terminal,12:00 PM,Wednesday,Barangay Kapatagan,Medium,29,wait
+Barangay Calinog-Digos Terminal,7:00 PM,Saturday,Barangay Kapatagan,High,32,leave_now
+Barangay Calinog-Digos Terminal,8:00 AM,Monday,Barangay Tipan,High,29,leave_now
+Barangay Kapatagan-Digos Terminal,9:00 AM,Friday,Digos Terminal,High,45,leave_now
+Barangay Calinog-Digos Terminal,6:00 PM,Saturday,Barangay Calinog,High,37,leave_now
+Barangay Kapatagan-Digos Terminal,1:00 PM,Friday,Digos Terminal,Medium,39,wait
+Barangay Tipan-Digos Terminal,3:00 PM,Saturday,Barangay Calinog,High,57,leave_now
+Barangay Kapatagan-Digos Terminal,8:00 PM,Wednesday,Barangay Tipan,Low,24,wait
+Barangay Kapatagan-Digos Terminal,2:00 PM,Tuesday,Digos Terminal,Medium,27,wait
+Barangay Tipan-Digos Terminal,6:00 PM,Friday,Digos Terminal,Low,37,wait
+Barangay Calinog-Digos Terminal,7:00 PM,Sunday,Barangay Calinog,High,40,leave_now
+Barangay Tipan-Digos Terminal,12:00 PM,Friday,Digos Terminal,Low,33,wait
+Barangay Kapatagan-Digos Terminal,8:00 PM,Wednesday,Digos Terminal,Low,23,wait
+Barangay Tipan-Digos Terminal,8:00 PM,Friday,Barangay Calinog,Medium,37,wait
+Barangay Kapatagan-Digos Terminal,11:00 AM,Tuesday,Barangay Tipan,High,35,leave_now
+Barangay Calinog-Digos Terminal,12:00 PM,Sunday,Barangay Tipan,High,32,leave_now
+Barangay Kapatagan-Digos Terminal,3:00 PM,Thursday,Barangay Tipan,High,42,leave_now
+Barangay Calinog-Digos Terminal,2:00 PM,Saturday,Barangay Kapatagan,Medium,30,wait
+Barangay Tipan-Digos Terminal,4:00 PM,Friday,Barangay Calinog,High,51,leave_now
+Barangay Calinog-Digos Terminal,8:00 AM,Monday,Digos Terminal,Low,20,wait
+Barangay Calinog-Digos Terminal,9:00 AM,Thursday,Barangay Calinog,Low,29,wait
+Barangay Calinog-Digos Terminal,11:00 AM,Wednesday,Barangay Kapatagan,Low,26,wait
+Barangay Calinog-Digos Terminal,6:00 PM,Tuesday,Barangay Calinog,Low,24,wait
+Barangay Tipan-Digos Terminal,11:00 AM,Saturday,Digos Terminal,Low,29,wait
+Barangay Tipan-Digos Terminal,1:00 PM,Wednesday,Barangay Tipan,High,47,leave_now
+Barangay Kapatagan-Digos Terminal,6:00 PM,Thursday,Barangay Calinog,High,41,leave_now
+Barangay Calinog-Digos Terminal,3:00 PM,Tuesday,Barangay Tipan,High,33,leave_now
+Barangay Calinog-Digos Terminal,6:00 PM,Friday,Digos Terminal,High,35,leave_now
+Barangay Kapatagan-Digos Terminal,1:00 PM,Tuesday,Barangay Tipan,Low,35,wait
+Barangay Kapatagan-Digos Terminal,4:00 PM,Thursday,Barangay Tipan,Low,21,wait
+Barangay Calinog-Digos Terminal,7:00 AM,Sunday,Digos Terminal,Low,25,wait
+Barangay Kapatagan-Digos Terminal,9:00 AM,Saturday,Barangay Kapatagan,Low,36,wait
+Barangay Kapatagan-Digos Terminal,5:00 PM,Sunday,Barangay Kapatagan,High,41,leave_now
+Barangay Kapatagan-Digos Terminal,3:00 PM,Tuesday,Digos Terminal,Medium,25,wait
+Barangay Kapatagan-Digos Terminal,3:00 PM,Tuesday,Digos Terminal,High,35,leave_now
+Barangay Tipan-Digos Terminal,2:00 PM,Sunday,Barangay Tipan,Low,40,wait
+Barangay Calinog-Digos Terminal,2:00 PM,Thursday,Barangay Kapatagan,High,30,leave_now
+Barangay Kapatagan-Digos Terminal,7:00 AM,Tuesday,Digos Terminal,Medium,27,wait
+Barangay Tipan-Digos Terminal,11:00 AM,Sunday,Digos Terminal,Medium,36,wait
+Barangay Tipan-Digos Terminal,7:00 AM,Monday,Barangay Tipan,High,57,leave_now
+Barangay Kapatagan-Digos Terminal,1:00 PM,Wednesday,Barangay Calinog,Medium,26,wait
+Barangay Tipan-Digos Terminal,6:00 AM,Monday,Barangay Tipan,Medium,33,wait
+Barangay Calinog-Digos Terminal,7:00 PM,Friday,Barangay Kapatagan,Low,26,wait
+Barangay Tipan-Digos Terminal,8:00 AM,Sunday,Barangay Calinog,Low,47,wait
+Barangay Kapatagan-Digos Terminal,10:00 AM,Wednesday,Barangay Kapatagan,Medium,26,wait
+Barangay Calinog-Digos Terminal,6:00 PM,Wednesday,Digos Terminal,Medium,29,wait
+Barangay Kapatagan-Digos Terminal,7:00 PM,Tuesday,Barangay Kapatagan,High,41,leave_now
+Barangay Tipan-Digos Terminal,6:00 AM,Saturday,Barangay Tipan,Medium,33,wait
+Barangay Kapatagan-Digos Terminal,6:00 AM,Thursday,Digos Terminal,Low,34,wait
+Barangay Calinog-Digos Terminal,8:00 PM,Sunday,Barangay Kapatagan,High,41,leave_now
+Barangay Kapatagan-Digos Terminal,7:00 AM,Monday,Barangay Kapatagan,High,43,leave_now
+Barangay Calinog-Digos Terminal,11:00 AM,Tuesday,Digos Terminal,Medium,28,wait
+Barangay Kapatagan-Digos Terminal,4:00 PM,Thursday,Digos Terminal,Medium,34,wait
+Barangay Tipan-Digos Terminal,7:00 PM,Tuesday,Barangay Kapatagan,Medium,35,wait
+Barangay Calinog-Digos Terminal,7:00 PM,Monday,Digos Terminal,Low,23,wait
+Barangay Calinog-Digos Terminal,7:00 AM,Friday,Barangay Tipan,Medium,31,wait
+Barangay Kapatagan-Digos Terminal,8:00 AM,Tuesday,Digos Terminal,High,47,leave_now
+Barangay Tipan-Digos Terminal,8:00 AM,Sunday,Barangay Tipan,Medium,40,wait
+Barangay Calinog-Digos Terminal,7:00 AM,Sunday,Digos Terminal,High,42,leave_now
+Barangay Tipan-Digos Terminal,11:00 AM,Thursday,Barangay Kapatagan,High,42,leave_now
+Barangay Calinog-Digos Terminal,5:00 PM,Tuesday,Barangay Kapatagan,High,38,leave_now
+Barangay Calinog-Digos Terminal,7:00 PM,Monday,Barangay Tipan,High,28,leave_now
+Barangay Calinog-Digos Terminal,6:00 AM,Wednesday,Barangay Tipan,Medium,26,wait
+Barangay Tipan-Digos Terminal,11:00 AM,Monday,Barangay Calinog,Medium,32,wait
+Barangay Kapatagan-Digos Terminal,8:00 PM,Wednesday,Digos Terminal,Low,31,wait
+Barangay Calinog-Digos Terminal,12:00 PM,Wednesday,Barangay Kapatagan,Medium,33,wait
+Barangay Tipan-Digos Terminal,5:00 PM,Monday,Barangay Calinog,Medium,32,wait
+Barangay Tipan-Digos Terminal,4:00 PM,Tuesday,Barangay Kapatagan,Low,45,wait
+Barangay Tipan-Digos Terminal,2:00 PM,Thursday,Barangay Tipan,High,48,leave_now
+Barangay Tipan-Digos Terminal,6:00 PM,Tuesday,Barangay Calinog,High,47,leave_now
+Barangay Tipan-Digos Terminal,7:00 AM,Friday,Digos Terminal,Low,34,wait
+Barangay Tipan-Digos Terminal,7:00 PM,Wednesday,Barangay Calinog,High,56,leave_now
+Barangay Kapatagan-Digos Terminal,6:00 AM,Tuesday,Barangay Calinog,Medium,31,wait
+Barangay Tipan-Digos Terminal,12:00 PM,Sunday,Barangay Calinog,High,48,leave_now
+Barangay Calinog-Digos Terminal,8:00 PM,Monday,Barangay Tipan,High,30,leave_now
+Barangay Kapatagan-Digos Terminal,2:00 PM,Saturday,Digos Terminal,Low,22,wait
+Barangay Tipan-Digos Terminal,3:00 PM,Wednesday,Barangay Tipan,Low,28,wait
+Barangay Kapatagan-Digos Terminal,3:00 PM,Thursday,Barangay Calinog,Low,29,wait
+Barangay Kapatagan-Digos Terminal,11:00 AM,Friday,Barangay Kapatagan,High,39,leave_now
+Barangay Tipan-Digos Terminal,7:00 AM,Friday,Digos Terminal,Medium,31,wait
+Barangay Calinog-Digos Terminal,12:00 PM,Monday,Barangay Calinog,Low,19,wait
+Barangay Kapatagan-Digos Terminal,6:00 PM,Monday,Digos Terminal,Low,28,wait
+Barangay Tipan-Digos Terminal,6:00 AM,Monday,Barangay Kapatagan,Medium,32,wait
+Barangay Tipan-Digos Terminal,1:00 PM,Thursday,Digos Terminal,Medium,43,wait
+Barangay Calinog-Digos Terminal,2:00 PM,Sunday,Barangay Calinog,Low,20,wait
+Barangay Kapatagan-Digos Terminal,3:00 PM,Saturday,Digos Terminal,Low,29,wait
+Barangay Calinog-Digos Terminal,5:00 PM,Thursday,Barangay Calinog,Low,22,wait
+Barangay Calinog-Digos Terminal,12:00 PM,Sunday,Barangay Calinog,Medium,31,wait
+Barangay Tipan-Digos Terminal,1:00 PM,Friday,Digos Terminal,High,56,leave_now
+Barangay Calinog-Digos Terminal,8:00 AM,Sunday,Barangay Kapatagan,Medium,26,wait
+Barangay Kapatagan-Digos Terminal,12:00 PM,Monday,Digos Terminal,High,45,leave_now
+Barangay Kapatagan-Digos Terminal,10:00 AM,Friday,Barangay Tipan,Medium,34,wait
+Barangay Tipan-Digos Terminal,6:00 PM,Wednesday,Barangay Kapatagan,High,43,leave_now
+Barangay Kapatagan-Digos Terminal,7:00 AM,Monday,Digos Terminal,Medium,26,wait
+Barangay Tipan-Digos Terminal,5:00 PM,Saturday,Barangay Tipan,High,48,leave_now
+Barangay Tipan-Digos Terminal,2:00 PM,Wednesday,Barangay Calinog,Medium,49,wait
+Barangay Calinog-Digos Terminal,6:00 PM,Friday,Digos Terminal,Low,29,wait
+Barangay Tipan-Digos Terminal,11:00 AM,Friday,Barangay Calinog,Low,48,wait
+Barangay Kapatagan-Digos Terminal,9:00 AM,Wednesday,Barangay Tipan,Low,31,wait
+Barangay Kapatagan-Digos Terminal,7:00 PM,Wednesday,Barangay Calinog,Low,24,wait
+Barangay Kapatagan-Digos Terminal,8:00 PM,Wednesday,Barangay Tipan,High,48,leave_now
+Barangay Kapatagan-Digos Terminal,6:00 PM,Friday,Barangay Kapatagan,Medium,25,wait
+Barangay Tipan-Digos Terminal,7:00 AM,Tuesday,Digos Terminal,Medium,41,wait
+Barangay Tipan-Digos Terminal,8:00 PM,Tuesday,Digos Terminal,Medium,30,wait
+Barangay Kapatagan-Digos Terminal,8:00 PM,Friday,Barangay Calinog,High,40,leave_now
+Barangay Kapatagan-Digos Terminal,7:00 AM,Wednesday,Barangay Calinog,Medium,30,wait
+Barangay Calinog-Digos Terminal,1:00 PM,Friday,Barangay Kapatagan,Low,26,wait
+Barangay Calinog-Digos Terminal,1:00 PM,Wednesday,Barangay Calinog,High,37,leave_now
+Barangay Calinog-Digos Terminal,10:00 AM,Sunday,Barangay Kapatagan,Low,30,wait
+Barangay Kapatagan-Digos Terminal,12:00 PM,Tuesday,Barangay Kapatagan,High,40,leave_now
+Barangay Tipan-Digos Terminal,1:00 PM,Monday,Digos Terminal,High,50,leave_now
+Barangay Calinog-Digos Terminal,7:00 PM,Wednesday,Barangay Tipan,High,28,leave_now
+Barangay Kapatagan-Digos Terminal,9:00 AM,Friday,Digos Terminal,Low,34,wait
+Barangay Kapatagan-Digos Terminal,4:00 PM,Sunday,Barangay Calinog,Low,27,wait
+Barangay Tipan-Digos Terminal,1:00 PM,Thursday,Digos Terminal,Medium,32,wait
+Barangay Calinog-Digos Terminal,7:00 PM,Friday,Barangay Tipan,High,36,leave_now
+Barangay Calinog-Digos Terminal,7:00 PM,Sunday,Digos Terminal,Medium,21,wait
+Barangay Tipan-Digos Terminal,4:00 PM,Friday,Barangay Kapatagan,High,60,leave_now
+Barangay Kapatagan-Digos Terminal,1:00 PM,Saturday,Barangay Calinog,Low,33,wait
+Barangay Tipan-Digos Terminal,8:00 AM,Wednesday,Barangay Kapatagan,Low,39,wait
+Barangay Calinog-Digos Terminal,2:00 PM,Saturday,Barangay Kapatagan,Low,18,wait
+Barangay Tipan-Digos Terminal,2:00 PM,Thursday,Barangay Kapatagan,High,45,leave_now
+Barangay Tipan-Digos Terminal,1:00 PM,Monday,Barangay Tipan,Low,42,wait
+Barangay Kapatagan-Digos Terminal,3:00 PM,Sunday,Barangay Calinog,High,34,leave_now
+Barangay Tipan-Digos Terminal,7:00 PM,Thursday,Barangay Tipan,Medium,45,wait
+Barangay Kapatagan-Digos Terminal,9:00 AM,Friday,Digos Terminal,High,38,leave_now
+Barangay Kapatagan-Digos Terminal,1:00 PM,Thursday,Digos Terminal,High,36,leave_now

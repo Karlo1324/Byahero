@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Locations - ByaHero{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <section class="form-section">
+        <div class="card">
+            <h2>Add New Location</h2>
+            <p class="section-subtitle">Add a new bus stop or location to a route</p>
+            
+            <form id="addLocationForm" class="form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="newRoute">Route</label>
+                        <select id="newRoute" name="route" required>
+                            <option value="">Select a route...</option>
+                            {% for route_id, route in routes.items() %}
+                            <option value="{{ route_id }}">{{ route.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="locationName">Location Name</label>
+                        <input type="text" id="locationName" name="name" required placeholder="e.g., Barangay Nueva">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="stopSequence">Stop Sequence Number</label>
+                        <input type="number" id="stopSequence" name="stop_sequence" required min="1" placeholder="Position on route">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description (Optional)</label>
+                        <input type="text" id="description" name="description" placeholder="e.g., Near the market">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add Location</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="successSection" style="display: none;">
+        <div class="card success-card">
+            <h3>Location Added Successfully</h3>
+            <p id="successMessage"></p>
+            <button class="btn btn-secondary" onclick="resetLocationForm()">Add Another Location</button>
+        </div>
+    </section>
+
+    <section id="errorSection" style="display: none;">
+        <div class="card error-card">
+            <h3>Error</h3>
+            <p id="errorMessage"></p>
+            <button class="btn btn-secondary" onclick="clearError()">Try Again</button>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Current Locations</h2>
+        <p class="section-subtitle">All registered bus stops organized by route</p>
+        
+        <div id="locationsContainer"></div>
+    </section>
+</div>
+
+<script>
+// Load and display current locations
+function loadAndDisplayLocations() {
+    const container = document.getElementById('locationsContainer');
+    const routes = {% raw %}{{ routes | tojson }}{% endraw %};
+    
+    container.innerHTML = '';
+    
+    for (const [routeId, route] of Object.entries(routes)) {
+        const routeDiv = document.createElement('div');
+        routeDiv.className = 'route-section';
+        
+        const title = document.createElement('h3');
+        title.textContent = route.name;
+        routeDiv.appendChild(title);
+        
+        const locationsDiv = document.createElement('div');
+        locationsDiv.className = 'locations-grid';
+        
+        // Fetch locations for this route
+        fetch(`/api/get-locations?route_id=${routeId}`)
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) {
+                    data.locations.forEach(loc => {
+                        const locDiv = document.createElement('div');
+                        locDiv.className = 'location-card';
+                        locDiv.innerHTML = `
+                            <div class="location-header">
+                                <h4>${loc.name}</h4>
+                                <span class="location-sequence">Stop ${loc.stop_sequence}</span>
+                            </div>
+                            <p class="location-description">${loc.description || 'No description'}</p>
+                            <span class="location-status">${loc.active === 'true' || loc.active === true ? 'Active' : 'Inactive'}</span>
+                        `;
+                        locationsDiv.appendChild(locDiv);
+                    });
+                }
+                routeDiv.appendChild(locationsDiv);
+            });
+    }
+    
+    container.appendChild(routeDiv);
+}
+
+document.getElementById('addLocationForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const routeId = document.getElementById('newRoute').value;
+    const name = document.getElementById('locationName').value;
+    const stopSequence = document.getElementById('stopSequence').value;
+    const description = document.getElementById('description').value;
+
+    if (!routeId || !name || !stopSequence) {
+        showError('Please fill in all required fields');
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/add-location', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                route_id: parseInt(routeId),
+                name: name,
+                stop_sequence: parseInt(stopSequence),
+                description: description,
+                active: true
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            showSuccess(`Location "${name}" added successfully`);
+            resetLocationForm();
+            loadAndDisplayLocations();
+        } else {
+            showError(result.error || 'Failed to add location');
+        }
+    } catch (error) {
+        showError('An error occurred: ' + error.message);
+    }
+});
+
+function showSuccess(message) {
+    document.getElementById('errorSection').style.display = 'none';
+    document.getElementById('successMessage').textContent = message;
+    document.getElementById('successSection').style.display = 'block';
+    document.querySelector('.main-content').scrollTop = 0;
+}
+
+function showError(message) {
+    document.getElementById('successSection').style.display = 'none';
+    document.getElementById('errorMessage').textContent = message;
+    document.getElementById('errorSection').style.display = 'block';
+    document.querySelector('.main-content').scrollTop = 0;
+}
+
+function clearError() {
+    document.getElementById('errorSection').style.display = 'none';
+}
+
+function resetLocationForm() {
+    document.getElementById('addLocationForm').reset();
+    document.getElementById('successSection').style.display = 'none';
+}
+
+// Load locations on page load
+document.addEventListener('DOMContentLoaded', loadAndDisplayLocations);
+</script>
+{% endblock %}

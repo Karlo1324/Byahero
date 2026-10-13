@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+{% block title %}Add Arrival Record - ByaHero{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <section class="form-section">
+        <div class="card">
+            <h2>Add Bus Arrival Record</h2>
+            <p class="section-subtitle">Record when a bus actually arrived at a stop</p>
+            
+            <form id="arrivalRecordForm" class="form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="addRoute">Route</label>
+                        <select id="addRoute" name="route" required onchange="loadArrivalsLocations()">
+                            <option value="">Select a route...</option>
+                            {% for route_id, route in routes.items() %}
+                            <option value="{{ route_id }}">{{ route.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="addLocation">Location</label>
+                        <select id="addLocation" name="location" required>
+                            <option value="">Select a location...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="arrivalDate">Date of Arrival</label>
+                        <input type="date" id="arrivalDate" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="arrivalTime">Arrival Time</label>
+                        <input type="time" id="arrivalTime" name="time" required placeholder="HH:MM">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="departureTime">Departure Time (Optional)</label>
+                        <input type="time" id="departureTime" name="departure_time" placeholder="HH:MM">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="crowdLevel">Crowd Level</label>
+                        <select id="crowdLevel" name="crowd_level">
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Notes (Optional)</label>
+                    <textarea id="notes" name="notes" rows="3" placeholder="Any additional observations about this arrival..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save Arrival Record</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="successSection" style="display: none;">
+        <div class="card success-card">
+            <h3>Record Saved Successfully</h3>
+            <p id="successMessage"></p>
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="addAnother()">Add Another Record</button>
+                <button class="btn btn-secondary" onclick="goHome()">Back to Home</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="errorSection" style="display: none;">
+        <div class="card error-card">
+            <h3>Error</h3>
+            <div id="errorMessages"></div>
+            <button class="btn btn-secondary" onclick="clearError()">Try Again</button>
+        </div>
+    </section>
+</div>
+
+<script>
+// Set today's date as default
+document.getElementById('arrivalDate').valueAsDate = new Date();
+
+async function loadArrivalsLocations() {
+    const routeId = document.getElementById('addRoute').value;
+    const locationSelect = document.getElementById('addLocation');
+    
+    locationSelect.innerHTML = '<option value="">Select a location...</option>';
+    
+    if (!routeId) return;
+
+    try {
+        const response = await fetch(`/api/get-locations?route_id=${routeId}`);
+        const data = await response.json();
+        
+        if (data.success) {
+            data.locations.forEach(loc => {
+                const option = document.createElement('option');
+                option.value = loc.location_id;
+                option.textContent = loc.name;
+                locationSelect.appendChild(option);
+            });
+        }
+    } catch (error) {
+        console.error('Error loading locations:', error);
+    }
+}
+
+document.getElementById('arrivalRecordForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const routeId = document.getElementById('addRoute').value;
+    const locationId = document.getElementById('addLocation').value;
+    const arrivalDate = document.getElementById('arrivalDate').value;
+    const arrivalTime = document.getElementById('arrivalTime').value;
+    const departureTime = document.getElementById('departureTime').value;
+    const crowdLevel = document.getElementById('crowdLevel').value;
+    const notes = document.getElementById('notes').value;
+
+    if (!routeId || !locationId || !arrivalDate || !arrivalTime) {
+        showError(['Please fill in all required fields']);
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/add-arrival-record', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                route_id: parseInt(routeId),
+                location_id: parseInt(locationId),
+                arrival_date: arrivalDate,
+                arrival_time: arrivalTime,
+                departure_time: departureTime || null,
+                crowd_level: crowdLevel,
+                notes: notes
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            showSuccess(result.message);
+        } else {
+            showError(Array.isArray(result.errors) ? result.errors : [result.error]);
+        }
+    } catch (error) {
+        showError(['An error occurred: ' + error.message]);
+    }
+});
+
+function showSuccess(message) {
+    document.getElementById('errorSection').style.display = 'none';
+    document.getElementById('successMessage').textContent = message;
+    document.getElementById('successSection').style.display = 'block';
+    document.querySelector('.main-content').scrollTop = 0;
+}
+
+function showError(errors) {
+    document.getElementById('successSection').style.display = 'none';
+    const errorHtml = errors.map(e => `<p>• ${e}</p>`).join('');
+    document.getElementById('errorMessages').innerHTML = errorHtml;
+    document.getElementById('errorSection').style.display = 'block';
+    document.querySelector('.main-content').scrollTop = 0;
+}
+
+function clearError() {
+    document.getElementById('errorSection').style.display = 'none';
+}
+
+function addAnother() {
+    document.getElementById('arrivalRecordForm').reset();
+    document.getElementById('arrivalDate').valueAsDate = new Date();
+    document.getElementById('addLocation').innerHTML = '<option value="">Select a location...</option>';
+    document.getElementById('successSection').style.display = 'none';
+    document.querySelector('form').focus();
+}
+
+function goHome() {
+    window.location.href = '/';
+}
+</script>
+{% endblock %}

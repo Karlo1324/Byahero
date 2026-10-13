@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block title %}Historical Data - ByaHero{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <section class="form-section">
+        <div class="card">
+            <h2>Filter Arrival Records</h2>
+            <p class="section-subtitle">View and analyze recorded bus arrivals</p>
+            
+            <form id="filterForm" class="form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="filterRoute">Route</label>
+                        <select id="filterRoute" name="route" onchange="loadHistoricalData()">
+                            <option value="">All routes</option>
+                            {% for route_id, route in routes.items() %}
+                            <option value="{{ route_id }}">{{ route.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="filterLocation">Location</label>
+                        <select id="filterLocation" name="location" onchange="loadHistoricalData()">
+                            <option value="">All locations</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="startDate">From Date</label>
+                        <input type="date" id="startDate" onchange="loadHistoricalData()">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endDate">To Date</label>
+                        <input type="date" id="endDate" onchange="loadHistoricalData()">
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-secondary" onclick="clearFilters()">Clear Filters</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Arrival Records</h2>
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Location</th>
+                        <th>Date</th>
+                        <th>Arrival Time</th>
+                        <th>Departure Time</th>
+                        <th>Crowd Level</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableBody">
+                    <tr><td colspan="6" class="loading">Loading data...</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p id="recordCount" class="record-count"></p>
+    </section>
+
+    <section class="card">
+        <h2>Statistics</h2>
+        <div id="statisticsContainer" class="statistics-grid">
+            <div class="stat-box">
+                <span class="stat-label">Total Records</span>
+                <span class="stat-value" id="totalRecords">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Locations with Data</span>
+                <span class="stat-value" id="locationCount">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Average Travel Time</span>
+                <span class="stat-value" id="avgTravelTime">--</span>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+async function loadLocationsForFilter() {
+    const routeId = document.getElementById('filterRoute').value;
+    const locationSelect = document.getElementById('filterLocation');
+    
+    locationSelect.innerHTML = '<option value="">All locations</option>';
+    
+    if (!routeId) return;
+
+    try {
+        const response = await fetch(`/api/get-locations?route_id=${routeId}`);
+        const data = await response.json();
+        
+        if (data.success) {
+            data.locations.forEach(loc => {
+                const option = document.createElement('option');
+                option.value = loc.location_id;
+                option.textContent = loc.name;
+                locationSelect.appendChild(option);
+            });
+        }
+    } catch (error) {
+        console.error('Error loading locations:', error);
+    }
+}
+
+async function loadHistoricalData() {
+    const routeId = document.getElementById('filterRoute').value;
+    const locationId = document.getElementById('filterLocation').value;
+    const startDate = document.getElementById('startDate').value;
+    const endDate = document.getElementById('endDate').value;
+
+    try {
+        let url = '/api/get-arrivals?limit=500';
+        if (routeId) url += `&route_id=${routeId}`;
+        if (locationId) url += `&location_id=${locationId}`;
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.success) {
+            let arrivals = data.arrivals;
+
+            // Client-side filtering by date
+            if (startDate) {
+                arrivals = arrivals.filter(a => a.arrival_date >= startDate);
+            }
+            if (endDate) {
+                arrivals = arrivals.filter(a => a.arrival_date <= endDate);
+            }
+
+            displayTable(arrivals);
+            updateStatistics(arrivals);
+        }
+    } catch (error) {
+        console.error('Error loading data:', error);
+        document.getElementById('dataTableBody').innerHTML = 
+            `<tr><td colspan="6" class="error">Error loading data</td></tr>`;
+    }
+}
+
+function displayTable(arrivals) {
+    const tbody = document.getElementById('dataTableBody');
+    
+    if (arrivals.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="empty">No records found</td></tr>';
+        document.getElementById('recordCount').textContent = 'No records matching the filters';
+        return;
+    }
+
+    tbody.innerHTML = arrivals.map(arrival => `
+        <tr>
+            <td>${getLocationName(arrival.location_id)}</td>
+            <td>${arrival.arrival_date}</td>
+            <td>${arrival.arrival_time}</td>
+            <td>${arrival.departure_time || '-'}</td>
+            <td><span class="crowd-badge crowd-${arrival.crowd_level?.toLowerCase()}">${arrival.crowd_level || '-'}</span></td>
+            <td>${arrival.notes || '-'}</td>
+        </tr>
+    `).join('');
+
+    document.getElementById('recordCount').textContent = `Showing ${arrivals.length} record${arrivals.length !== 1 ? 's' : ''}`;
+}
+
+function getLocationName(locationId) {
+    const locations = {% raw %}{{ locations | tojson }}{% endraw %};
+    for (const loc of locations) {
+        if (loc.location_id === locationId) return loc.name;
+    }
+    return `Location ${locationId}`;
+}
+
+function updateStatistics(arrivals) {
+    const uniqueLocations = new Set(arrivals.map(a => a.location_id)).size;
+    
+    document.getElementById('totalRecords').textContent = arrivals.length;
+    document.getElementById('locationCount').textContent = uniqueLocations;
+}
+
+function clearFilters() {
+    document.getElementById('filterRoute').value = '';
+    document.getElementById('filterLocation').innerHTML = '<option value="">All locations</option>';
+    document.getElementById('startDate').value = '';
+    document.getElementById('endDate').value = '';
+    loadHistoricalData();
+}
+
+// Load data on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadLocationsForFilter();
+    loadHistoricalData();
+});
+
+// Update locations when route changes
+document.getElementById('filterRoute').addEventListener('change', loadLocationsForFilter);
+</script>
+{% endblock %}

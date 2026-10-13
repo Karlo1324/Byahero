@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block title %}Bus Arrivals - ByaHero{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <section class="form-section">
+        <div class="card">
+            <h2>Bus Arrival Predictions</h2>
+            <p class="section-subtitle">View estimated arrival times at each stop</p>
+            
+            <form id="arrivalForm" class="form">
+                <div class="form-group">
+                    <label for="route">Route</label>
+                    <select id="route" name="route" required onchange="loadLocations()">
+                        <option value="">Select a route...</option>
+                        {% for route_id, route in routes.items() %}
+                        <option value="{{ route_id }}">{{ route.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <select id="location" name="location" required onchange="predictArrival()">
+                        <option value="">Select a location...</option>
+                    </select>
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="predictArrival()">Get Arrival Prediction</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="predictionSection" style="display: none;">
+        <div class="card results-card">
+            <h2>Arrival Prediction</h2>
+            
+            <div class="result-row">
+                <div class="result-box">
+                    <span class="result-label">Location</span>
+                    <span class="result-value" id="locationName">--</span>
+                </div>
+            </div>
+
+            <div class="result-row">
+                <div class="result-box">
+                    <span class="result-label">Last Recorded Arrival</span>
+                    <span class="result-value" id="lastArrival">--</span>
+                </div>
+            </div>
+
+            <div class="result-row">
+                <div class="result-box highlight">
+                    <span class="result-label">Estimated Next Arrival</span>
+                    <span class="result-value" id="nextArrival">--</span>
+                </div>
+            </div>
+
+            <div class="result-row">
+                <div class="result-box">
+                    <span class="result-label">Data Confidence</span>
+                    <span class="result-value" id="confidence">--</span>
+                </div>
+            </div>
+
+            <div id="statusMessage" class="status-message"></div>
+
+            <button class="btn btn-secondary" onclick="resetArrivalForm()">Check Another Location</button>
+        </div>
+    </section>
+
+    <section id="recentArrivalsSection" style="display: none;">
+        <div class="card">
+            <h3>Recent Arrivals at This Location</h3>
+            <div id="recentArrivals" class="arrivals-list"></div>
+        </div>
+    </section>
+
+    <section id="errorSection" style="display: none;">
+        <div class="card error-card">
+            <h3>Error</h3>
+            <p id="errorMessage"></p>
+            <button class="btn btn-secondary" onclick="resetArrivalForm()">Try Again</button>
+        </div>
+    </section>
+</div>
+
+<script>
+async function loadLocations() {
+    const routeId = document.getElementById('route').value;
+    const locationSelect = document.getElementById('location');
+    
+    locationSelect.innerHTML = '<option value="">Select a location...</option>';
+    document.getElementById('predictionSection').style.display = 'none';
+    document.getElementById('recentArrivalsSection').style.display = 'none';
+    
+    if (!routeId) return;
+
+    try {
+        const response = await fetch(`/api/get-locations?route_id=${routeId}`);
+        const data = await response.json();
+        
+        if (data.success) {
+            data.locations.forEach(loc => {
+                const option = document.createElement('option');
+                option.value = loc.location_id;
+                option.textContent = loc.name;
+                locationSelect.appendChild(option);
+            });
+        }
+    } catch (error) {
+        console.error('Error loading locations:', error);
+    }
+}
+
+async function predictArrival() {
+    const routeId = document.getElementById('route').value;
+    const locationId = document.getElementById('location').value;
+
+    if (!routeId || !locationId) {
+        showError('Please select a route and location');
+        return;
+    }
+
+    // Get location name
+    const locationSelect = document.getElementById('location');
+    const locationName = locationSelect.options[locationSelect.selectedIndex].text;
+
+    try {
+        const response = await fetch('/api/predict-arrival', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({route_id: parseInt(routeId), location_id: parseInt(locationId)})
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            displayPrediction(result.prediction, locationName);
+            loadRecentArrivals(routeId, locationId);
+        } else {
+            showError(result.error || 'Prediction failed');
+        }
+    } catch (error) {
+        showError('An error occurred: ' + error.message);
+    }
+}
+
+async function loadRecentArrivals(routeId, locationId) {
+    try {
+        const response = await fetch(`/api/get-arrivals?route_id=${routeId}&location_id=${locationId}&limit=10`);
+        const data = await response.json();
+        
+        if (data.success && data.arrivals.length > 0) {
+            const arrivalsList = document.getElementById('recentArrivals');
+            arrivalsList.innerHTML = data.arrivals.map(a => `
+                <div class="arrival-item">
+                    <span>${a.arrival_time}</span>
+                    <span>${a.arrival_date}</span>
+                    <span>${a.crowd_level || 'N/A'}</span>
+                </div>
+            `).join('');
+            document.getElementById('recentArrivalsSection').style.display = 'block';
+        }
+    } catch (error) {
+        console.error('Error loading recent arrivals:', error);
+    }
+}
+
+function displayPrediction(prediction, locationName) {
+    document.getElementById('errorSection').style.display = 'none';
+    
+    document.getElementById('locationName').textContent = locationName;
+    document.getElementById('lastArrival').textContent = prediction.last_arrival || 'No records';
+    document.getElementById('nextArrival').textContent = prediction.next_arrival || 'Cannot estimate';
+    document.getElementById('confidence').textContent = prediction.confidence || prediction.status;
+    
+    const statusEl = document.getElementById('statusMessage');
+    if (prediction.status === 'Insufficient data') {
+        statusEl.className = 'status-message warning';
+        statusEl.textContent = prediction.message;
+    } else {
+        statusEl.className = 'status-message info';
+        statusEl.textContent = prediction.message;
+    }
+
+    document.getElementById('predictionSection').style.display = 'block';
+}
+
+function showError(message) {
+    document.getElementById('errorSection').style.display = 'block';
+    document.getElementById('errorMessage').textContent = message;
+    document.getElementById('predictionSection').style.display = 'none';
+    document.getElementById('recentArrivalsSection').style.display = 'none';
+}
+
+function resetArrivalForm() {
+    document.getElementById('arrivalForm').reset();
+    document.getElementById('location').innerHTML = '<option value="">Select a location...</option>';
+    document.getElementById('predictionSection').style.display = 'none';
+    document.getElementById('recentArrivalsSection').style.display = 'none';
+    document.getElementById('errorSection').style.display = 'none';
+}
+</script>
+{% endblock %}
