@@ -1,0 +1,121 @@
+{
+  "nodes": [
+    {
+      "id": "public_static_img_favicon_byahero_b_monogram",
+      "label": "ByaHero B Monogram Emblem",
+      "file_type": "image",
+      "source_file": "/Users/karlofamoso/Documents/vscode files/ByaHero/public/static/img/favicon.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_static_img_favicon_angular_b_glyph",
+      "label": "Angular Block Letter B Glyph",
+      "file_type": "image",
+      "source_file": "/Users/karlofamoso/Documents/vscode files/ByaHero/public/static/img/favicon.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_static_img_favicon_at_lettering",
+      "label": "Nested Italic AT Lettering",
+      "file_type": "image",
+      "source_file": "/Users/karlofamoso/Documents/vscode files/ByaHero/public/static/img/favicon.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_static_img_favicon_monochrome_brandmark",
+      "label": "Monochrome Black/White Brandmark Tile",
+      "file_type": "image",
+      "source_file": "/Users/karlofamoso/Documents/vscode files/ByaHero/public/static/img/favicon.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "public_static_img_favicon_byahero_b_monogram",
+      "target": "public_static_img_favicon_angular_b_glyph",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "/Users/karlofamoso/Documents/vscode files/ByaHero/public/static/img/favicon.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_static_img_favicon_at_lettering",
+      "target": "public_static_img_favicon_angular_b_glyph",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/Users/karlofamoso/Documents/vscode files/ByaHero/public/static/img/favicon.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_static_img_favicon_byahero_b_monogram",
+      "target": "public_static_img_favicon_at_lettering",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "/Users/karlofamoso/Documents/vscode files/ByaHero/public/static/img/favicon.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_static_img_favicon_monochrome_brandmark",
+      "target": "public_static_img_favicon_byahero_b_monogram",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/Users/karlofamoso/Documents/vscode files/ByaHero/public/static/img/favicon.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "public_static_img_favicon_at_lettering",
+      "target": "public_static_img_favicon_monochrome_brandmark",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/Users/karlofamoso/Documents/vscode files/ByaHero/public/static/img/favicon.png",
+      "source_location": null,
+      "weight": 0.8
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "byahero_favicon_brandmark_composition",
+      "label": "ByaHero Favicon Brandmark Composition",
+      "nodes": [
+        "public_static_img_favicon_byahero_b_monogram",
+        "public_static_img_favicon_angular_b_glyph",
+        "public_static_img_favicon_at_lettering",
+        "public_static_img_favicon_monochrome_brandmark"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "/Users/karlofamoso/Documents/vscode files/ByaHero/public/static/img/favicon.png"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "coverage": {
+    "/Users/karlofamoso/Documents/vscode files/ByaHero/public/static/img/favicon.png": 1
+  }
+}

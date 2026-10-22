@@ -466,7 +466,8 @@ def add_arrival_record_api():
             data.get('arrival_time'),
             data.get('arrival_date'),
             data.get('departure_time'),
-            data.get('crowd_level')
+            data.get('crowd_level'),
+            data.get('tz_offset_minutes')
         )
 
         if not valid:

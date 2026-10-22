@@ -4,10 +4,50 @@ Validates user input for forms and API endpoints
 """
 
 import re
-from datetime import datetime, time
+from datetime import datetime, time, timedelta, timezone
+
+# How far ahead of "now" an arrival may still be recorded.
+#
+# The arrival time is only precise to the minute and the clock in the
+# browser is rarely in step with the clock on the server, so a record that
+# is a couple of minutes ahead is a rounding artefact rather than a
+# mistake. Anything further ahead is refused.
+FUTURE_TOLERANCE_MINUTES = 2
+
+# The real world runs from UTC-12 to UTC+14, so an offset outside that
+# range is a broken client rather than a genuine timezone.
+MAX_UTC_OFFSET_MINUTES = 14 * 60
+
+
+def local_now_from_offset(offset_minutes):
+    """
+    The current wall-clock time in the timezone the user is in.
+
+    The browser sends the value of `getTimezoneOffset()` (UTC minus local,
+    in minutes) and the server converts its own UTC clock into that zone.
+    The server's own local time is deliberately not used: a hosted
+    deployment usually runs in UTC, which is hours behind the user, and
+    every arrival the user recorded was then refused as being in the
+    future.
+
+    Returns None when the offset is missing or out of range, so the caller
+    can fall back to the server's local time.
+    """
+    if offset_minutes is None or offset_minutes == '':
+        return None
+    try:
+        offset = int(offset_minutes)
+    except (TypeError, ValueError):
+        return None
+    if abs(offset) > MAX_UTC_OFFSET_MINUTES:
+        return None
+
+    utc_now = datetime.now(timezone.utc).replace(tzinfo=None)
+    return utc_now - timedelta(minutes=offset)
+
 
 class InputValidator:
-    
+
     @staticmethod
     def validate_time(time_str):
         """Validate time format HH:MM"""
@@ -31,15 +71,26 @@ class InputValidator:
             return False, "Invalid date format. Use YYYY-MM-DD"
 
     @staticmethod
-    def validate_not_future(date_str, time_str):
-        """Ensure the datetime is not in the future"""
+    def validate_not_future(date_str, time_str, tz_offset_minutes=None):
+        """
+        Ensure the datetime is not in the future.
+
+        `tz_offset_minutes` is the browser's getTimezoneOffset() value.
+        When it is given, "now" is the current time in the user's own
+        timezone, so the record is compared against the clock the user
+        actually looked at. Without it the server's local time is used,
+        which is wrong whenever the two are in different timezones.
+        """
         try:
             dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M")
-            if dt > datetime.now():
-                return False, "Cannot record arrival in the future"
-            return True, None
         except (ValueError, TypeError):
             return False, "Invalid date/time"
+
+        now = local_now_from_offset(tz_offset_minutes) or datetime.now()
+
+        if dt > now + timedelta(minutes=FUTURE_TOLERANCE_MINUTES):
+            return False, "Cannot record arrival in the future"
+        return True, None
 
     @staticmethod
     def validate_departure_before_arrival(departure_time, arrival_time):
@@ -142,28 +193,31 @@ class InputValidator:
         return True, None
     
     @staticmethod
-    def validate_arrival_record(route_id, location_id, arrival_time, arrival_date, 
-                               departure_time=None, crowd_level=None):
+    def validate_arrival_record(route_id, location_id, arrival_time, arrival_date,
+                               departure_time=None, crowd_level=None,
+                               tz_offset_minutes=None):
         """Validate all fields for arrival record"""
         errors = []
-        
+
         # Validate times
         valid, msg = InputValidator.validate_time(arrival_time)
         if not valid:
             errors.append(msg)
-        
+
         if departure_time:
             valid, msg = InputValidator.validate_time(departure_time)
             if not valid:
                 errors.append(msg)
-        
+
         # Validate date
         valid, msg = InputValidator.validate_date(arrival_date)
         if not valid:
             errors.append(msg)
-        
+
         # Check not in future
-        valid, msg = InputValidator.validate_not_future(arrival_date, arrival_time)
+        valid, msg = InputValidator.validate_not_future(
+            arrival_date, arrival_time, tz_offset_minutes
+        )
         if not valid:
             errors.append(msg)
         
