@@ -8,23 +8,25 @@
         <div class="card">
             <h2>Bus Arrival Predictions</h2>
             <p class="section-subtitle">View estimated arrival times at each stop</p>
-            
-            <form id="arrivalForm" class="form">
-                <div class="form-group">
-                    <label for="route">Route</label>
-                    <select id="route" name="route" required onchange="loadLocations()">
-                        <option value="">Select a route...</option>
-                        {% for route_id, route in routes.items() %}
-                        <option value="{{ route_id }}">{{ route.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
 
-                <div class="form-group">
-                    <label for="location">Location</label>
-                    <select id="location" name="location" required onchange="predictArrival()">
-                        <option value="">Select a location...</option>
-                    </select>
+            <form id="arrivalForm" class="form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="route">Route</label>
+                        <select id="route" name="route" required onchange="loadLocations()">
+                            <option value="">Select a route...</option>
+                            {% for route_id, route in routes.items() %}
+                            <option value="{{ route_id }}">{{ route.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <select id="location" name="location" required onchange="predictArrival()">
+                            <option value="">Select a location...</option>
+                        </select>
+                    </div>
                 </div>
 
                 <button type="button" class="btn btn-primary" onclick="predictArrival()">Get Arrival Prediction</button>
@@ -35,7 +37,7 @@
     <section id="predictionSection" style="display: none;">
         <div class="card results-card">
             <h2>Arrival Prediction</h2>
-            
+
             <div class="result-row">
                 <div class="result-box">
                     <span class="result-label">Location</span>
@@ -78,29 +80,32 @@
     </section>
 
     <section id="errorSection" style="display: none;">
-        <div class="card error-card">
+        <div class="card panel-error">
             <h3>Error</h3>
             <p id="errorMessage"></p>
             <button class="btn btn-secondary" onclick="resetArrivalForm()">Try Again</button>
         </div>
     </section>
 </div>
+{% endblock %}
 
+{% block scripts %}
 <script>
 async function loadLocations() {
     const routeId = document.getElementById('route').value;
     const locationSelect = document.getElementById('location');
-    
+
     locationSelect.innerHTML = '<option value="">Select a location...</option>';
+    locationSelect.disabled = true;
     document.getElementById('predictionSection').style.display = 'none';
     document.getElementById('recentArrivalsSection').style.display = 'none';
-    
+
     if (!routeId) return;
 
     try {
         const response = await fetch(`/api/get-locations?route_id=${routeId}`);
         const data = await response.json();
-        
+
         if (data.success) {
             data.locations.forEach(loc => {
                 const option = document.createElement('option');
@@ -108,9 +113,19 @@ async function loadLocations() {
                 option.textContent = loc.name;
                 locationSelect.appendChild(option);
             });
+
+            if (data.locations.length === 0) {
+                const option = document.createElement('option');
+                option.value = '';
+                option.textContent = 'No locations on this route';
+                option.disabled = true;
+                locationSelect.appendChild(option);
+            }
         }
     } catch (error) {
         console.error('Error loading locations:', error);
+    } finally {
+        locationSelect.disabled = false;
     }
 }
 
@@ -126,6 +141,13 @@ async function predictArrival() {
     // Get location name
     const locationSelect = document.getElementById('location');
     const locationName = locationSelect.options[locationSelect.selectedIndex].text;
+
+    const button = document.querySelector('#arrivalForm .btn-primary');
+    const originalText = button ? button.textContent : '';
+    if (button) {
+        button.disabled = true;
+        button.textContent = 'Predicting...';
+    }
 
     try {
         const response = await fetch('/api/predict-arrival', {
@@ -144,6 +166,11 @@ async function predictArrival() {
         }
     } catch (error) {
         showError('An error occurred: ' + error.message);
+    } finally {
+        if (button) {
+            button.disabled = false;
+            button.textContent = originalText;
+        }
     }
 }
 
@@ -151,14 +178,14 @@ async function loadRecentArrivals(routeId, locationId) {
     try {
         const response = await fetch(`/api/get-arrivals?route_id=${routeId}&location_id=${locationId}&limit=10`);
         const data = await response.json();
-        
+
         if (data.success && data.arrivals.length > 0) {
             const arrivalsList = document.getElementById('recentArrivals');
             arrivalsList.innerHTML = data.arrivals.map(a => `
                 <div class="arrival-item">
-                    <span>${a.arrival_time}</span>
-                    <span>${a.arrival_date}</span>
-                    <span>${a.crowd_level || 'N/A'}</span>
+                    <span class="arrival-time">${escapeHtml(a.arrival_time)}</span>
+                    <span class="arrival-date">${escapeHtml(a.arrival_date)}</span>
+                    <span><span class="crowd-badge ${crowdClass(a.crowd_level)}">${escapeHtml(a.crowd_level || 'N/A')}</span></span>
                 </div>
             `).join('');
             document.getElementById('recentArrivalsSection').style.display = 'block';
@@ -170,22 +197,22 @@ async function loadRecentArrivals(routeId, locationId) {
 
 function displayPrediction(prediction, locationName) {
     document.getElementById('errorSection').style.display = 'none';
-    
+
     document.getElementById('locationName').textContent = locationName;
     document.getElementById('lastArrival').textContent = prediction.last_arrival || 'No records';
     document.getElementById('nextArrival').textContent = prediction.next_arrival || 'Cannot estimate';
     document.getElementById('confidence').textContent = prediction.confidence || prediction.status;
-    
+
     const statusEl = document.getElementById('statusMessage');
-    if (prediction.status === 'Insufficient data') {
-        statusEl.className = 'status-message warning';
-        statusEl.textContent = prediction.message;
+    if (prediction.status === 'Insufficient data' || prediction.status === 'Low confidence') {
+        statusEl.classList.add('warning');
     } else {
-        statusEl.className = 'status-message info';
-        statusEl.textContent = prediction.message;
+        statusEl.classList.remove('warning');
     }
+    statusEl.textContent = prediction.message || '';
 
     document.getElementById('predictionSection').style.display = 'block';
+    scrollToElement(document.getElementById('predictionSection'));
 }
 
 function showError(message) {
@@ -193,11 +220,14 @@ function showError(message) {
     document.getElementById('errorMessage').textContent = message;
     document.getElementById('predictionSection').style.display = 'none';
     document.getElementById('recentArrivalsSection').style.display = 'none';
+    scrollToElement(document.getElementById('errorSection'));
 }
 
 function resetArrivalForm() {
     document.getElementById('arrivalForm').reset();
-    document.getElementById('location').innerHTML = '<option value="">Select a location...</option>';
+    const locationSelect = document.getElementById('location');
+    locationSelect.innerHTML = '<option value="">Select a location...</option>';
+    locationSelect.disabled = false;
     document.getElementById('predictionSection').style.display = 'none';
     document.getElementById('recentArrivalsSection').style.display = 'none';
     document.getElementById('errorSection').style.display = 'none';

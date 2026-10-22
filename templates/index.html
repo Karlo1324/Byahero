@@ -8,53 +8,54 @@
         <div class="card">
             <h2>Plan Your Trip</h2>
             <p class="section-subtitle">Kapatagan to Digos Route</p>
-            
+
             <form id="predictForm" class="form">
-                <div class="form-group">
-                    <label for="route">Route</label>
-                    <select id="route" name="route" required onchange="updateDestinations()">
-                        <option value="">Select a route...</option>
-                        {% for route_id, route in routes.items() %}
-                        <option value="{{ route_id }}">{{ route.name }}</option>
-                        {% endfor %}
-                    </select>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="route">Route</label>
+                        <select id="route" name="route" required onchange="updateOrigins()">
+                            <option value="">Select a route...</option>
+                            {% for route_id, route in routes.items() %}
+                            <option value="{{ route_id }}">{{ route.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="origin">From (Origin)</label>
+                        <select id="origin" name="origin" required onchange="updateDestinations()">
+                            <option value="">Select origin...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stop">To (Destination)</label>
+                        <select id="stop" name="stop" required>
+                            <option value="">Select destination...</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="origin">From (Origin)</label>
-                    <select id="origin" name="origin" required onchange="updateDestinations()">
-                        <option value="">Select origin...</option>
-                        {% for loc in locations %}
-                        <option value="{{ loc.location_id }}">{{ loc.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="time">Time of Day</label>
+                        <select id="time" name="time" required>
+                            <option value="">Select a time...</option>
+                            {% for t in times %}
+                            <option value="{{ t }}">{{ t }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label for="stop">To (Destination)</label>
-                    <select id="stop" name="stop" required>
-                        <option value="">Select destination...</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="time">Time of Day</label>
-                    <select id="time" name="time" required>
-                        <option value="">Select a time...</option>
-                        {% for t in times %}
-                        <option value="{{ t }}">{{ t }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="day">Day</label>
-                    <select id="day" name="day" required>
-                        <option value="">Select a day...</option>
-                        {% for d in days %}
-                        <option value="{{ d }}">{{ d }}</option>
-                        {% endfor %}
-                    </select>
+                    <div class="form-group">
+                        <label for="day">Day</label>
+                        <select id="day" name="day" required>
+                            <option value="">Select a day...</option>
+                            {% for d in days %}
+                            <option value="{{ d }}">{{ d }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -83,7 +84,8 @@
     <section id="resultsSection" style="display: none;">
         <div class="card results-card">
             <h2>Prediction Results</h2>
-            
+            <p class="trip-summary" id="tripSummary"></p>
+
             <div class="result-row">
                 <div class="result-box">
                     <span class="result-label">Estimated Travel Time</span>
@@ -108,125 +110,68 @@
     </section>
 
     <section id="errorSection" style="display: none;">
-        <div class="card error-card">
+        <div class="card panel-error">
             <h3>Error</h3>
             <p id="errorMessage"></p>
             <button class="btn btn-secondary" onclick="resetForm()">Try Again</button>
         </div>
     </section>
+
+    <section class="card">
+        <h2>Export Your Data</h2>
+        <p class="section-subtitle">Download the records you entered as a CSV file</p>
+        <div class="button-row">
+            <button type="button" class="btn btn-primary" onclick="exportArrivalsCsv()">
+                Export Arrival Records
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="exportLocationsCsv()">
+                Export Locations
+            </button>
+        </div>
+        <p id="exportStatus" class="export-status"></p>
+    </section>
 </div>
+{% endblock %}
 
+{% block scripts %}
 <script>
-document.getElementById('predictForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const formData = {
-        route: document.getElementById('route').value,
-        origin: document.getElementById('origin').value,
-        stop: document.getElementById('stop').value,
-        time: document.getElementById('time').value,
-        day: document.getElementById('day').value,
-        crowd: document.querySelector('input[name="crowd"]:checked').value
-    };
-
-    if (!formData.route || !formData.origin || !formData.stop || !formData.time || !formData.day || !formData.crowd) {
-        showError('Please fill in all fields');
-        return;
-    }
+/** Download the arrival records as a CSV file. */
+async function exportArrivalsCsv() {
+    const status = document.getElementById('exportStatus');
 
     try {
-        const response = await fetch('/api/predict', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(formData)
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            displayResults(result);
-        } else {
-            showError(result.error || 'Prediction failed');
-        }
-    } catch (error) {
-        showError('An error occurred: ' + error.message);
-    }
-});
-
-async function updateDestinations() {
-    const routeId = document.getElementById('route').value;
-    const originId = document.getElementById('origin').value;
-    const stopSelect = document.getElementById('stop');
-    
-    stopSelect.innerHTML = '<option value="">Select destination...</option>';
-    
-    if (!routeId || !originId) return;
-
-    try {
-        const response = await fetch(`/api/get-stops-after?route_id=${routeId}&stop_id=${originId}`);
+        const response = await fetch('/api/export-preview');
         const data = await response.json();
-        
-        if (data.success) {
-            data.stops.forEach(stop => {
-                const option = document.createElement('option');
-                option.value = stop.name;
-                option.textContent = stop.name;
-                stopSelect.appendChild(option);
-            });
+
+        if (data.success && data.count === 0) {
+            if (status) status.textContent = 'There are no arrival records to export yet.';
+            return;
+        }
+
+        const link = document.createElement('a');
+        link.href = '/export/arrivals.csv';
+        link.download = '';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        if (status) {
+            status.textContent = `Exporting ${data.count} record${data.count !== 1 ? 's' : ''}...`;
         }
     } catch (error) {
-        console.error('Error loading destinations:', error);
+        console.error('Error exporting CSV:', error);
+        if (status) status.textContent = 'Could not export the data. Please try again.';
     }
 }
 
-function displayResults(result) {
-    document.getElementById('errorSection').style.display = 'none';
-    document.getElementById('travelTimeResult').textContent = result.travel_time + ' minutes';
-    
-    const decisionEl = document.getElementById('decisionResult');
-    if (result.decision === 'leave_now') {
-        decisionEl.textContent = 'Leave Now';
-        decisionEl.className = 'result-value decision urgent';
-    } else {
-        decisionEl.textContent = 'You Can Wait';
-        decisionEl.className = 'result-value decision safe';
-    }
-
-    const insights = [];
-    if (result.travel_time > 35) {
-        insights.push('Long travel time expected. Plan accordingly.');
-    } else if (result.travel_time > 20) {
-        insights.push('Moderate travel time. Leave with enough buffer.');
-    } else {
-        insights.push('Quick route. You will arrive relatively soon.');
-    }
-
-    if (result.crowd === 'High') {
-        insights.push('High crowd level. Bus may depart soon.');
-    } else if (result.crowd === 'Medium') {
-        insights.push('Moderate crowd. Standard travel conditions.');
-    } else {
-        insights.push('Low crowd. Comfortable travel expected.');
-    }
-
-    document.getElementById('insightsContent').innerHTML = 
-        insights.map(i => `<p class="insight-item">• ${i}</p>`).join('');
-
-    document.getElementById('resultsSection').style.display = 'block';
-    document.querySelector('.main-content').scrollTop = 0;
-}
-
-function showError(message) {
-    document.getElementById('errorSection').style.display = 'block';
-    document.getElementById('errorMessage').textContent = message;
-    document.getElementById('resultsSection').style.display = 'none';
-}
-
-function resetForm() {
-    document.getElementById('predictForm').reset();
-    document.getElementById('resultsSection').style.display = 'none';
-    document.getElementById('errorSection').style.display = 'none';
-    document.getElementById('stop').innerHTML = '<option value="">Select destination...</option>';
+/** Download the location registry as a CSV file. */
+function exportLocationsCsv() {
+    const link = document.createElement('a');
+    link.href = '/export/locations.csv';
+    link.download = '';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 </script>
 {% endblock %}

@@ -2,31 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#5C6BC0">
+    <meta name="description" content="ByaHero - Smart commute and bus arrival prediction for the Digos City mini bus system.">
     <title>{% block title %}ByaHero - Smart Commute Predictor{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pixelated.css') }}">
 </head>
-<body>
+<body{% if show_splash %} class="is-loading"{% endif %}>
+    {# Loading screen. Only shown when the app is opened, not on every panel. #}
+    {% if show_splash %}
+    <div class="splash-screen" id="splashScreen" aria-hidden="true">
+        <div class="splash-inner">
+            <img class="splash-logo"
+                 src="{{ url_for('static', filename='img/logo.png') }}"
+                 alt="">
+            <p class="splash-title">ByaHero</p>
+            <p class="splash-tagline">Smart Commute Predictor</p>
+            <div class="splash-progress"><span class="splash-progress-bar"></span></div>
+        </div>
+    </div>
+    {% endif %}
+
     <div class="app-container">
         <!-- Header -->
         <header class="header">
             <div class="header-content">
                 <div class="header-title">
-                    <h1>ByaHero</h1>
-                    <p class="tagline">Smart Commute Predictor</p>
-                    <p class="subtitle">Digos City Mini Bus Transportation</p>
+                    <a class="brand" href="{{ url_for('index') }}">
+                        <img class="brand-logo"
+                             src="{{ url_for('static', filename='img/logo.png') }}"
+                             alt="ByaHero logo">
+                        <h1>ByaHero</h1>
+                    </a>
+                    <p class="tagline">Bus Commute Prediction App Developed by Karlo O. Famoso</p>
                 </div>
             </div>
         </header>
 
         <!-- Navigation -->
-        <nav class="navigation">
+        <nav class="navigation" aria-label="Main navigation">
             <ul class="nav-list">
-                <li><a href="/" class="nav-link">Commute Prediction</a></li>
-                <li><a href="/bus-arrivals" class="nav-link">Bus Arrivals</a></li>
-                <li><a href="/add-arrival" class="nav-link">Add Arrival Record</a></li>
-                <li><a href="/manage-locations" class="nav-link">Manage Locations</a></li>
-                <li><a href="/historical-data" class="nav-link">Historical Data</a></li>
+                {% set nav_items = [
+                    ('/', 'Commute Prediction', 'index'),
+                    ('/bus-arrivals', 'Bus Arrivals', 'bus_arrivals'),
+                    ('/add-arrival', 'Add Arrival', 'add_arrival'),
+                    ('/manage-locations', 'Manage Locations', 'manage_locations'),
+                    ('/historical-data', 'Historical Data', 'historical_data')
+                ] %}
+                {% for href, label, endpoint in nav_items %}
+                <li>
+                    <a href="{{ href }}"
+                       class="nav-link{% if request.endpoint == endpoint %} active{% endif %}">{{ label }}</a>
+                </li>
+                {% endfor %}
             </ul>
         </nav>
 
@@ -37,7 +70,8 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>ByaHero - Smart Commute Predictor for Digos City Mini Bus System</p>
+            <p>ByaHero &mdash; Developed by Karlo O. Famoso</p>
+            <p><a href="{{ url_for('restart_splash') }}" class="footer-link">Replay intro screen</a></p>
         </footer>
     </div>
 

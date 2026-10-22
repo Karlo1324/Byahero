@@ -8,7 +8,7 @@
         <div class="card">
             <h2>Add Bus Arrival Record</h2>
             <p class="section-subtitle">Record when a bus actually arrived at a stop</p>
-            
+
             <form id="arrivalRecordForm" class="form">
                 <div class="form-row">
                     <div class="form-group">
@@ -37,14 +37,14 @@
 
                     <div class="form-group">
                         <label for="arrivalTime">Arrival Time</label>
-                        <input type="time" id="arrivalTime" name="time" required placeholder="HH:MM">
+                        <input type="time" id="arrivalTime" name="time" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="departureTime">Departure Time (Optional)</label>
-                        <input type="time" id="departureTime" name="departure_time" placeholder="HH:MM">
+                        <input type="time" id="departureTime" name="departure_time">
                     </div>
 
                     <div class="form-group">
@@ -68,10 +68,10 @@
     </section>
 
     <section id="successSection" style="display: none;">
-        <div class="card success-card">
+        <div class="card panel-success">
             <h3>Record Saved Successfully</h3>
             <p id="successMessage"></p>
-            <div class="button-group">
+            <div class="button-row">
                 <button class="btn btn-primary" onclick="addAnother()">Add Another Record</button>
                 <button class="btn btn-secondary" onclick="goHome()">Back to Home</button>
             </div>
@@ -79,30 +79,36 @@
     </section>
 
     <section id="errorSection" style="display: none;">
-        <div class="card error-card">
+        <div class="card panel-error">
             <h3>Error</h3>
             <div id="errorMessages"></div>
             <button class="btn btn-secondary" onclick="clearError()">Try Again</button>
         </div>
     </section>
 </div>
+{% endblock %}
 
+{% block scripts %}
 <script>
 // Set today's date as default
-document.getElementById('arrivalDate').valueAsDate = new Date();
+const arrivalDateField = document.getElementById('arrivalDate');
+if (arrivalDateField) {
+    arrivalDateField.valueAsDate = new Date();
+}
 
 async function loadArrivalsLocations() {
     const routeId = document.getElementById('addRoute').value;
     const locationSelect = document.getElementById('addLocation');
-    
+
     locationSelect.innerHTML = '<option value="">Select a location...</option>';
-    
+    locationSelect.disabled = true;
+
     if (!routeId) return;
 
     try {
         const response = await fetch(`/api/get-locations?route_id=${routeId}`);
         const data = await response.json();
-        
+
         if (data.success) {
             data.locations.forEach(loc => {
                 const option = document.createElement('option');
@@ -110,15 +116,25 @@ async function loadArrivalsLocations() {
                 option.textContent = loc.name;
                 locationSelect.appendChild(option);
             });
+
+            if (data.locations.length === 0) {
+                const option = document.createElement('option');
+                option.value = '';
+                option.textContent = 'No locations on this route';
+                option.disabled = true;
+                locationSelect.appendChild(option);
+            }
         }
     } catch (error) {
         console.error('Error loading locations:', error);
+    } finally {
+        locationSelect.disabled = false;
     }
 }
 
 document.getElementById('arrivalRecordForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     const routeId = document.getElementById('addRoute').value;
     const locationId = document.getElementById('addLocation').value;
     const arrivalDate = document.getElementById('arrivalDate').value;
@@ -130,6 +146,13 @@ document.getElementById('arrivalRecordForm').addEventListener('submit', async (e
     if (!routeId || !locationId || !arrivalDate || !arrivalTime) {
         showError(['Please fill in all required fields']);
         return;
+    }
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Saving...';
     }
 
     try {
@@ -156,6 +179,11 @@ document.getElementById('arrivalRecordForm').addEventListener('submit', async (e
         }
     } catch (error) {
         showError(['An error occurred: ' + error.message]);
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
     }
 });
 
@@ -163,15 +191,18 @@ function showSuccess(message) {
     document.getElementById('errorSection').style.display = 'none';
     document.getElementById('successMessage').textContent = message;
     document.getElementById('successSection').style.display = 'block';
-    document.querySelector('.main-content').scrollTop = 0;
+    scrollToElement(document.getElementById('successSection'));
 }
 
 function showError(errors) {
     document.getElementById('successSection').style.display = 'none';
-    const errorHtml = errors.map(e => `<p>• ${e}</p>`).join('');
+    const errorHtml = errors
+        .filter(Boolean)
+        .map(e => `<p class="insight-item">${escapeHtml(e)}</p>`)
+        .join('');
     document.getElementById('errorMessages').innerHTML = errorHtml;
     document.getElementById('errorSection').style.display = 'block';
-    document.querySelector('.main-content').scrollTop = 0;
+    scrollToElement(document.getElementById('errorSection'));
 }
 
 function clearError() {
@@ -181,9 +212,11 @@ function clearError() {
 function addAnother() {
     document.getElementById('arrivalRecordForm').reset();
     document.getElementById('arrivalDate').valueAsDate = new Date();
-    document.getElementById('addLocation').innerHTML = '<option value="">Select a location...</option>';
+    const locationSelect = document.getElementById('addLocation');
+    locationSelect.innerHTML = '<option value="">Select a location...</option>';
+    locationSelect.disabled = false;
     document.getElementById('successSection').style.display = 'none';
-    document.querySelector('form').focus();
+    document.getElementById('addRoute').focus();
 }
 
 function goHome() {

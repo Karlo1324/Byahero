@@ -42,3 +42,9 @@ Thumbs.db
 # Project specific
 *.pkl
 commute_data.csv
+
+# User data backups and the session secret key. The data files themselves are
+# tracked on purpose, but these are written by the running app.
+data/*.bak
+data/.*.tmp
+data/.secret_key

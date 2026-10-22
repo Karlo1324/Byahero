@@ -156,12 +156,19 @@ Trained machine learning models and label encoders:
   "route": "1",
   "origin": "1",
   "stop": "Digos Terminal",
-  "time": "07:30",
+  "time": "7:30 AM",
   "day": "Monday",
   "crowd": "Medium"
 }
 ```
-Response: `{travel_time: 35.2, decision: "wait"}`
+Response: `{success: true, travel_time: 35.2, decision: "wait", crowd: "Medium", origin: "Kapatagan", destination: "Digos Terminal"}`
+
+Notes:
+- `route` accepts the route id (`"1"`), the route name, or the model's route name.
+- `origin` is the **boarding stop** and is what the model uses as its stop
+  feature; `stop` is the destination and is validated to come after the origin.
+- `time` must match the model's vocabulary (`6:00 AM` ... `8:00 PM`).
+
 
 ### Arrivals
 
@@ -286,29 +293,37 @@ All data is persisted to CSV files:
 
 ### UI/UX Principles
 
+- **Panel-based:** Each key feature lives in its own card, so the page reads as
+  a set of panels rather than one long form
 - **Clean and Professional:** No icons or emojis, text labels only
-- **Minimalist Design:** Soft colors, simple borders, clear hierarchy
-- **Responsive:** Works on desktop, tablet, and mobile
-- **Accessible:** Clear labels, good contrast, keyboard navigation
+- **Smooth transitions:** Panels fade and slide in on reveal; cards, buttons and
+  links animate on hover, with `prefers-reduced-motion` respected
+- **Responsive:** Mobile-first layout, works on phones, tablets and desktop
+- **Phone-friendly:** 16px form text stops iOS zooming on focus, 44px minimum
+  touch targets, scrollable nav pills and tables on narrow screens, and safe
+  area insets for notched devices
+- **Accessible:** Clear labels, visible focus rings, keyboard navigation
 - **Fast:** Lightweight design with minimal dependencies
 
 ### Color Scheme
 
-- **Primary:** Deep blue (#1f4788)
-- **Success:** Green (#10b981)
-- **Warning:** Orange (#f59e0b)
-- **Danger:** Red (#ef4444)
-- **Background:** White/light gray
-- **Text:** Dark gray/black
+- **Primary:** Indigo (#5C6BC0)
+- **Accent:** Orange (#FF6F00)
+- **Success:** Green (#2E9E5B)
+- **Warning:** Amber (#E8890C)
+- **Danger:** Red (#DC3545)
+- **Background:** Light gray-blue (#F4F5FA)
+- **Text:** Near-black (#1F2430)
 
 ## Project Structure
 
 ```
 ByaHero/
 ├── app.py                      # Main Flask application
+├── smoke_test.py               # End-to-end API checks
 ├── requirements.txt            # Python dependencies
 ├── data/
-│   ├── routes_config.py       # Route definitions
+│   ├── routes_config.py       # Route definitions + model stop mapping
 │   ├── locations.csv          # Location registry
 │   ├── bus_arrivals.csv       # Arrival records
 │   └── commute_data.csv       # Training data
@@ -317,19 +332,21 @@ ByaHero/
 │   └── validators.py          # Input validation
 ├── models/
 │   ├── model.pkl              # Trained models
-│   └── arrival_predictor.py   # Arrival predictions
+│   ├── arrival_predictor.py   # Arrival predictions (v1)
+│   └── arrival_predictor_v2.py # Arrival predictions (v2, current)
 ├── templates/
 │   ├── base.html              # Base template with nav
 │   ├── index.html             # Commute prediction
 │   ├── bus_arrivals.html      # Arrival forecasting
 │   ├── add_arrival.html       # Record form
 │   ├── manage_locations.html  # Location management
-│   └── historical_data.html   # Analytics
+│   ├── historical_data.html   # Analytics
+│   └── error.html             # 404 / 500 page
 └── static/
     ├── css/
-    │   └── style.css          # Styling (no icons)
+    │   └── pixelated.css      # Design system + responsive layout
     └── js/
-        └── script.js          # Frontend logic
+        └── script.js          # Shared frontend logic
 ```
 
 ## Troubleshooting
@@ -373,6 +390,15 @@ Check that location is set to `active: true` in `data/locations.csv`
 **Database:** CSV files (simple, portable, versionable)
 
 ## Testing the Application
+
+### Automated Smoke Tests
+```bash
+python3 smoke_test.py
+```
+Runs the full API surface end to end (page renders, prediction, arrival
+forecasting, record creation, location management, validation rejections and
+JSON payload integrity). The test snapshots `data/*.csv` before running and
+restores it afterwards, so your data is left untouched.
 
 ### Test Commute Prediction
 1. Go to "Commute Prediction"

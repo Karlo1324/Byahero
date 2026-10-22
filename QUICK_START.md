@@ -15,7 +15,7 @@ Then open: **http://localhost:3000**
 - **What it does:** Predicts travel time from one stop to another
 - **How to use:**
   1. Select route: "Kapatagan to Digos"
-  2. Select origin: Kapatagan, Soong, Binaton, or Digos Terminal
+  2. Select origin: the stops on that route (Kapatagan, Soong, Binaton, Digos Terminal)
   3. Select destination: Only stops after your origin
   4. Select time: Any time of day (6 AM - 8 PM)
   5. Select day: Monday through Sunday
@@ -124,6 +124,26 @@ All data is saved in the `data/` folder:
 - **bus_arrivals.csv** - Real arrival records (grows as you record arrivals)
 - **commute_data.csv** - Training data for predictions (don't edit)
 - **routes_config.py** - Route definitions (don't edit)
+
+## Running the Tests
+
+```bash
+python3 smoke_test.py
+```
+
+Checks every page and API endpoint end to end. The test saves and restores
+`data/*.csv`, so your records are left untouched.
+
+## Android App
+
+A native Android build lives in `Byahero/`. It talks to the same API, so run
+the server on your computer and point the app at it:
+
+```bash
+export BYAHERO_API=http://<your-lan-ip>:3000
+```
+
+See `Byahero/README.md` for build instructions.
 
 ## Travel Time Predictions
 

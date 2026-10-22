@@ -6,9 +6,78 @@
 <div class="page-container">
     <section class="form-section">
         <div class="card">
+            <h2>Add New Route</h2>
+            <p class="section-subtitle">
+                Create a route and list the stops it runs through, in order
+            </p>
+
+            <form id="addRouteForm" class="form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="newRouteName">Route Name</label>
+                        <input type="text" id="newRouteName" name="name" required
+                               placeholder="e.g., Calinog to Digos" maxlength="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newRouteDescription">Description (Optional)</label>
+                        <input type="text" id="newRouteDescription" name="description"
+                               placeholder="e.g., Morning-only service">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="newRouteModelRoute">Prediction Basis</label>
+                    <select id="newRouteModelRoute" name="model_route" required>
+                        <option value="">Select a route the model knows...</option>
+                        {% for model_route in model_routes %}
+                        <option value="{{ model_route }}">{{ model_route }}</option>
+                        {% endfor %}
+                    </select>
+                    <p class="section-subtitle">
+                        The trained model only knows the routes it was fitted on,
+                        so a new route borrows one of them for its predictions.
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label>Stops</label>
+                    <p class="section-subtitle">
+                        Add the stops in the order the bus visits them. Each stop
+                        also needs the prediction basis the model should use for it.
+                    </p>
+                    <div id="routeStopsContainer"></div>
+                    <button type="button" class="btn btn-secondary" id="addStopBtn">
+                        Add Stop
+                    </button>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add Route</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="routeSuccessSection" style="display: none;">
+        <div class="card panel-success">
+            <h3>Route Added Successfully</h3>
+            <p id="routeSuccessMessage"></p>
+            <button class="btn btn-secondary" onclick="resetRouteForm()">Add Another Route</button>
+        </div>
+    </section>
+
+    <section id="routeErrorSection" style="display: none;">
+        <div class="card panel-error">
+            <h3>Error</h3>
+            <p id="routeErrorMessage"></p>
+            <button class="btn btn-secondary" onclick="clearRouteError()">Try Again</button>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <div class="card">
             <h2>Add New Location</h2>
             <p class="section-subtitle">Add a new bus stop or location to a route</p>
-            
+
             <form id="addLocationForm" class="form">
                 <div class="form-row">
                     <div class="form-group">
@@ -23,7 +92,7 @@
 
                     <div class="form-group">
                         <label for="locationName">Location Name</label>
-                        <input type="text" id="locationName" name="name" required placeholder="e.g., Barangay Nueva">
+                        <input type="text" id="locationName" name="name" required placeholder="e.g., Barangay Nueva" maxlength="100">
                     </div>
                 </div>
 
@@ -45,7 +114,7 @@
     </section>
 
     <section id="successSection" style="display: none;">
-        <div class="card success-card">
+        <div class="card panel-success">
             <h3>Location Added Successfully</h3>
             <p id="successMessage"></p>
             <button class="btn btn-secondary" onclick="resetLocationForm()">Add Another Location</button>
@@ -53,7 +122,7 @@
     </section>
 
     <section id="errorSection" style="display: none;">
-        <div class="card error-card">
+        <div class="card panel-error">
             <h3>Error</h3>
             <p id="errorMessage"></p>
             <button class="btn btn-secondary" onclick="clearError()">Try Again</button>
@@ -63,67 +132,314 @@
     <section class="card">
         <h2>Current Locations</h2>
         <p class="section-subtitle">All registered bus stops organized by route</p>
-        
+
+        <div class="button-row">
+            <button type="button" class="btn btn-secondary" onclick="exportLocationsCsv()">
+                Export Locations CSV
+            </button>
+        </div>
+
         <div id="locationsContainer"></div>
     </section>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script id="modelStopsData" type="application/json">{{ model_stops | tojson }}</script>
 
 <script>
-// Load and display current locations
-function loadAndDisplayLocations() {
-    const container = document.getElementById('locationsContainer');
-    const routes = {% raw %}{{ routes | tojson }}{% endraw %};
-    
+// --- Add new route --------------------------------------------------------
+
+// The stop labels the trained model understands. Every stop on a new route
+// needs one, otherwise the encoders cannot encode the route.
+const modelStops = JSON.parse(document.getElementById('modelStopsData').textContent);
+
+// One row of the stop builder: a name and the prediction basis for it.
+function buildStopRow() {
+    const row = document.createElement('div');
+    row.className = 'form-row';
+
+    const nameGroup = document.createElement('div');
+    nameGroup.className = 'form-group';
+
+    const nameLabel = document.createElement('label');
+    nameLabel.textContent = 'Stop Name';
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.className = 'route-stop-name';
+    nameInput.placeholder = 'e.g., Barangay Calinog';
+    nameInput.maxLength = 100;
+
+    nameGroup.appendChild(nameLabel);
+    nameGroup.appendChild(nameInput);
+
+    const basisGroup = document.createElement('div');
+    basisGroup.className = 'form-group';
+
+    const basisLabel = document.createElement('label');
+    basisLabel.textContent = 'Prediction Basis';
+    const basisSelect = document.createElement('select');
+    basisSelect.className = 'route-stop-model';
+
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = 'Select...';
+    basisSelect.appendChild(placeholder);
+
+    modelStops.forEach(stop => {
+        const option = document.createElement('option');
+        option.value = stop;
+        option.textContent = stop;
+        basisSelect.appendChild(option);
+    });
+
+    basisGroup.appendChild(basisLabel);
+    basisGroup.appendChild(basisSelect);
+
+    row.appendChild(nameGroup);
+    row.appendChild(basisGroup);
+
+    return row;
+}
+
+/** Add an empty stop row to the stop builder. */
+function addStopRow() {
+    const container = document.getElementById('routeStopsContainer');
+    container.appendChild(buildStopRow());
+}
+
+/**
+ * Read the stop builder.
+ *
+ * Blank rows are skipped, so the mapping the API expects follows the stops
+ * that were actually filled in rather than the rows on screen.
+ */
+function collectRouteStops() {
+    const names = [];
+    const modelStops = {};
+
+    document.querySelectorAll('#routeStopsContainer .form-row').forEach(row => {
+        const nameInput = row.querySelector('.route-stop-name');
+        const basisSelect = row.querySelector('.route-stop-model');
+        const name = nameInput ? nameInput.value.trim() : '';
+        if (!name) return;
+
+        names.push(name);
+        modelStops[names.length - 1] = basisSelect ? basisSelect.value : '';
+    });
+
+    return { names, modelStops };
+}
+
+document.getElementById('addStopBtn').addEventListener('click', addStopRow);
+
+document.getElementById('addRouteForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('newRouteName').value.trim();
+    const description = document.getElementById('newRouteDescription').value.trim();
+    const modelRoute = document.getElementById('newRouteModelRoute').value;
+
+    if (!name || !modelRoute) {
+        showRouteError('Please fill in the route name and the prediction basis');
+        return;
+    }
+
+    const { names, modelStops } = collectRouteStops();
+
+    if (names.length < 2) {
+        showRouteError('A route needs at least two stops');
+        return;
+    }
+
+    if (Object.values(modelStops).some(value => !value)) {
+        showRouteError('Every stop needs a prediction basis');
+        return;
+    }
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Adding...';
+    }
+
+    try {
+        const response = await fetch('/api/add-route', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                name: name,
+                description: description,
+                model_route: modelRoute,
+                stops: names,
+                model_stops: modelStops
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            showRouteSuccess(result.message || `Route "${name}" added successfully`);
+            resetRouteForm();
+            loadAndDisplayLocations();
+            refreshLocationRoutes();
+        } else {
+            showRouteError(result.error || 'Failed to add route');
+        }
+    } catch (error) {
+        showRouteError('An error occurred: ' + error.message);
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
+    }
+});
+
+function showRouteSuccess(message) {
+    document.getElementById('routeErrorSection').style.display = 'none';
+    document.getElementById('routeSuccessMessage').textContent = message;
+    document.getElementById('routeSuccessSection').style.display = 'block';
+    scrollToElement(document.getElementById('routeSuccessSection'));
+}
+
+function showRouteError(message) {
+    document.getElementById('routeSuccessSection').style.display = 'none';
+    document.getElementById('routeErrorMessage').textContent = message;
+    document.getElementById('routeErrorSection').style.display = 'block';
+    scrollToElement(document.getElementById('routeErrorSection'));
+}
+
+function clearRouteError() {
+    document.getElementById('routeErrorSection').style.display = 'none';
+}
+
+function resetRouteForm() {
+    document.getElementById('addRouteForm').reset();
+    const container = document.getElementById('routeStopsContainer');
     container.innerHTML = '';
-    
+    addStopRow();
+    addStopRow();
+    document.getElementById('routeSuccessSection').style.display = 'none';
+    document.getElementById('routeErrorSection').style.display = 'none';
+}
+
+/**
+ * Reload the route dropdown of the location form.
+ *
+ * The dropdown is rendered on the server, so a route added here is not in it
+ * until the page is reloaded. Refreshing it in place saves the user a trip.
+ */
+function refreshLocationRoutes() {
+    fetch('/api/get-routes')
+        .then(r => r.json())
+        .then(data => {
+            if (!data.success) return;
+
+            const select = document.getElementById('newRoute');
+            if (!select) return;
+
+            const currentValue = select.value;
+            select.innerHTML = '<option value="">Select a route...</option>';
+
+            Object.entries(data.routes).forEach(([routeId, route]) => {
+                const option = document.createElement('option');
+                option.value = routeId;
+                option.textContent = route.name;
+                select.appendChild(option);
+            });
+
+            select.value = currentValue;
+        })
+        .catch(error => console.error('Error refreshing routes:', error));
+}
+
+// Load and display current locations
+async function loadAndDisplayLocations() {
+    const container = document.getElementById('locationsContainer');
+
+    container.innerHTML = '';
+
+    let routes;
+    try {
+        // Read from the API rather than the page markup, so a route that was
+        // just added shows up without a reload.
+        const response = await fetch('/api/get-routes');
+        const data = await response.json();
+        if (!data.success) {
+            container.innerHTML = '<p class="section-subtitle">Could not load the routes.</p>';
+            return;
+        }
+        routes = data.routes;
+    } catch (error) {
+        console.error('Error loading routes:', error);
+        container.innerHTML = '<p class="section-subtitle">Could not load the routes.</p>';
+        return;
+    }
+
     for (const [routeId, route] of Object.entries(routes)) {
         const routeDiv = document.createElement('div');
         routeDiv.className = 'route-section';
-        
+
         const title = document.createElement('h3');
         title.textContent = route.name;
         routeDiv.appendChild(title);
-        
+
         const locationsDiv = document.createElement('div');
         locationsDiv.className = 'locations-grid';
-        
+        routeDiv.appendChild(locationsDiv);
+
+        container.appendChild(routeDiv);
+
         // Fetch locations for this route
         fetch(`/api/get-locations?route_id=${routeId}`)
             .then(r => r.json())
             .then(data => {
-                if (data.success) {
+                if (data.success && data.locations.length > 0) {
                     data.locations.forEach(loc => {
                         const locDiv = document.createElement('div');
                         locDiv.className = 'location-card';
+                        const isActive = loc.active === 'true' || loc.active === true;
                         locDiv.innerHTML = `
                             <div class="location-header">
-                                <h4>${loc.name}</h4>
-                                <span class="location-sequence">Stop ${loc.stop_sequence}</span>
+                                <h4>${escapeHtml(loc.name)}</h4>
+                                <span class="location-sequence">Stop ${escapeHtml(loc.stop_sequence)}</span>
                             </div>
-                            <p class="location-description">${loc.description || 'No description'}</p>
-                            <span class="location-status">${loc.active === 'true' || loc.active === true ? 'Active' : 'Inactive'}</span>
+                            <p class="location-description">${escapeHtml(loc.description || 'No description')}</p>
+                            <span class="location-status${isActive ? '' : ' inactive'}">${isActive ? 'Active' : 'Inactive'}</span>
                         `;
                         locationsDiv.appendChild(locDiv);
                     });
+                } else {
+                    locationsDiv.innerHTML = '<p class="section-subtitle">No locations registered on this route yet.</p>';
                 }
-                routeDiv.appendChild(locationsDiv);
+            })
+            .catch(error => {
+                console.error('Error loading locations:', error);
+                locationsDiv.innerHTML = '<p class="section-subtitle">Could not load locations for this route.</p>';
             });
     }
-    
-    container.appendChild(routeDiv);
 }
 
 document.getElementById('addLocationForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     const routeId = document.getElementById('newRoute').value;
-    const name = document.getElementById('locationName').value;
+    const name = document.getElementById('locationName').value.trim();
     const stopSequence = document.getElementById('stopSequence').value;
-    const description = document.getElementById('description').value;
+    const description = document.getElementById('description').value.trim();
 
     if (!routeId || !name || !stopSequence) {
         showError('Please fill in all required fields');
         return;
+    }
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Adding...';
     }
 
     try {
@@ -150,6 +466,11 @@ document.getElementById('addLocationForm').addEventListener('submit', async (e) 
         }
     } catch (error) {
         showError('An error occurred: ' + error.message);
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
     }
 });
 
@@ -157,14 +478,14 @@ function showSuccess(message) {
     document.getElementById('errorSection').style.display = 'none';
     document.getElementById('successMessage').textContent = message;
     document.getElementById('successSection').style.display = 'block';
-    document.querySelector('.main-content').scrollTop = 0;
+    scrollToElement(document.getElementById('successSection'));
 }
 
 function showError(message) {
     document.getElementById('successSection').style.display = 'none';
     document.getElementById('errorMessage').textContent = message;
     document.getElementById('errorSection').style.display = 'block';
-    document.querySelector('.main-content').scrollTop = 0;
+    scrollToElement(document.getElementById('errorSection'));
 }
 
 function clearError() {
@@ -176,7 +497,22 @@ function resetLocationForm() {
     document.getElementById('successSection').style.display = 'none';
 }
 
-// Load locations on page load
-document.addEventListener('DOMContentLoaded', loadAndDisplayLocations);
+/** Download the location registry as a CSV file. */
+function exportLocationsCsv() {
+    const link = document.createElement('a');
+    link.href = '/export/locations.csv';
+    link.download = '';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// Load locations on page load, and start the stop builder with two rows so
+// the form is usable straight away.
+document.addEventListener('DOMContentLoaded', () => {
+    loadAndDisplayLocations();
+    addStopRow();
+    addStopRow();
+});
 </script>
 {% endblock %}

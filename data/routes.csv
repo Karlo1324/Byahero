@@ -1,0 +1,2 @@
+route_id,name,description,model_route,model_stops,model_stops_default,stops,active
+1,Kapatagan to Digos,Main route from Kapatagan through intermediate stops to Digos Terminal,Barangay Kapatagan-Digos Terminal,"{""1"": ""Barangay Kapatagan"", ""2"": ""Barangay Kapatagan"", ""3"": ""Barangay Kapatagan"", ""4"": ""Digos Terminal""}",Barangay Kapatagan,"1,2,3,4",true

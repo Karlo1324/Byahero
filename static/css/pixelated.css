@@ -1,0 +1,1373 @@
+/* =============================================
+   ByaHero - Smart Commute Predictor
+   Design system: tokens, panels, transitions,
+   mobile-first responsive layout.
+   ============================================= */
+
+/* -------------------------------------------
+   1. Design tokens
+   ------------------------------------------- */
+:root {
+    /* Neo-brutalist monochrome palette */
+    --primary: #111111;
+    --primary-dark: #000000;
+    --primary-light: #555555;
+    --primary-soft: #EDEDED;
+    --accent: #D9D9D9;
+    --accent-soft: #F2F2F2;
+
+    /* Surfaces */
+    --bg-page: #E8E8E8;
+    --bg-surface: #FFFFFF;
+    --bg-surface-alt: #F2F2F2;
+    --bg-inverse: #111111;
+    --bg-inverse-alt: #2B2B2B;
+
+    /* Text */
+    --text-main: #111111;
+    --text-muted: #444444;
+    --text-subtle: #666666;
+    --text-inverse: #FFFFFF;
+
+    /* Lines */
+    --border-color: #111111;
+    --border-strong: #111111;
+
+    /* Status: grayscale, differentiated by labels as well as color */
+    --success: #222222;
+    --success-soft: #E5E5E5;
+    --warning: #444444;
+    --warning-soft: #DCDCDC;
+    --danger: #000000;
+    --danger-soft: #E0E0E0;
+    --info: #333333;
+    --info-soft: #EAEAEA;
+
+    /* Spacing scale */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+
+    /* Brutalist geometry */
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-pill: 0;
+
+    /* Hard offset shadows */
+    --shadow-sm: 3px 3px 0 #111111;
+    --shadow-md: 5px 5px 0 #111111;
+    --shadow-lg: 7px 7px 0 #111111;
+    --shadow-focus: 0 0 0 3px #888888;
+
+    /* Motion */
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --t-fast: 140ms;
+    --t-base: 220ms;
+    --t-slow: 380ms;
+
+    /* Type */
+    --font-sans: "Arial", "Helvetica Neue", Helvetica, sans-serif;
+    --font-mono: "SF Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* -------------------------------------------
+   2. Reset & base
+   ------------------------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.55;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Safe area for notched phones */
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+}
+
+img,
+svg {
+    max-width: 100%;
+    display: block;
+}
+
+/* Visible focus ring for keyboard users on every interactive element. */
+:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* -------------------------------------------
+   3. Header
+   ------------------------------------------- */
+.header {
+    background: var(--primary);
+    color: var(--text-inverse);
+    padding: var(--space-5) var(--space-4);
+    padding-top: calc(var(--space-5) + env(safe-area-inset-top));
+    border-bottom: 3px solid #111111;
+}
+
+.header-content {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.header-title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+/* Brand lockup: logo mark next to the wordmark */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: inherit;
+}
+
+.brand-logo {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border: 2px solid #FFFFFF;
+    background: #000000;
+    object-fit: contain;
+}
+
+.header h1 {
+    font-size: clamp(1.4rem, 4vw, 1.9rem);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+}
+
+.tagline {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.subtitle {
+    font-size: 0.75rem;
+    opacity: 0.78;
+}
+
+/* -------------------------------------------
+   4. Navigation
+   ------------------------------------------- */
+.navigation {
+    background: var(--bg-surface);
+    border-bottom: 2px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-list {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: var(--space-2) var(--space-4);
+    gap: var(--space-2);
+}
+
+.nav-link {
+    display: block;
+    padding: var(--space-2) var(--space-4);
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border: 2px solid #111111;
+    border-radius: 0;
+    transition: background-color var(--t-fast) var(--ease),
+        color var(--t-fast) var(--ease),
+        border-color var(--t-fast) var(--ease),
+        transform var(--t-fast) var(--ease);
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.nav-link:hover {
+    background: #E5E5E5;
+    color: #111111;
+    border-color: #111111;
+    transform: translateY(-1px);
+}
+
+.nav-link:active {
+    transform: translateY(0);
+}
+
+.nav-link.active {
+    background: #111111;
+    color: #FFFFFF;
+    border-color: #111111;
+}
+
+/* -------------------------------------------
+   5. Layout & panels
+   ------------------------------------------- */
+.main-content {
+    flex: 1;
+    max-width: 1080px;
+    width: 100%;
+    margin: 0 auto;
+    padding: var(--space-5) var(--space-4) var(--space-7);
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+/* The base panel every section sits in. */
+.card {
+    background: var(--bg-surface);
+    border: 2px solid var(--border-color);
+    border-radius: 0;
+    padding: var(--space-5);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--t-base) var(--ease),
+        transform var(--t-base) var(--ease),
+        border-color var(--t-base) var(--ease);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-strong);
+}
+
+.card h2 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: var(--space-2);
+    letter-spacing: -0.2px;
+}
+
+.card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: var(--space-2);
+}
+
+.section-subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: var(--space-5);
+}
+
+/* Panel variants */
+.results-card {
+    border-color: #111111;
+    box-shadow: var(--shadow-md);
+    animation: panel-in var(--t-slow) var(--ease) both;
+}
+
+.panel-success {
+    border-color: var(--success);
+    background: var(--success-soft);
+}
+
+.panel-success h3 {
+    color: var(--success);
+}
+
+.panel-error {
+    border-color: var(--danger);
+    background: var(--danger-soft);
+}
+
+.panel-error h3 {
+    color: var(--danger);
+}
+
+@keyframes panel-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* -------------------------------------------
+   6. Forms
+   ------------------------------------------- */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-4);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: var(--space-3) var(--space-3);
+    border: 2px solid var(--border-strong);
+    background: var(--bg-surface);
+    color: var(--text-main);
+    font-family: inherit;
+    /* 16px minimum prevents iOS Safari from zooming on focus. */
+    font-size: 1rem;
+    line-height: 1.4;
+    border-radius: 0;
+    transition: border-color var(--t-fast) var(--ease),
+        box-shadow var(--t-fast) var(--ease),
+        background-color var(--t-fast) var(--ease);
+    /* Stop the iOS zoom-on-focus behaviour. */
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Native select needs its own arrow once appearance is reset. */
+.form-group select {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%235C6470' d='M1.4 0 6 4.6 10.6 0 12 1.4 6 7.4 0 1.4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+    padding-right: var(--space-6);
+    cursor: pointer;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #111111;
+    box-shadow: var(--shadow-focus);
+    background-color: var(--bg-surface);
+}
+
+.form-group input:disabled,
+.form-group select:disabled,
+.form-group textarea:disabled {
+    background-color: var(--bg-surface-alt);
+    color: var(--text-subtle);
+    cursor: not-allowed;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-subtle);
+    font-size: 0.9rem;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/*
+ * Date and time inputs keep the native appearance on purpose: stripping it
+ * with `appearance: none` also removes the picker affordance on Android
+ * Chrome, leaving no obvious way to enter a date.
+ */
+.form-group input[type="date"],
+.form-group input[type="time"] {
+    -webkit-appearance: auto;
+    appearance: auto;
+    min-height: 46px;
+}
+
+/* -------------------------------------------
+   7. Crowd selection
+   ------------------------------------------- */
+.crowd-selection {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+}
+
+.crowd-option {
+    display: flex;
+    flex-direction: column;
+}
+
+.crowd-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.crowd-option label {
+    padding: var(--space-3) var(--space-2);
+    border: 2px solid var(--border-strong);
+    background: var(--bg-surface);
+    color: var(--text-muted);
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 0;
+    transition: background-color var(--t-fast) var(--ease),
+        color var(--t-fast) var(--ease),
+        border-color var(--t-fast) var(--ease),
+        transform var(--t-fast) var(--ease);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.crowd-option label:hover {
+    border-color: var(--primary-light);
+    color: #111111;
+}
+
+.crowd-option input[type="radio"]:checked + label {
+    background: #111111;
+    border-color: #111111;
+    color: #FFFFFF;
+    transform: translateY(-1px);
+}
+
+.crowd-option input[type="radio"]:focus-visible + label {
+    box-shadow: var(--shadow-focus);
+}
+
+/* -------------------------------------------
+   8. Buttons
+   ------------------------------------------- */
+.btn {
+    padding: var(--space-3) var(--space-5);
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: inherit;
+    color: var(--text-inverse);
+    border: 2px solid #111111;
+    border-radius: 0;
+    background: var(--primary);
+    cursor: pointer;
+    transition: background-color var(--t-fast) var(--ease),
+        color var(--t-fast) var(--ease),
+        box-shadow var(--t-fast) var(--ease),
+        transform var(--t-fast) var(--ease),
+        opacity var(--t-fast) var(--ease);
+    /* 44px minimum touch target on phones. */
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+.btn:disabled,
+.btn.loading {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+}
+
+.btn-secondary {
+    background: var(--bg-surface);
+    color: var(--text-main);
+    border-color: var(--border-strong);
+}
+
+.btn-secondary:hover {
+    background: #E5E5E5;
+    color: #111111;
+    border-color: #111111;
+}
+
+.btn-danger {
+    background: var(--danger);
+}
+
+.btn-danger:hover {
+    background: #b02a37;
+}
+
+/* -------------------------------------------
+   9. Results
+   ------------------------------------------- */
+.result-row {
+    margin-bottom: var(--space-4);
+}
+
+.result-row:last-of-type {
+    margin-bottom: 0;
+}
+
+.result-box {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--bg-surface-alt);
+    border: 2px solid var(--border-color);
+    border-radius: 0;
+    align-items: center;
+    transition: border-color var(--t-base) var(--ease),
+        background-color var(--t-base) var(--ease);
+}
+
+.result-box.highlight {
+    background: #E5E5E5;
+    border-color: #111111;
+}
+
+.result-label {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.result-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #111111;
+    letter-spacing: -0.5px;
+    text-align: right;
+}
+
+.result-value.decision {
+    font-size: 0.95rem;
+    padding: var(--space-2) var(--space-4);
+    border: 2px solid #111111;
+    border-radius: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.result-value.urgent {
+    background: var(--danger);
+    color: var(--text-inverse);
+}
+
+.result-value.safe {
+    background: var(--success);
+    color: var(--text-inverse);
+}
+
+/* Trip summary line above the result boxes. */
+.trip-summary {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: var(--space-4);
+}
+
+/* A row of buttons that wraps on narrow screens. */
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+}
+
+/* Message shown under the export buttons. */
+.export-status {
+    margin-top: var(--space-3);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    min-height: 1.2em;
+}
+
+/* -------------------------------------------
+   10. Insights
+   ------------------------------------------- */
+.insights {
+    margin: var(--space-5) 0;
+    padding: var(--space-4);
+    background: var(--bg-surface-alt);
+    border: 2px solid var(--border-color);
+    border-radius: 0;
+}
+
+.insights h3 {
+    font-size: 0.8rem;
+    margin-bottom: var(--space-2);
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.insight-item {
+    color: var(--text-muted);
+    padding: var(--space-2) 0;
+    border-bottom: 2px solid var(--border-color);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.insight-item:last-child {
+    border-bottom: none;
+}
+
+/* -------------------------------------------
+   11. Tables
+   ------------------------------------------- */
+.table-container {
+    overflow-x: auto;
+    margin: var(--space-4) 0;
+    /* Fade hint that the table scrolls horizontally. */
+    -webkit-overflow-scrolling: touch;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+}
+
+.data-table th,
+.data-table td {
+    padding: var(--space-3);
+    text-align: left;
+    border-bottom: 2px solid var(--border-color);
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.data-table th {
+    background: var(--bg-surface-alt);
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    position: sticky;
+    top: 0;
+}
+
+.data-table tbody tr {
+    transition: background-color var(--t-fast) var(--ease);
+}
+
+.data-table tbody tr:hover {
+    background: var(--bg-surface-alt);
+}
+
+.data-table .loading,
+.data-table .empty,
+.data-table .error {
+    text-align: center;
+    color: var(--text-muted);
+    padding: var(--space-6);
+    white-space: normal;
+}
+
+.data-table .error {
+    color: var(--danger);
+}
+
+.record-count {
+    font-size: 0.8rem;
+    color: var(--text-subtle);
+    text-align: right;
+}
+
+/* -------------------------------------------
+   12. Statistics
+   ------------------------------------------- */
+.statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-4);
+}
+
+.stat-box {
+    background: var(--bg-surface);
+    padding: var(--space-4);
+    border: 2px solid var(--border-color);
+    border-radius: 0;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--t-base) var(--ease),
+        transform var(--t-base) var(--ease);
+}
+
+.stat-box:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.stat-label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-2);
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #111111;
+    letter-spacing: -0.5px;
+}
+
+/* -------------------------------------------
+   13. Locations
+   ------------------------------------------- */
+
+/* The stop builder on the "Add New Route" form. Each row is a stop and the
+   prediction basis the model should use for it. */
+#routeStopsContainer {
+    margin-bottom: var(--space-4);
+}
+
+#routeStopsContainer .form-row {
+    margin-bottom: var(--space-3);
+}
+
+#routeStopsContainer .form-group {
+    margin-bottom: 0;
+}
+
+#routeStopsContainer .form-group label {
+    font-size: 0.7rem;
+}
+
+.route-section {
+    margin-bottom: var(--space-6);
+}
+
+.route-section h3 {
+    font-size: 0.8rem;
+    color: #111111;
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: 2px solid var(--border-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-4);
+}
+
+.location-card {
+    background: var(--bg-surface);
+    padding: var(--space-4);
+    border: 2px solid var(--border-color);
+    border-radius: 0;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--t-base) var(--ease),
+        transform var(--t-base) var(--ease),
+        border-color var(--t-base) var(--ease);
+}
+
+.location-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: var(--border-strong);
+}
+
+.location-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+.location-header h4 {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.location-sequence {
+    background: #E5E5E5;
+    color: #111111;
+    padding: var(--space-1) var(--space-2);
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 0;
+    white-space: nowrap;
+}
+
+.location-description {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: var(--space-3);
+}
+
+.location-status {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.location-status::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.location-status.inactive {
+    color: var(--text-subtle);
+}
+
+.location-status.inactive::before {
+    background: var(--text-subtle);
+}
+
+/* -------------------------------------------
+   14. Badges & status
+   ------------------------------------------- */
+.crowd-badge {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    border: 2px solid #111111;
+    border-radius: 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.crowd-badge.crowd-low {
+    background: var(--success-soft);
+    color: var(--success);
+    border-color: #111111;
+}
+
+.crowd-badge.crowd-medium {
+    background: var(--warning-soft);
+    color: var(--warning);
+    border-color: #111111;
+}
+
+.crowd-badge.crowd-high {
+    background: var(--danger-soft);
+    color: var(--danger);
+    border-color: #111111;
+}
+
+.crowd-badge.crowd-unknown {
+    background: var(--bg-surface-alt);
+    color: var(--text-muted);
+    border-color: var(--border-color);
+}
+
+.status-message {
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    border-radius: 0;
+    font-size: 0.875rem;
+    border: 2px solid #111111;
+    background: var(--info-soft);
+    color: var(--info);
+    border-color: #111111;
+}
+
+.status-message.warning {
+    background: var(--warning-soft);
+    color: var(--warning);
+    border-color: #111111;
+}
+
+/* -------------------------------------------
+   15. Arrival list
+   ------------------------------------------- */
+.arrivals-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.arrival-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--space-3);
+    align-items: center;
+    padding: var(--space-3);
+    background: var(--bg-surface-alt);
+    border: 2px solid var(--border-color);
+    border-radius: 0;
+    font-size: 0.85rem;
+    transition: background-color var(--t-fast) var(--ease),
+        transform var(--t-fast) var(--ease);
+}
+
+.arrival-item:hover {
+    background: #E5E5E5;
+    transform: translateX(2px);
+}
+
+.arrival-item .arrival-time {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-main);
+}
+
+.arrival-item .arrival-date {
+    color: var(--text-muted);
+}
+
+/* -------------------------------------------
+   16. Footer
+   ------------------------------------------- */
+.footer {
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-surface);
+    padding: var(--space-5) var(--space-4);
+    padding-bottom: calc(var(--space-5) + env(safe-area-inset-bottom));
+    text-align: center;
+}
+
+.footer p {
+    font-size: 0.8rem;
+    color: var(--text-subtle);
+}
+
+.footer p + p {
+    margin-top: var(--space-2);
+}
+
+.footer-link {
+    color: var(--text-subtle);
+    font-size: 0.8rem;
+    text-decoration: underline;
+}
+
+.footer-link:hover,
+.footer-link:focus {
+    color: var(--text-main);
+}
+
+/* -------------------------------------------
+   17. Responsive
+   ------------------------------------------- */
+
+/* Small phones: tighten the padding so panels use the width well. */
+@media (max-width: 480px) {
+    .main-content {
+        padding: var(--space-4) var(--space-3) var(--space-6);
+    }
+
+    .card {
+        padding: var(--space-4);
+        border-radius: 0;
+    }
+
+    .header {
+        padding: var(--space-4) var(--space-3);
+    }
+
+    /* Nav becomes a scrollable row of pills instead of wrapping. */
+    .nav-list {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: var(--space-2) var(--space-3);
+        gap: var(--space-2);
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .nav-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-link {
+        padding: var(--space-2) var(--space-3);
+        font-size: 0.8rem;
+    }
+
+    .crowd-selection {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .crowd-option label {
+        font-size: 0.8rem;
+        padding: var(--space-3) var(--space-1);
+    }
+
+    .result-box {
+        grid-template-columns: 1fr;
+        gap: var(--space-1);
+        text-align: left;
+    }
+
+    .result-value {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+
+    .result-value.decision {
+        justify-self: start;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-value {
+        font-size: 1.3rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .locations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Table becomes horizontally scrollable with a smaller min width. */
+    .data-table {
+        min-width: 560px;
+    }
+
+    .arrival-item {
+        grid-template-columns: auto 1fr;
+        row-gap: var(--space-1);
+    }
+}
+
+/* Tablets and up: slightly roomier panels. */
+@media (min-width: 769px) {
+    .nav-list {
+        padding: var(--space-2) var(--space-5);
+    }
+}
+
+/* Respect users who ask the OS to reduce motion. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* =============================================
+   NEO-BRUTALIST OVERRIDES
+   Monochrome, sharp edges, hard shadows, bold UI.
+   ============================================= */
+.header {
+    border-bottom: 3px solid #111111;
+}
+.navigation {
+    border-bottom: 2px solid #111111;
+    box-shadow: none;
+}
+.card,
+.stat-box,
+.location-card,
+.result-box,
+.insights,
+.arrival-item,
+.form-group input,
+.form-group select,
+.form-group textarea,
+.crowd-option label,
+.btn,
+.nav-link {
+    border-radius: 0 !important;
+}
+.card,
+.stat-box,
+.location-card {
+    border: 2px solid #111111;
+    box-shadow: 4px 4px 0 #111111;
+}
+.card:hover,
+.stat-box:hover,
+.location-card:hover {
+    box-shadow: 6px 6px 0 #111111;
+    transform: translate(-1px, -1px);
+}
+.btn {
+    border: 2px solid #111111;
+    border-radius: 0;
+    box-shadow: 4px 4px 0 #111111;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+.btn:hover {
+    background: #E5E5E5;
+    color: #111111;
+    box-shadow: 2px 2px 0 #111111;
+    transform: translate(2px, 2px);
+}
+.btn-primary {
+    background: #111111;
+    color: #FFFFFF;
+}
+.btn-secondary {
+    background: #FFFFFF;
+    color: #111111;
+    border-color: #111111;
+}
+.nav-link {
+    border: 2px solid transparent;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+.nav-link.active {
+    background: #111111;
+    color: #FFFFFF;
+    border-color: #111111;
+}
+.header h1 {
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    font-weight: 900;
+}
+.card h2,
+.card h3,
+.route-section h3 {
+    text-transform: uppercase;
+    font-weight: 900;
+}
+.form-group label,
+.result-label,
+.stat-label,
+.crowd-badge,
+.location-sequence {
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    border: 2px solid #111111;
+    box-shadow: 3px 3px 0 #BDBDBD;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #111111;
+    box-shadow: 4px 4px 0 #111111;
+}
+.result-value {
+    color: #111111;
+    font-weight: 900;
+}
+.results-card {
+    border: 3px solid #111111;
+    box-shadow: 6px 6px 0 #111111;
+}
+.crowd-option input[type="radio"]:checked + label {
+    background: #111111;
+    color: #FFFFFF;
+    border-color: #111111;
+    transform: none;
+}
+.crowd-badge.crowd-low,
+.crowd-badge.crowd-medium,
+.crowd-badge.crowd-high,
+.crowd-badge.crowd-unknown {
+    background: #E5E5E5;
+    color: #111111;
+    border: 2px solid #111111;
+}
+.location-status {
+    color: #111111;
+}
+.location-status::before {
+    background: #111111;
+    border-radius: 0;
+}
+.footer {
+    border-top: 2px solid #111111;
+}
+::selection {
+    background: #111111;
+    color: #FFFFFF;
+}
+
+/* =============================================
+   SPLASH SCREEN
+   Full-bleed loading screen shown for ~1 second
+   on first paint, then faded out by script.js.
+   ============================================= */
+.splash-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-page);
+    padding: var(--space-4);
+    transition: opacity var(--t-slow) var(--ease), visibility var(--t-slow) var(--ease);
+}
+
+.splash-screen.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    text-align: center;
+}
+
+.splash-logo {
+    width: 112px;
+    height: 112px;
+    object-fit: contain;
+    border: 3px solid #111111;
+    background: #000000;
+    box-shadow: 6px 6px 0 #111111;
+    animation: splash-pulse 900ms var(--ease) infinite alternate;
+}
+
+.splash-title {
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+
+.splash-tagline {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-subtle);
+}
+
+.splash-progress {
+    width: 180px;
+    height: 6px;
+    background: var(--accent-soft);
+    border: 2px solid #111111;
+    overflow: hidden;
+}
+
+.splash-progress-bar {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: #111111;
+    animation: splash-fill 1000ms linear forwards;
+}
+
+@keyframes splash-fill {
+    from { width: 0%; }
+    to   { width: 100%; }
+}
+
+@keyframes splash-pulse {
+    from { transform: scale(1); }
+    to   { transform: scale(1.06); }
+}
+
+/* The app is hidden while the splash is up so nothing peeks through. The
+   reveal is driven by a CSS animation (not by JS) so the app still becomes
+   usable if the script fails to load. */
+body.is-loading .app-container {
+    visibility: hidden;
+    animation: app-reveal 1ms linear 1.05s forwards;
+}
+
+@keyframes app-reveal {
+    to { visibility: visible; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .splash-logo {
+        animation: none;
+    }
+
+    .splash-progress-bar {
+        animation-duration: 0.01ms;
+    }
+
+    body.is-loading .app-container {
+        animation-duration: 1ms;
+    }
+}
