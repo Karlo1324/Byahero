@@ -401,14 +401,7 @@ async function loadAndDisplayLocations() {
                         const locDiv = document.createElement('div');
                         locDiv.className = 'location-card';
                         const isActive = loc.active === 'true' || loc.active === true;
-                        locDiv.innerHTML = `
-                            <div class="location-header">
-                                <h4>${escapeHtml(loc.name)}</h4>
-                                <span class="location-sequence">Stop ${escapeHtml(loc.stop_sequence)}</span>
-                            </div>
-                            <p class="location-description">${escapeHtml(loc.description || 'No description')}</p>
-                            <span class="location-status${isActive ? '' : ' inactive'}">${isActive ? 'Active' : 'Inactive'}</span>
-                        `;
+                        locDiv.innerHTML = `\n                            <div class="location-header">\n                                <h4>${escapeHtml(loc.name)}</h4>\n                                <span class="location-sequence">Stop ${escapeHtml(loc.stop_sequence)}</span>\n                            </div>\n                            <p class="location-description">${escapeHtml(loc.description || 'No description')}</p>\n                            <span class="location-status${isActive ? '' : ' inactive'}">${isActive ? 'Active' : 'Inactive'}</span>\n                        `;
                         locationsDiv.appendChild(locDiv);
                     });
                 } else {

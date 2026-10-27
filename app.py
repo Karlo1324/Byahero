@@ -663,6 +663,90 @@ def add_location_api():
         return jsonify({'success': False, 'error': str(e)}), 400
 
 
+@app.route('/api/edit-location/<int:location_id>', methods=['POST'])
+def edit_location_api(location_id):
+    """Edit an existing location's name, description, route, or sequence"""
+    try:
+        data = request.get_json(silent=True) or {}
+
+        existing = data_manager.read_rows('locations.csv',
+                                            ['location_id', 'name', 'description',
+                                             'route_id', 'stop_sequence', 'active'])
+
+        match = [r for r in existing if _as_int(r.get('location_id')) == location_id]
+        if not match:
+            return jsonify({'success': False, 'error': f"Location {location_id} not found"}), 404
+
+        row = dict(match[0])
+
+        if 'name' in data and data['name']:
+            valid, msg = validator.validate_location_name(data['name'])
+            if not valid:
+                return jsonify({'success': False, 'error': msg}), 400
+            row['name'] = data['name']
+
+        if 'description' in data:
+            row['description'] = data['description'] or ''
+
+        if 'route_id' in data:
+            try:
+                int(data['route_id'])
+                row['route_id'] = int(data['route_id'])
+            except (ValueError, TypeError):
+                return jsonify({'success': False, 'error': 'Invalid route ID'}), 400
+
+        if 'stop_sequence' in data:
+            try:
+                int(data['stop_sequence'])
+                if int(data['stop_sequence']) < 1:
+                    return jsonify({'success': False, 'error': 'Stop sequence must be a positive number'}), 400
+                row['stop_sequence'] = int(data['stop_sequence'])
+            except (ValueError, TypeError):
+                return jsonify({'success': False, 'error': 'Stop sequence must be a number'}), 400
+
+        if 'active' in data:
+            row['active'] = 'true' if bool(data['active']) else 'false'
+
+        new_rows = []
+        updated = False
+        for r in existing:
+            if _as_int(r.get('location_id')) == location_id:
+                new_rows.append(row)
+                updated = True
+            else:
+                new_rows.append(r)
+
+        if not updated:
+            new_rows.append(row)
+
+        columns = ['location_id', 'name', 'description', 'route_id',
+                   'stop_sequence', 'active']
+        data_manager.write_rows('locations.csv', new_rows, columns)
+
+        return jsonify({'success': True, 'message': 'Location updated'})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
+
+
+@app.route('/api/delete-location/<int:location_id>', methods=['DELETE'])
+def delete_location_api(location_id):
+    """Remove a location entirely from the registry"""
+    try:
+        existing = data_manager.read_rows('locations.csv',
+                                           ['location_id', 'name', 'description',
+                                            'route_id', 'stop_sequence', 'active'])
+        if not any(r.get('location_id') == location_id for r in existing):
+            return jsonify({'success': False, 'error': f"Location {location_id} not found"}), 404
+
+        remaining = [r for r in existing if r.get('location_id') != location_id]
+        columns = ['location_id', 'name', 'description', 'route_id',
+                   'stop_sequence', 'active']
+        data_manager.write_rows('locations.csv', remaining, columns)
+        return jsonify({'success': True, 'message': f"Location {location_id} deleted"})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
+
+
 # ============ API ENDPOINTS - STATISTICS ============
 
 @app.route('/api/get-statistics', methods=['GET'])
@@ -675,6 +759,29 @@ def get_statistics_api():
         return jsonify({
             'success': True,
             'statistics': stats
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
+
+
+# ============ API ENDPOINTS - TIMEZONE ============
+
+@app.route('/api/get-timezone', methods=['GET'])
+def get_timezone_api():
+    """
+    Report the user's timezone offset in minutes.
+
+    The browser sends `getTimezoneOffset()` (UTC minus local, in minutes),
+    so the server can compare an arrival against the clock the user actually
+    looked at. Without this the server's own clock is used, which is wrong
+    whenever the two are in different timezones -- and a hosted deployment
+    usually runs in UTC, hours behind the user.
+    """
+    try:
+        offset = request.args.get('tz_offset_minutes', type=int)
+        return jsonify({
+            'success': True,
+            'tz_offset_minutes': offset if offset is not None else 0
         })
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 400

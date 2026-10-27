@@ -43,11 +43,6 @@
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="departureTime">Departure Time (Optional)</label>
-                        <input type="time" id="departureTime" name="departure_time">
-                    </div>
-
-                    <div class="form-group">
                         <label for="crowdLevel">Crowd Level</label>
                         <select id="crowdLevel" name="crowd_level">
                             <option value="Low">Low</option>
@@ -90,10 +85,20 @@
 
 {% block scripts %}
 <script>
+// Today's date in the user's LOCAL timezone as YYYY-MM-DD.
+// (valueAsDate = new Date() uses UTC, which gives yesterday's date
+// between midnight and 8 AM in the Philippines.)
+function localDateString() {
+    const now = new Date();
+    return new Date(now.getTime() - now.getTimezoneOffset() * 60000)
+        .toISOString()
+        .slice(0, 10);
+}
+
 // Set today's date as default
 const arrivalDateField = document.getElementById('arrivalDate');
 if (arrivalDateField) {
-    arrivalDateField.valueAsDate = new Date();
+    arrivalDateField.value = localDateString();
 }
 
 async function loadArrivalsLocations() {
@@ -101,9 +106,13 @@ async function loadArrivalsLocations() {
     const locationSelect = document.getElementById('addLocation');
 
     locationSelect.innerHTML = '<option value="">Select a location...</option>';
-    locationSelect.disabled = true;
 
-    if (!routeId) return;
+    if (!routeId) {
+        locationSelect.disabled = false;
+        return;
+    }
+
+    locationSelect.disabled = true;
 
     try {
         const response = await fetch(`/api/get-locations?route_id=${routeId}`);
@@ -139,9 +148,12 @@ document.getElementById('arrivalRecordForm').addEventListener('submit', async (e
     const locationId = document.getElementById('addLocation').value;
     const arrivalDate = document.getElementById('arrivalDate').value;
     const arrivalTime = document.getElementById('arrivalTime').value;
-    const departureTime = document.getElementById('departureTime').value;
     const crowdLevel = document.getElementById('crowdLevel').value;
     const notes = document.getElementById('notes').value;
+
+    // Minutes BEHIND UTC (Philippines = -480). The server needs this to
+    // convert the local arrival time to UTC before the "future" check.
+    const tzOffset = new Date().getTimezoneOffset();
 
     if (!routeId || !locationId || !arrivalDate || !arrivalTime) {
         showError(['Please fill in all required fields']);
@@ -164,9 +176,9 @@ document.getElementById('arrivalRecordForm').addEventListener('submit', async (e
                 location_id: parseInt(locationId),
                 arrival_date: arrivalDate,
                 arrival_time: arrivalTime,
-                departure_time: departureTime || null,
                 crowd_level: crowdLevel,
-                notes: notes
+                notes: notes,
+                tz_offset_minutes: tzOffset
             })
         });
 
@@ -211,7 +223,7 @@ function clearError() {
 
 function addAnother() {
     document.getElementById('arrivalRecordForm').reset();
-    document.getElementById('arrivalDate').valueAsDate = new Date();
+    document.getElementById('arrivalDate').value = localDateString();
     const locationSelect = document.getElementById('addLocation');
     locationSelect.innerHTML = '<option value="">Select a location...</option>';
     locationSelect.disabled = false;

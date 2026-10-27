@@ -5,3 +5,4 @@ arrival_id,route_id,location_id,arrival_time,arrival_date,departure_time,crowd_l
 4,1,4,08:15,2026-10-13,08:00,Medium,Normal arrival,2026-10-13T08:20:00
 5,1,3,01:00,2026-10-13,00:45,Low,Test arrival,2026-10-13T02:01:48.105723
 6,1,3,06:25,2026-10-22,06:23,Medium,,2026-10-22T06:25:29.259536
+7,1,3,08:15,2026-10-26,,Medium,,2026-10-26T20:15:14.692930

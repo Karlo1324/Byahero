@@ -45,6 +45,24 @@ function escapeHtml(value) {
         .replace(/'/g, '&#39;');
 }
 
+/**
+ * Get the user's timezone offset in minutes, so arrival records are
+ * compared against the clock the user actually looked at rather than the
+ * server's. The server usually runs in UTC, which is hours behind the user,
+ * and every arrival the user recorded was then refused as being in the
+ * future.
+ */
+async function estimate_timezone_offset() {
+    try {
+        const response = await fetch('/api/get-timezone');
+        const data = await response.json();
+        return data.tz_offset_minutes || 0;
+    } catch (error) {
+        console.error('Error estimating timezone:', error);
+        return 0;
+    }
+}
+
 /** Normalise a crowd level into a css class suffix: Low -> crowd-low. */
 function crowdClass(level) {
     const key = String(level || '').toLowerCase();
