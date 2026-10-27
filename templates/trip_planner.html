@@ -1,0 +1,399 @@
+{% extends "base.html" %}
+
+{% block title %}Trip Planner - ByaHero{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <section class="form-section">
+        <div class="card">
+            <h2>Plan Your Complete Trip</h2>
+            <p class="section-subtitle">Get travel time prediction + bus arrival timeline in one view</p>
+
+            <form id="tripForm" class="form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="route"><span class="icon icon-sm icon-route" style="margin-right:6px;"></span>Route</label>
+                        <select id="route" name="route" required onchange="updateOrigins()">
+                            <option value="">Select a route...</option>
+                            {% for route_id, route in routes.items() %}
+                            <option value="{{ route_id }}">{{ route.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="origin"><span class="icon icon-sm icon-location" style="margin-right:6px;"></span>From (Origin)</label>
+                        <select id="origin" name="origin" required onchange="updateDestinations()">
+                            <option value="">Select origin...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="destination"><span class="icon icon-sm icon-location" style="margin-right:6px;"></span>To (Destination)</label>
+                        <select id="destination" name="destination" required>
+                            <option value="">Select destination...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="time"><span class="icon icon-sm icon-clock" style="margin-right:6px;"></span>Time of Day</label>
+                        <select id="time" name="time" required>
+                            <option value="">Select a time...</option>
+                            {% for t in times %}
+                            <option value="{{ t }}">{{ t }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="day"><span class="icon icon-sm icon-calendar" style="margin-right:6px;"></span>Day</label>
+                        <select id="day" name="day" required>
+                            <option value="">Select a day...</option>
+                            {% for d in days %}
+                            <option value="{{ d }}">{{ d }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><span class="icon icon-sm icon-bus" style="margin-right:6px;"></span>Crowd Level</label>
+                    <div class="crowd-selection">
+                        <div class="crowd-option">
+                            <input type="radio" id="crowd-low" name="crowd" value="Low" required>
+                            <label for="crowd-low">Low</label>
+                        </div>
+                        <div class="crowd-option">
+                            <input type="radio" id="crowd-medium" name="crowd" value="Medium" required>
+                            <label for="crowd-medium">Medium</label>
+                        </div>
+                        <div class="crowd-option">
+                            <input type="radio" id="crowd-high" name="crowd" value="High" required>
+                            <label for="crowd-high">High</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary"><span class="icon icon-sm icon-bus" style="margin-right:8px;"></span>Get Complete Trip Plan</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="resultsSection" style="display: none;">
+        <div class="card results-card trip-results">
+            <h2>Your Trip Plan</h2>
+
+            <!-- Trip Summary & Bus Timeline Side by Side -->
+            <div class="trip-results-grid">
+                <!-- Left: Trip Summary -->
+                <div class="trip-summary-panel">
+                    <div class="result-row">
+                        <div class="result-box">
+                            <span class="result-label"><span class="icon icon-sm icon-route" style="margin-right:6px;"></span>Route</span>
+                            <span class="result-value trip-route" id="tripRoute">--</span>
+                        </div>
+                    </div>
+
+                    <div class="result-row">
+                        <div class="result-box">
+                            <span class="result-label"><span class="icon icon-sm icon-location" style="margin-right:6px;"></span>Origin → Destination</span>
+                            <span class="result-value" id="tripStops">--</span>
+                        </div>
+                    </div>
+
+                    <div class="result-row highlight">
+                        <div class="result-box">
+                            <span class="result-label"><span class="icon icon-sm icon-clock" style="margin-right:6px;"></span>Estimated Travel Time</span>
+                            <span class="result-value" id="travelTimeResult">--</span>
+                        </div>
+                    </div>
+
+                    <div class="result-row highlight">
+                        <div class="result-box">
+                            <span class="result-label"><span class="icon icon-sm icon-bus" style="margin-right:6px;"></span>Expected Bus Arrival</span>
+                            <span class="result-value" id="expectedBusTime">--</span>
+                        </div>
+                    </div>
+
+                    <div class="result-row">
+                        <div class="result-box">
+                            <span class="result-label"><span class="icon icon-sm icon-check" style="margin-right:6px;"></span>Recommended Action</span>
+                            <span class="result-value decision" id="decisionResult">--</span>
+                        </div>
+                    </div>
+
+                    <div class="insights">
+                        <h3><span class="icon icon-sm icon-info" style="margin-right:6px;"></span>Insights</h3>
+                        <div id="insightsContent"></div>
+                    </div>
+                </div>
+
+                <!-- Right: Bus Arrival Timeline -->
+                <div class="bus-timeline-panel">
+                    <h3><span class="icon icon-sm icon-clock" style="margin-right:6px;"></span>Bus Arrival Timeline</h3>
+                    <div class="timeline-container" id="busTimeline">
+                        <!-- Timeline items inserted here -->
+                    </div>
+                    <div class="timeline-legend">
+                        <span class="legend-item"><span class="legend-dot current"></span>Your Stop</span>
+                        <span class="legend-item"><span class="legend-dot past"></span>Completed</span>
+                        <span class="legend-item"><span class="legend-dot future"></span>Upcoming</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-row">
+                <button class="btn btn-secondary" onclick="resetForm()">New Trip Plan</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="errorSection" style="display: none;">
+        <div class="card panel-error">
+            <h3>Error</h3>
+            <p id="errorMessage"></p>
+            <button class="btn btn-secondary" onclick="resetForm()">Try Again</button>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+/** Populate origin dropdown based on selected route */
+async function updateOrigins() {
+    const routeId = document.getElementById('route').value;
+    const originSelect = document.getElementById('origin');
+    const destSelect = document.getElementById('destination');
+
+    originSelect.innerHTML = '<option value="">Select origin...</option>';
+    originSelect.disabled = true;
+    destSelect.innerHTML = '<option value="">Select destination...</option>';
+    destSelect.disabled = true;
+
+    if (!routeId) return;
+
+    try {
+        const response = await fetch(`/api/get-locations?route_id=${routeId}`);
+        const data = await response.json();
+
+        if (data.success) {
+            data.locations.forEach(loc => {
+                const option = document.createElement('option');
+                option.value = loc.location_id;
+                option.textContent = loc.name;
+                originSelect.appendChild(option);
+            });
+            originSelect.disabled = false;
+        }
+    } catch (error) {
+        console.error('Error loading origins:', error);
+    }
+}
+
+/** Populate destination dropdown based on selected origin */
+async function updateDestinations() {
+    const routeId = document.getElementById('route').value;
+    const originId = document.getElementById('origin').value;
+    const destSelect = document.getElementById('destination');
+
+    destSelect.innerHTML = '<option value="">Select destination...</option>';
+    destSelect.disabled = true;
+
+    if (!routeId || !originId) return;
+
+    try {
+        const response = await fetch(`/api/get-stops-after?route_id=${routeId}&stop_id=${originId}`);
+        const data = await response.json();
+
+        if (data.success) {
+            data.stops.forEach(stop => {
+                const option = document.createElement('option');
+                option.value = stop.id;
+                option.textContent = stop.name;
+                destSelect.appendChild(option);
+            });
+            destSelect.disabled = false;
+        }
+    } catch (error) {
+        console.error('Error loading destinations:', error);
+    }
+}
+
+/** Submit trip plan request */
+document.getElementById('tripForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+
+    const button = document.querySelector('#tripForm .btn-primary');
+    const originalText = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Planning trip...';
+
+    try {
+        const response = await fetch('/api/trip-plan', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                route: parseInt(data.route),
+                origin: parseInt(data.origin),
+                destination: parseInt(data.destination),
+                time: data.time,
+                day: data.day,
+                crowd: data.crowd
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            displayTripPlan(result.trip_plan);
+        } else {
+            showError(result.error || 'Trip planning failed');
+        }
+    } catch (error) {
+        showError('An error occurred: ' + error.message);
+    } finally {
+        button.disabled = false;
+        button.textContent = originalText;
+    }
+});
+
+/** Display the complete trip plan */
+function displayTripPlan(plan) {
+    document.getElementById('errorSection').style.display = 'none';
+
+    // Trip Summary
+    const routeSelect = document.getElementById('route');
+    const routeName = routeSelect.options[routeSelect.selectedIndex].text;
+    const originSelect = document.getElementById('origin');
+    const originName = originSelect.options[originSelect.selectedIndex].text;
+    const destSelect = document.getElementById('destination');
+    const destName = destSelect.options[destSelect.selectedIndex].text;
+
+    document.getElementById('tripRoute').textContent = routeName;
+    document.getElementById('tripStops').textContent = `${originName} → ${destName}`;
+    document.getElementById('travelTimeResult').textContent = `${plan.commute.travel_time} min`;
+    document.getElementById('expectedBusTime').textContent = plan.commute.next_bus_time ? formatTime(plan.commute.next_bus_time) : 'Estimated on departure';
+    document.getElementById('decisionResult').textContent = formatDecision(plan.commute.decision);
+    document.getElementById('decisionResult').className = 'result-value decision ' + plan.commute.decision;
+
+    // Insights
+    const insightsHtml = plan.commute.insights.map(i => `<div class="insight-item">${i}</div>`).join('');
+    document.getElementById('insightsContent').innerHTML = insightsHtml || '<p>No specific insights for this trip.</p>';
+
+    // Bus Timeline
+    renderBusTimeline(plan.arrivals, plan.origin_stop_id, plan.destination_stop_id);
+
+    document.getElementById('resultsSection').style.display = 'block';
+    scrollToElement(document.getElementById('resultsSection'));
+}
+
+/** Render bus arrival timeline */
+function renderBusTimeline(arrivals, originStopId, destinationStopId) {
+    const container = document.getElementById('busTimeline');
+    const now = new Date();
+
+    container.innerHTML = arrivals.map((stop, index) => {
+        const isOrigin = stop.location_id === originStopId;
+        const isDestination = stop.location_id === destinationStopId;
+        const isCurrent = isOrigin || isDestination;
+        const isPast = stop.next_arrival && new Date(`1970-01-01T${stop.next_arrival}`) < now;
+
+        let statusClass = 'future';
+        if (isCurrent) statusClass = 'current';
+        else if (isPast) statusClass = 'past';
+
+        const lastArrival = stop.last_arrival ? formatTime(stop.last_arrival) : 'No data';
+        const nextArrival = stop.next_arrival ? formatTime(stop.next_arrival) : 'Estimating...';
+        const confidence = stop.confidence || 'Unknown';
+
+        return `
+            <div class="timeline-item ${statusClass}" data-stop-id="${stop.location_id}">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-stop-name">${escapeHtml(stop.location_name)}${isCurrent ? '<span class="you-badge">You</span>' : ''}</div>
+                    <div class="timeline-times">
+                        <span class="icon icon-sm icon-clock" style="margin-right:4px;"></span>
+                        <span class="timeline-label">Last:</span> <span class="timeline-value">${lastArrival}</span>
+                        <span class="icon icon-sm icon-bus" style="margin-right:4px;"></span>
+                        <span class="timeline-label">Next:</span> <span class="timeline-value highlight">${nextArrival}</span>
+                    </div>
+                    <div class="timeline-confidence">
+                        <span class="confidence-badge ${confidenceClass(confidence)}">${confidence}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+/** Format decision for display */
+function formatDecision(decision) {
+    const labels = {
+        'leave_now': 'Leave Now',
+        'wait': 'Wait',
+        'catch_next_bus': 'Catch Next Bus'
+    };
+    return labels[decision] || decision;
+}
+
+/** Format time string to readable format */
+function formatTime(timeStr) {
+    if (!timeStr) return '--';
+    try {
+        const [h, m] = timeStr.split(':');
+        const hour = parseInt(h);
+        const ampm = hour >= 12 ? 'PM' : 'AM';
+        const hour12 = hour % 12 || 12;
+        return `${hour12}:${m} ${ampm}`;
+    } catch {
+        return timeStr;
+    }
+}
+
+/** Confidence badge class */
+function confidenceClass(confidence) {
+    if (!confidence) return '';
+    const c = confidence.toLowerCase();
+    if (c.includes('high')) return 'confidence-high';
+    if (c.includes('medium') || c.includes('moderate')) return 'confidence-medium';
+    return 'confidence-low';
+}
+
+/** Show error message */
+function showError(message) {
+    document.getElementById('errorSection').style.display = 'block';
+    document.getElementById('errorMessage').textContent = message;
+    document.getElementById('resultsSection').style.display = 'none';
+    scrollToElement(document.getElementById('errorSection'));
+}
+
+/** Reset form to initial state */
+function resetForm() {
+    document.getElementById('tripForm').reset();
+    document.getElementById('origin').innerHTML = '<option value="">Select origin...</option>';
+    document.getElementById('origin').disabled = true;
+    document.getElementById('destination').innerHTML = '<option value="">Select destination...</option>';
+    document.getElementById('destination').disabled = true;
+    document.getElementById('resultsSection').style.display = 'none';
+    document.getElementById('errorSection').style.display = 'none';
+}
+
+/** Utility: escape HTML */
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+/** Utility: scroll to element */
+function scrollToElement(el) {
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+{% endblock %}

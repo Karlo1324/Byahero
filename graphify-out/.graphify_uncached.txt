@@ -11,6 +11,7 @@
 /Users/karlofamoso/Documents/vscode files/ByaHero/templates/historical_data.html
 /Users/karlofamoso/Documents/vscode files/ByaHero/templates/index.html
 /Users/karlofamoso/Documents/vscode files/ByaHero/templates/manage_locations.html
+/Users/karlofamoso/Documents/vscode files/ByaHero/templates/trip_planner.html
 /Users/karlofamoso/Documents/vscode files/ByaHero/public/static/img/favicon.png
 /Users/karlofamoso/Documents/vscode files/ByaHero/public/static/img/logo.png
 /Users/karlofamoso/Documents/vscode files/ByaHero/static/img/favicon.png

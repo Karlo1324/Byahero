@@ -1,9 +1,11 @@
 {
   "maxEffortLevel": "medium",
-  "permissions": { "defaultMode": "acceptEdits" },
+  "permissions": {
+    "defaultMode": "acceptEdits"
+  },
   "env": {
-    "ANTHROPIC_BASE_URL": "http://localhost:20128",
-    "ANTHROPIC_AUTH_TOKEN": "omniroute",
+    "ANTHROPIC_BASE_URL": "http://127.0.0.1:31415",
+    "ANTHROPIC_API_KEY": "freellmapi-092ef738a8e873e20b898714c709018f53fa83afef31aacf",
     "ANTHROPIC_MODEL": "claude-free",
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-free",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-free",

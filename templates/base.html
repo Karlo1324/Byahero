@@ -48,8 +48,7 @@
         <nav class="navigation" aria-label="Main navigation">
             <ul class="nav-list">
                 {% set nav_items = [
-                    ('/', 'Commute Prediction', 'index'),
-                    ('/bus-arrivals', 'Bus Arrivals', 'bus_arrivals'),
+                    ('/trip-planner', 'Trip Planner', 'trip_planner'),
                     ('/add-arrival', 'Add Arrival', 'add_arrival'),
                     ('/manage-locations', 'Manage Locations', 'manage_locations'),
                     ('/historical-data', 'Historical Data', 'historical_data')
@@ -77,6 +76,40 @@
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/custom-select.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/konduktor.js') }}"></script>
     {% block scripts %}{% endblock %}
+
+    <!-- Konduktor Chatbot -->
+    <div id="konduktor-fab" class="konduktor-fab" aria-label="Open Konduktor chat">
+        <img class="konduktor-avatar-img"
+             src="{{ url_for('static', filename='img/Monochrome Conductor Robot Badge.png') }}"
+             alt="Konduktor avatar">
+        <span class="konduktor-notification" aria-hidden="true"></span>
+    </div>
+
+    <div id="konduktor-panel" class="konduktor-panel" role="dialog" aria-label="Konduktor Assistant" hidden>
+        <div class="konduktor-header">
+            <img class="konduktor-header-avatar-img"
+                 src="{{ url_for('static', filename='img/Monochrome Conductor Robot Badge.png') }}"
+                 alt="Konduktor avatar">
+            <div class="konduktor-header-info">
+                <h3>Konduktor</h3>
+                <span class="konduktor-status">Online • Ready to help</span>
+                <span id="konduktor-mode-indicator" class="konduktor-mode-indicator">🧠 Rule-based</span>
+            </div>
+            <button class="konduktor-close" aria-label="Close chat">&times;</button>
+        </div>
+        <div id="konduktor-messages" class="konduktor-messages"></div>
+        <div class="konduktor-quick-actions" id="konduktor-quick-actions"></div>
+        <div class="konduktor-input-area">
+            <input type="text" id="konduktor-input" placeholder="Ask Konduktor..." autocomplete="off" aria-label="Chat message">
+            <button id="konduktor-send" class="btn btn-primary" aria-label="Send message">
+                <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"/>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+            </button>
+        </div>
+    </div>
 </body>
 </html>

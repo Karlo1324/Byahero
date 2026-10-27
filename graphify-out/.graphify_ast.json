@@ -332,11 +332,20 @@
       "_origin": "ast"
     },
     {
+      "id": "app_is_llm_available",
+      "label": "is_llm_available()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L91",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
       "id": "app_load_or_create_secret_key",
       "label": "_load_or_create_secret_key()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L53",
+      "source_location": "L108",
       "_callable": true,
       "_origin": "ast"
     },
@@ -345,7 +354,7 @@
       "label": "_arrivals_stamp()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L105",
+      "source_location": "L160",
       "_callable": true,
       "_origin": "ast"
     },
@@ -354,7 +363,7 @@
       "label": "refresh_arrival_predictor()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L114",
+      "source_location": "L169",
       "_callable": true,
       "_origin": "ast"
     },
@@ -363,7 +372,7 @@
       "label": "_wants_splash()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L147",
+      "source_location": "L202",
       "_callable": true,
       "_origin": "ast"
     },
@@ -372,7 +381,7 @@
       "label": "_as_int()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L163",
+      "source_location": "L218",
       "_callable": true,
       "_origin": "ast"
     },
@@ -381,7 +390,7 @@
       "label": "get_location_by_id()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L173",
+      "source_location": "L228",
       "_callable": true,
       "_origin": "ast"
     },
@@ -390,7 +399,7 @@
       "label": "get_location_id_by_name()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L188",
+      "source_location": "L243",
       "_callable": true,
       "_origin": "ast"
     },
@@ -399,7 +408,7 @@
       "label": "_location_name_map()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L210",
+      "source_location": "L265",
       "_callable": true,
       "_origin": "ast"
     },
@@ -416,16 +425,16 @@
       "label": "index()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L218",
+      "source_location": "L273",
       "_callable": true,
       "_origin": "ast"
     },
     {
-      "id": "app_bus_arrivals",
-      "label": "bus_arrivals()",
+      "id": "app_trip_planner",
+      "label": "trip_planner()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L239",
+      "source_location": "L279",
       "_callable": true,
       "_origin": "ast"
     },
@@ -434,7 +443,7 @@
       "label": "add_arrival()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L251",
+      "source_location": "L300",
       "_callable": true,
       "_origin": "ast"
     },
@@ -443,7 +452,7 @@
       "label": "manage_locations()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L263",
+      "source_location": "L312",
       "_callable": true,
       "_origin": "ast"
     },
@@ -452,7 +461,7 @@
       "label": "historical_data()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L277",
+      "source_location": "L326",
       "_callable": true,
       "_origin": "ast"
     },
@@ -461,7 +470,7 @@
       "label": "restart_splash()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L289",
+      "source_location": "L338",
       "_callable": true,
       "_origin": "ast"
     },
@@ -470,7 +479,16 @@
       "label": "predict()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L303",
+      "source_location": "L352",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "app_trip_plan_api",
+      "label": "trip_plan_api()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L444",
       "_callable": true,
       "_origin": "ast"
     },
@@ -479,7 +497,7 @@
       "label": "get_arrivals_api()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L397",
+      "source_location": "L589",
       "_callable": true,
       "_origin": "ast"
     },
@@ -488,7 +506,7 @@
       "label": "predict_arrival_api()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L421",
+      "source_location": "L613",
       "_callable": true,
       "_origin": "ast"
     },
@@ -497,7 +515,7 @@
       "label": "add_arrival_record_api()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L457",
+      "source_location": "L649",
       "_callable": true,
       "_origin": "ast"
     },
@@ -506,7 +524,7 @@
       "label": "get_routes_api()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L502",
+      "source_location": "L695",
       "_callable": true,
       "_origin": "ast"
     },
@@ -515,7 +533,7 @@
       "label": "add_route_api()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L530",
+      "source_location": "L723",
       "_callable": true,
       "_origin": "ast"
     },
@@ -524,7 +542,7 @@
       "label": "get_locations_api()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L598",
+      "source_location": "L791",
       "_callable": true,
       "_origin": "ast"
     },
@@ -533,7 +551,7 @@
       "label": "get_stops_after_api()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L613",
+      "source_location": "L806",
       "_callable": true,
       "_origin": "ast"
     },
@@ -542,7 +560,25 @@
       "label": "add_location_api()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L638",
+      "source_location": "L831",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "app_edit_location_api",
+      "label": "edit_location_api()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L859",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "app_delete_location_api",
+      "label": "delete_location_api()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L924",
       "_callable": true,
       "_origin": "ast"
     },
@@ -551,7 +587,16 @@
       "label": "get_statistics_api()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L668",
+      "source_location": "L945",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "app_get_timezone_api",
+      "label": "get_timezone_api()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L962",
       "_callable": true,
       "_origin": "ast"
     },
@@ -560,7 +605,7 @@
       "label": "_csv_response()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L684",
+      "source_location": "L984",
       "_callable": true,
       "_origin": "ast"
     },
@@ -569,7 +614,7 @@
       "label": "export_arrivals_csv()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L693",
+      "source_location": "L993",
       "_callable": true,
       "_origin": "ast"
     },
@@ -578,7 +623,7 @@
       "label": "export_locations_csv()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L720",
+      "source_location": "L1020",
       "_callable": true,
       "_origin": "ast"
     },
@@ -587,7 +632,52 @@
       "label": "export_preview_api()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L731",
+      "source_location": "L1031",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "app_konduktor_status_api",
+      "label": "konduktor_status_api()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1058",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "app_konduktor_chat_api",
+      "label": "konduktor_chat_api()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1070",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "app_stream_llm_response",
+      "label": "stream_llm_response()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1098",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "app_get_konduktor_system_prompt",
+      "label": "get_konduktor_system_prompt()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1146",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "app_generate_konduktor_response",
+      "label": "generate_konduktor_response()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1208",
       "_callable": true,
       "_origin": "ast"
     },
@@ -604,7 +694,7 @@
       "label": "not_found()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L758",
+      "source_location": "L1352",
       "_callable": true,
       "_origin": "ast"
     },
@@ -613,7 +703,7 @@
       "label": "internal_error()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L770",
+      "source_location": "L1364",
       "_callable": true,
       "_origin": "ast"
     },
@@ -626,227 +716,307 @@
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_54",
+      "id": "app_rationale_92",
+      "label": "Check if LLM client is configured and available",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L92",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_109",
       "label": "Return the app's secret key, creating and storing one if needed.",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L54",
+      "source_location": "L109",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_106",
+      "id": "app_rationale_161",
       "label": "Fingerprint of the arrivals file, used to detect changes cheaply.",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L106",
+      "source_location": "L161",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_115",
+      "id": "app_rationale_170",
       "label": "Rebuild the shared arrival predictor when the arrivals file changed. Returns…",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L115",
+      "source_location": "L170",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_148",
+      "id": "app_rationale_203",
       "label": "Decide whether this request should show the splash screen. The splash belongs…",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L148",
-      "_origin": "ast"
-    },
-    {
-      "id": "app_rationale_164",
-      "label": "Coerce a form/query value to an int, or None if it isn't numeric.",
-      "file_type": "rationale",
-      "source_file": "app.py",
-      "source_location": "L164",
-      "_origin": "ast"
-    },
-    {
-      "id": "app_rationale_174",
-      "label": "Get location name by ID",
-      "file_type": "rationale",
-      "source_file": "app.py",
-      "source_location": "L174",
-      "_origin": "ast"
-    },
-    {
-      "id": "app_rationale_189",
-      "label": "Get location ID by name. When a route is given, only that route's stops are…",
-      "file_type": "rationale",
-      "source_file": "app.py",
-      "source_location": "L189",
-      "_origin": "ast"
-    },
-    {
-      "id": "app_rationale_211",
-      "label": "Map of location_id -> name for every known location.",
-      "file_type": "rationale",
-      "source_file": "app.py",
-      "source_location": "L211",
+      "source_location": "L203",
       "_origin": "ast"
     },
     {
       "id": "app_rationale_219",
-      "label": "Commute prediction page",
+      "label": "Coerce a form/query value to an int, or None if it isn't numeric.",
       "file_type": "rationale",
       "source_file": "app.py",
       "source_location": "L219",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_240",
-      "label": "View bus arrival predictions",
+      "id": "app_rationale_229",
+      "label": "Get location name by ID",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L240",
+      "source_location": "L229",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_252",
+      "id": "app_rationale_244",
+      "label": "Get location ID by name. When a route is given, only that route's stops are…",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L244",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_266",
+      "label": "Map of location_id -> name for every known location.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L266",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_274",
+      "label": "Redirect to trip planner as the main page",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L274",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_280",
+      "label": "Unified trip planner: commute prediction + bus arrival timeline",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L280",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_301",
       "label": "Form to add arrival record",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L252",
+      "source_location": "L301",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_264",
+      "id": "app_rationale_313",
       "label": "Manage locations page",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L264",
+      "source_location": "L313",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_278",
+      "id": "app_rationale_327",
       "label": "View historical arrival data",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L278",
+      "source_location": "L327",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_290",
+      "id": "app_rationale_339",
       "label": "Clear the splash flag so the next page load shows the splash again. This is the…",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L290",
+      "source_location": "L339",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_304",
+      "id": "app_rationale_353",
       "label": "Predict travel time and departure decision",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L304",
+      "source_location": "L353",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_398",
+      "id": "app_rationale_445",
+      "label": "Unified trip plan: commute prediction + bus arrival timeline",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L445",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_590",
       "label": "Get bus arrivals for a location",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L398",
-      "_origin": "ast"
-    },
-    {
-      "id": "app_rationale_422",
-      "label": "Predict next arrival for a location using improved predictor",
-      "file_type": "rationale",
-      "source_file": "app.py",
-      "source_location": "L422",
-      "_origin": "ast"
-    },
-    {
-      "id": "app_rationale_458",
-      "label": "Add a new arrival record",
-      "file_type": "rationale",
-      "source_file": "app.py",
-      "source_location": "L458",
-      "_origin": "ast"
-    },
-    {
-      "id": "app_rationale_503",
-      "label": "Get the active routes. The route form lives on a page that was rendered before…",
-      "file_type": "rationale",
-      "source_file": "app.py",
-      "source_location": "L503",
-      "_origin": "ast"
-    },
-    {
-      "id": "app_rationale_531",
-      "label": "Add a new route, together with the stops that belong to it. The stops are…",
-      "file_type": "rationale",
-      "source_file": "app.py",
-      "source_location": "L531",
-      "_origin": "ast"
-    },
-    {
-      "id": "app_rationale_599",
-      "label": "Get locations by route",
-      "file_type": "rationale",
-      "source_file": "app.py",
-      "source_location": "L599",
+      "source_location": "L590",
       "_origin": "ast"
     },
     {
       "id": "app_rationale_614",
-      "label": "Get stops after a given stop in the route",
+      "label": "Predict next arrival for a location using improved predictor",
       "file_type": "rationale",
       "source_file": "app.py",
       "source_location": "L614",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_669",
+      "id": "app_rationale_650",
+      "label": "Add a new arrival record",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L650",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_696",
+      "label": "Get the active routes. The route form lives on a page that was rendered before…",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L696",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_724",
+      "label": "Add a new route, together with the stops that belong to it. The stops are…",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L724",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_792",
+      "label": "Get locations by route",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L792",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_807",
+      "label": "Get stops after a given stop in the route",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L807",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_860",
+      "label": "Edit an existing location's name, description, route, or sequence",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L860",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_925",
+      "label": "Remove a location entirely from the registry",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L925",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_946",
       "label": "Get statistics for a location",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L669",
+      "source_location": "L946",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_685",
+      "id": "app_rationale_963",
+      "label": "Report the user's timezone offset in minutes. The browser sends…",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L963",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_985",
       "label": "Send CSV text back as a downloadable file.",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L685",
+      "source_location": "L985",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_694",
+      "id": "app_rationale_994",
       "label": "Download the arrival records as a CSV file. The same filters the Historical…",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L694",
+      "source_location": "L994",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_721",
+      "id": "app_rationale_1021",
       "label": "Download the location registry as a CSV file.",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L721",
+      "source_location": "L1021",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_732",
+      "id": "app_rationale_1032",
       "label": "Report how many rows an export would contain. The Historical Data page calls…",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L732",
+      "source_location": "L1032",
       "_origin": "ast"
     },
     {
-      "id": "app_rationale_759",
+      "id": "app_rationale_1059",
+      "label": "Check LLM availability status",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1059",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_1071",
+      "label": "Konduktor AI chat endpoint with data integration",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1071",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_1099",
+      "label": "Call LLM API and return response",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1099",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_1147",
+      "label": "Build the full system prompt for LLM",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1147",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_1209",
+      "label": "Generate contextual response using available data",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1209",
+      "_origin": "ast"
+    },
+    {
+      "id": "app_rationale_1353",
       "label": "Return JSON for API calls, HTML for page navigations.",
       "file_type": "rationale",
       "source_file": "app.py",
-      "source_location": "L759",
+      "source_location": "L1353",
       "_origin": "ast"
     },
     {
@@ -1814,6 +1984,392 @@
       "_origin": "ast"
     },
     {
+      "id": "static_js_custom_select",
+      "label": "custom-select.js",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L1",
+      "metadata": {
+        "unresolved_calls": [
+          {
+            "callee": "observe",
+            "receiver_type": "MutationObserver",
+            "lang": "typescript",
+            "line": "L359"
+          }
+        ]
+      },
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_custom_select_enhanceselects",
+      "label": "enhanceSelects()",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L32",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_custom_select_wrapselect",
+      "label": "wrapSelect()",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L46",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_custom_select_renderoptions",
+      "label": "renderOptions()",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L133",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_custom_select_togglepanel",
+      "label": "togglePanel()",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L171",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_custom_select_updatetrigger",
+      "label": "updateTrigger()",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L182",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_custom_select_syncdisabled",
+      "label": "syncDisabled()",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L204",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_custom_select_handlekeydown",
+      "label": "handleKeydown()",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L217",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_custom_select_currenthighlightedindex",
+      "label": "currentHighlightedIndex()",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L264",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_custom_select_scrolltooption",
+      "label": "scrollToOption()",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L272",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_custom_select_typetojump",
+      "label": "typeToJump()",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L279",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_custom_select_highlightitem",
+      "label": "highlightItem()",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L298",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_custom_select_selecthighlighted",
+      "label": "selectHighlighted()",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L313",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_custom_select_hiddensetselected",
+      "label": "hiddenSetSelected()",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L321",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_custom_select_valueofoption",
+      "label": "valueOfOption()",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L332",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_custom_select_onvaluechange",
+      "label": "onValueChange()",
+      "file_type": "code",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L337",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor",
+      "label": "konduktor.js",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_cacheelements",
+      "label": "cacheElements()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L32",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_init",
+      "label": "init()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L46",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_bindevents",
+      "label": "bindEvents()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L57",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_detectcontext",
+      "label": "detectContext()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L81",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_checkllmstatus",
+      "label": "checkLLMStatus()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L98",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_updatemodeindicator",
+      "label": "updateModeIndicator()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L110",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_togglepanel",
+      "label": "togglePanel()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L124",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_openpanel",
+      "label": "openPanel()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L128",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_closepanel",
+      "label": "closePanel()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L137",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_addwelcomemessage",
+      "label": "addWelcomeMessage()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L149",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_addbotmessage",
+      "label": "addBotMessage()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L155",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_addusermessage",
+      "label": "addUserMessage()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L162",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_createmessageelement",
+      "label": "createMessageElement()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L169",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_formatmessage",
+      "label": "formatMessage()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L198",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_showtyping",
+      "label": "showTyping()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L207",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_hidetyping",
+      "label": "hideTyping()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L223",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_scrolltobottom",
+      "label": "scrollToBottom()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L227",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_formattime",
+      "label": "formatTime()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L231",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_loadquickactions",
+      "label": "loadQuickActions()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L238",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_getcontextualquickactions",
+      "label": "getContextualQuickActions()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L252",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_updatequickactions",
+      "label": "updateQuickActions()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L297",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_sendmessage",
+      "label": "sendMessage()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L313",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_shownotification",
+      "label": "showNotification()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L365",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_hidenotification",
+      "label": "hideNotification()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L373",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "static_js_konduktor_escapehtml",
+      "label": "escapeHtml()",
+      "file_type": "code",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L381",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
       "id": "static_js_script",
       "label": "script.js",
       "file_type": "code",
@@ -1882,11 +2438,20 @@
       "_origin": "ast"
     },
     {
+      "id": "static_js_script_estimate_timezone_offset",
+      "label": "estimate_timezone_offset()",
+      "file_type": "code",
+      "source_file": "static/js/script.js",
+      "source_location": "L55",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
       "id": "static_js_script_crowdclass",
       "label": "crowdClass()",
       "file_type": "code",
       "source_file": "static/js/script.js",
-      "source_location": "L49",
+      "source_location": "L67",
       "_callable": true,
       "_origin": "ast"
     },
@@ -1895,7 +2460,7 @@
       "label": "updateOrigins()",
       "file_type": "code",
       "source_file": "static/js/script.js",
-      "source_location": "L120",
+      "source_location": "L138",
       "_callable": true,
       "_origin": "ast"
     },
@@ -1904,7 +2469,7 @@
       "label": "updateDestinations()",
       "file_type": "code",
       "source_file": "static/js/script.js",
-      "source_location": "L168",
+      "source_location": "L186",
       "_callable": true,
       "_origin": "ast"
     },
@@ -1913,7 +2478,7 @@
       "label": "displayResults()",
       "file_type": "code",
       "source_file": "static/js/script.js",
-      "source_location": "L210",
+      "source_location": "L228",
       "_callable": true,
       "_origin": "ast"
     },
@@ -1922,7 +2487,7 @@
       "label": "generateInsights()",
       "file_type": "code",
       "source_file": "static/js/script.js",
-      "source_location": "L251",
+      "source_location": "L269",
       "_callable": true,
       "_origin": "ast"
     },
@@ -1931,7 +2496,7 @@
       "label": "showError()",
       "file_type": "code",
       "source_file": "static/js/script.js",
-      "source_location": "L276",
+      "source_location": "L294",
       "_callable": true,
       "_origin": "ast"
     },
@@ -1940,7 +2505,7 @@
       "label": "resetForm()",
       "file_type": "code",
       "source_file": "static/js/script.js",
-      "source_location": "L285",
+      "source_location": "L303",
       "_callable": true,
       "_origin": "ast"
     },
@@ -2386,11 +2951,20 @@
       "_origin": "ast"
     },
     {
+      "id": "utils_validators_local_now_from_offset",
+      "label": "local_now_from_offset()",
+      "file_type": "code",
+      "source_file": "utils/validators.py",
+      "source_location": "L22",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
       "id": "utils_validators_inputvalidator",
       "label": "InputValidator",
       "file_type": "code",
       "source_file": "utils/validators.py",
-      "source_location": "L9",
+      "source_location": "L49",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast"
@@ -2400,7 +2974,7 @@
       "label": ".validate_time()",
       "file_type": "code",
       "source_file": "utils/validators.py",
-      "source_location": "L12",
+      "source_location": "L52",
       "_callable": true,
       "_origin": "ast"
     },
@@ -2409,7 +2983,7 @@
       "label": ".validate_date()",
       "file_type": "code",
       "source_file": "utils/validators.py",
-      "source_location": "L23",
+      "source_location": "L63",
       "_callable": true,
       "_origin": "ast"
     },
@@ -2418,7 +2992,7 @@
       "label": ".validate_not_future()",
       "file_type": "code",
       "source_file": "utils/validators.py",
-      "source_location": "L34",
+      "source_location": "L74",
       "_callable": true,
       "_origin": "ast"
     },
@@ -2427,7 +3001,7 @@
       "label": ".validate_departure_before_arrival()",
       "file_type": "code",
       "source_file": "utils/validators.py",
-      "source_location": "L45",
+      "source_location": "L96",
       "_callable": true,
       "_origin": "ast"
     },
@@ -2436,7 +3010,7 @@
       "label": ".validate_location_name()",
       "file_type": "code",
       "source_file": "utils/validators.py",
-      "source_location": "L61",
+      "source_location": "L112",
       "_callable": true,
       "_origin": "ast"
     },
@@ -2445,7 +3019,7 @@
       "label": ".validate_route_name()",
       "file_type": "code",
       "source_file": "utils/validators.py",
-      "source_location": "L70",
+      "source_location": "L121",
       "_callable": true,
       "_origin": "ast"
     },
@@ -2454,7 +3028,7 @@
       "label": ".validate_model_route()",
       "file_type": "code",
       "source_file": "utils/validators.py",
-      "source_location": "L79",
+      "source_location": "L130",
       "_callable": true,
       "_origin": "ast"
     },
@@ -2463,7 +3037,7 @@
       "label": ".validate_model_stop()",
       "file_type": "code",
       "source_file": "utils/validators.py",
-      "source_location": "L93",
+      "source_location": "L144",
       "_callable": true,
       "_origin": "ast"
     },
@@ -2472,7 +3046,7 @@
       "label": ".validate_stop_names()",
       "file_type": "code",
       "source_file": "utils/validators.py",
-      "source_location": "L102",
+      "source_location": "L153",
       "_callable": true,
       "_origin": "ast"
     },
@@ -2481,7 +3055,7 @@
       "label": ".validate_stop_sequence()",
       "file_type": "code",
       "source_file": "utils/validators.py",
-      "source_location": "L126",
+      "source_location": "L177",
       "_callable": true,
       "_origin": "ast"
     },
@@ -2490,7 +3064,7 @@
       "label": ".validate_crowd_level()",
       "file_type": "code",
       "source_file": "utils/validators.py",
-      "source_location": "L137",
+      "source_location": "L188",
       "_callable": true,
       "_origin": "ast"
     },
@@ -2499,7 +3073,7 @@
       "label": ".validate_arrival_record()",
       "file_type": "code",
       "source_file": "utils/validators.py",
-      "source_location": "L145",
+      "source_location": "L196",
       "_callable": true,
       "_origin": "ast"
     },
@@ -2512,91 +3086,99 @@
       "_origin": "ast"
     },
     {
-      "id": "utils_validators_rationale_13",
+      "id": "utils_validators_rationale_23",
+      "label": "The current wall-clock time in the timezone the user is in. The browser sends…",
+      "file_type": "rationale",
+      "source_file": "utils/validators.py",
+      "source_location": "L23",
+      "_origin": "ast"
+    },
+    {
+      "id": "utils_validators_rationale_53",
       "label": "Validate time format HH:MM",
       "file_type": "rationale",
       "source_file": "utils/validators.py",
-      "source_location": "L13",
+      "source_location": "L53",
       "_origin": "ast"
     },
     {
-      "id": "utils_validators_rationale_24",
+      "id": "utils_validators_rationale_64",
       "label": "Validate date format YYYY-MM-DD",
       "file_type": "rationale",
       "source_file": "utils/validators.py",
-      "source_location": "L24",
+      "source_location": "L64",
       "_origin": "ast"
     },
     {
-      "id": "utils_validators_rationale_35",
-      "label": "Ensure the datetime is not in the future",
+      "id": "utils_validators_rationale_75",
+      "label": "Ensure the datetime is not in the future. `tz_offset_minutes` is the browser's…",
       "file_type": "rationale",
       "source_file": "utils/validators.py",
-      "source_location": "L35",
+      "source_location": "L75",
       "_origin": "ast"
     },
     {
-      "id": "utils_validators_rationale_46",
+      "id": "utils_validators_rationale_97",
       "label": "Ensure departure time is before arrival time",
       "file_type": "rationale",
       "source_file": "utils/validators.py",
-      "source_location": "L46",
+      "source_location": "L97",
       "_origin": "ast"
     },
     {
-      "id": "utils_validators_rationale_62",
+      "id": "utils_validators_rationale_113",
       "label": "Validate location name",
       "file_type": "rationale",
       "source_file": "utils/validators.py",
-      "source_location": "L62",
+      "source_location": "L113",
       "_origin": "ast"
     },
     {
-      "id": "utils_validators_rationale_71",
+      "id": "utils_validators_rationale_122",
       "label": "Validate a route name",
       "file_type": "rationale",
       "source_file": "utils/validators.py",
-      "source_location": "L71",
+      "source_location": "L122",
       "_origin": "ast"
     },
     {
-      "id": "utils_validators_rationale_80",
+      "id": "utils_validators_rationale_131",
       "label": "Validate the trained-model route a new route is based on. The encoders only…",
       "file_type": "rationale",
       "source_file": "utils/validators.py",
-      "source_location": "L80",
+      "source_location": "L131",
       "_origin": "ast"
     },
     {
-      "id": "utils_validators_rationale_94",
+      "id": "utils_validators_rationale_145",
       "label": "Validate a stop label the trained model understands",
       "file_type": "rationale",
       "source_file": "utils/validators.py",
-      "source_location": "L94",
+      "source_location": "L145",
       "_origin": "ast"
     },
     {
-      "id": "utils_validators_rationale_103",
+      "id": "utils_validators_rationale_154",
       "label": "Validate a list of stop names for a new route. Returns the cleaned list (blank…",
       "file_type": "rationale",
       "source_file": "utils/validators.py",
-      "source_location": "L103",
+      "source_location": "L154",
       "_origin": "ast"
     },
     {
-      "id": "utils_validators_rationale_127",
+      "id": "utils_validators_rationale_178",
       "label": "Validate stop sequence number",
       "file_type": "rationale",
       "source_file": "utils/validators.py",
-      "source_location": "L127",
+      "source_location": "L178",
       "_origin": "ast"
     },
     {
-      "id": "utils_validators_rationale_147",
+      "id": "utils_validators_rationale_199",
       "label": "Validate all fields for arrival record",
       "file_type": "rationale",
       "source_file": "utils/validators.py",
-      "source_location": "L147",
+      "source_location": "L199",
       "_origin": "ast"
     }
   ],
@@ -3309,12 +3891,56 @@
     },
     {
       "source": "app",
+      "target": "json",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
       "target": "datetime",
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L14",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "functools",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "anthropic",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "openai",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3325,7 +3951,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L23",
+      "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3336,7 +3962,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L34",
+      "source_location": "L49",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3347,7 +3973,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L35",
+      "source_location": "L50",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3358,7 +3984,17 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L39",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "app_is_llm_available",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L91",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3368,7 +4004,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L53",
+      "source_location": "L108",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3378,7 +4014,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L105",
+      "source_location": "L160",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3388,7 +4024,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L114",
+      "source_location": "L169",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3398,7 +4034,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L147",
+      "source_location": "L202",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3408,7 +4044,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L163",
+      "source_location": "L218",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3418,7 +4054,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L173",
+      "source_location": "L228",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3428,7 +4064,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L188",
+      "source_location": "L243",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3438,7 +4074,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L210",
+      "source_location": "L265",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3448,7 +4084,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L217",
+      "source_location": "L272",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast"
@@ -3459,28 +4095,28 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L218",
+      "source_location": "L273",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_bus_arrivals",
+      "source": "app_trip_planner",
       "target": "route",
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L238",
+      "source_location": "L278",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast"
     },
     {
       "source": "app",
-      "target": "app_bus_arrivals",
+      "target": "app_trip_planner",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L239",
+      "source_location": "L279",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3490,7 +4126,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L250",
+      "source_location": "L299",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast"
@@ -3501,7 +4137,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L251",
+      "source_location": "L300",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3511,7 +4147,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L262",
+      "source_location": "L311",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast"
@@ -3522,7 +4158,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L263",
+      "source_location": "L312",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3532,7 +4168,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L276",
+      "source_location": "L325",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast"
@@ -3543,7 +4179,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L277",
+      "source_location": "L326",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3553,7 +4189,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L288",
+      "source_location": "L337",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast"
@@ -3564,7 +4200,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L289",
+      "source_location": "L338",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3574,7 +4210,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L302",
+      "source_location": "L351",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast"
@@ -3585,7 +4221,28 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L303",
+      "source_location": "L352",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_trip_plan_api",
+      "target": "route",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L443",
+      "weight": 1.0,
+      "context": "decorator",
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "app_trip_plan_api",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L444",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3595,7 +4252,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L396",
+      "source_location": "L588",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast"
@@ -3606,117 +4263,12 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L397",
+      "source_location": "L589",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
       "source": "app_predict_arrival_api",
-      "target": "route",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L420",
-      "weight": 1.0,
-      "context": "decorator",
-      "_origin": "ast"
-    },
-    {
-      "source": "app",
-      "target": "app_predict_arrival_api",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L421",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_add_arrival_record_api",
-      "target": "route",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L456",
-      "weight": 1.0,
-      "context": "decorator",
-      "_origin": "ast"
-    },
-    {
-      "source": "app",
-      "target": "app_add_arrival_record_api",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L457",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_get_routes_api",
-      "target": "route",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L501",
-      "weight": 1.0,
-      "context": "decorator",
-      "_origin": "ast"
-    },
-    {
-      "source": "app",
-      "target": "app_get_routes_api",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L502",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_add_route_api",
-      "target": "route",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L529",
-      "weight": 1.0,
-      "context": "decorator",
-      "_origin": "ast"
-    },
-    {
-      "source": "app",
-      "target": "app_add_route_api",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L530",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_get_locations_api",
-      "target": "route",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L597",
-      "weight": 1.0,
-      "context": "decorator",
-      "_origin": "ast"
-    },
-    {
-      "source": "app",
-      "target": "app_get_locations_api",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L598",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_get_stops_after_api",
       "target": "route",
       "relation": "references",
       "confidence": "EXTRACTED",
@@ -3728,11 +4280,116 @@
     },
     {
       "source": "app",
-      "target": "app_get_stops_after_api",
+      "target": "app_predict_arrival_api",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
       "source_location": "L613",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_add_arrival_record_api",
+      "target": "route",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L648",
+      "weight": 1.0,
+      "context": "decorator",
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "app_add_arrival_record_api",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L649",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_get_routes_api",
+      "target": "route",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L694",
+      "weight": 1.0,
+      "context": "decorator",
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "app_get_routes_api",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L695",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_add_route_api",
+      "target": "route",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L722",
+      "weight": 1.0,
+      "context": "decorator",
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "app_add_route_api",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L723",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_get_locations_api",
+      "target": "route",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L790",
+      "weight": 1.0,
+      "context": "decorator",
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "app_get_locations_api",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L791",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_get_stops_after_api",
+      "target": "route",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L805",
+      "weight": 1.0,
+      "context": "decorator",
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "app_get_stops_after_api",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L806",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3742,7 +4399,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L637",
+      "source_location": "L830",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast"
@@ -3753,7 +4410,49 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L638",
+      "source_location": "L831",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_edit_location_api",
+      "target": "route",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L858",
+      "weight": 1.0,
+      "context": "decorator",
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "app_edit_location_api",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L859",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_delete_location_api",
+      "target": "route",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L923",
+      "weight": 1.0,
+      "context": "decorator",
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "app_delete_location_api",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L924",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3763,7 +4462,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L667",
+      "source_location": "L944",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast"
@@ -3774,7 +4473,28 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L668",
+      "source_location": "L945",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_get_timezone_api",
+      "target": "route",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L961",
+      "weight": 1.0,
+      "context": "decorator",
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "app_get_timezone_api",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L962",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3784,7 +4504,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L684",
+      "source_location": "L984",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3794,7 +4514,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L692",
+      "source_location": "L992",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast"
@@ -3805,7 +4525,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L693",
+      "source_location": "L993",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3815,7 +4535,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L719",
+      "source_location": "L1019",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast"
@@ -3826,7 +4546,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L720",
+      "source_location": "L1020",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3836,7 +4556,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L730",
+      "source_location": "L1030",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast"
@@ -3847,7 +4567,79 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L731",
+      "source_location": "L1031",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_konduktor_status_api",
+      "target": "route",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1057",
+      "weight": 1.0,
+      "context": "decorator",
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "app_konduktor_status_api",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1058",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_konduktor_chat_api",
+      "target": "route",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1069",
+      "weight": 1.0,
+      "context": "decorator",
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "app_konduktor_chat_api",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1070",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "app_stream_llm_response",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1098",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "app_get_konduktor_system_prompt",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1146",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app",
+      "target": "app_generate_konduktor_response",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1208",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3857,7 +4649,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L757",
+      "source_location": "L1351",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast"
@@ -3868,7 +4660,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L758",
+      "source_location": "L1352",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3878,7 +4670,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L769",
+      "source_location": "L1363",
       "weight": 1.0,
       "context": "decorator",
       "_origin": "ast"
@@ -3889,7 +4681,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L770",
+      "source_location": "L1364",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3900,7 +4692,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L121",
+      "source_location": "L176",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3911,7 +4703,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L175",
+      "source_location": "L230",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3922,29 +4714,18 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L201",
+      "source_location": "L256",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_index",
+      "source": "app_trip_planner",
       "target": "app_wants_splash",
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L235",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_bus_arrivals",
-      "target": "app_wants_splash",
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L247",
+      "source_location": "L296",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3955,7 +4736,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L259",
+      "source_location": "L308",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3966,7 +4747,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L273",
+      "source_location": "L322",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3977,7 +4758,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L285",
+      "source_location": "L334",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3988,7 +4769,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L329",
+      "source_location": "L378",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -3999,7 +4780,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L330",
+      "source_location": "L379",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -4010,7 +4791,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L335",
+      "source_location": "L384",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -4021,7 +4802,51 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L354",
+      "source_location": "L403",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_trip_plan_api",
+      "target": "app_as_int",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L467",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_trip_plan_api",
+      "target": "app_get_location_by_id",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L468",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_trip_plan_api",
+      "target": "app_get_location_id_by_name",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L471",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_trip_plan_api",
+      "target": "app_refresh_arrival_predictor",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L531",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -4032,7 +4857,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L443",
+      "source_location": "L635",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -4043,7 +4868,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L492",
+      "source_location": "L685",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -4054,7 +4879,18 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L622",
+      "source_location": "L815",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_edit_location_api",
+      "target": "app_as_int",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L868",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -4065,7 +4901,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L714",
+      "source_location": "L1014",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -4076,7 +4912,73 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L725",
+      "source_location": "L1025",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_konduktor_status_api",
+      "target": "app_is_llm_available",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1062",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_konduktor_chat_api",
+      "target": "app_is_llm_available",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1081",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_konduktor_chat_api",
+      "target": "app_stream_llm_response",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1082",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_konduktor_chat_api",
+      "target": "app_generate_konduktor_response",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1085",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_stream_llm_response",
+      "target": "app_get_konduktor_system_prompt",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1100",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_stream_llm_response",
+      "target": "app_generate_konduktor_response",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1136",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -4091,88 +4993,58 @@
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_54",
+      "source": "app_rationale_92",
+      "target": "app_is_llm_available",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L92",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_109",
       "target": "app_load_or_create_secret_key",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L54",
+      "source_location": "L109",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_106",
+      "source": "app_rationale_161",
       "target": "app_arrivals_stamp",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L106",
+      "source_location": "L161",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_115",
+      "source": "app_rationale_170",
       "target": "app_refresh_arrival_predictor",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L115",
+      "source_location": "L170",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_148",
+      "source": "app_rationale_203",
       "target": "app_wants_splash",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L148",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_rationale_164",
-      "target": "app_as_int",
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L164",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_rationale_174",
-      "target": "app_get_location_by_id",
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L174",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_rationale_189",
-      "target": "app_get_location_id_by_name",
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L189",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_rationale_211",
-      "target": "app_location_name_map",
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L211",
+      "source_location": "L203",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
       "source": "app_rationale_219",
-      "target": "app_index",
+      "target": "app_as_int",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
@@ -4181,128 +5053,128 @@
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_240",
-      "target": "app_bus_arrivals",
+      "source": "app_rationale_229",
+      "target": "app_get_location_by_id",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L240",
+      "source_location": "L229",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_252",
+      "source": "app_rationale_244",
+      "target": "app_get_location_id_by_name",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L244",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_266",
+      "target": "app_location_name_map",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L266",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_274",
+      "target": "app_index",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L274",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_280",
+      "target": "app_trip_planner",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L280",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_301",
       "target": "app_add_arrival",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L252",
+      "source_location": "L301",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_264",
+      "source": "app_rationale_313",
       "target": "app_manage_locations",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L264",
+      "source_location": "L313",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_278",
+      "source": "app_rationale_327",
       "target": "app_historical_data",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L278",
+      "source_location": "L327",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_290",
+      "source": "app_rationale_339",
       "target": "app_restart_splash",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L290",
+      "source_location": "L339",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_304",
+      "source": "app_rationale_353",
       "target": "app_predict",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L304",
+      "source_location": "L353",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_398",
+      "source": "app_rationale_445",
+      "target": "app_trip_plan_api",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L445",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_590",
       "target": "app_get_arrivals_api",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L398",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_rationale_422",
-      "target": "app_predict_arrival_api",
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L422",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_rationale_458",
-      "target": "app_add_arrival_record_api",
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L458",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_rationale_503",
-      "target": "app_get_routes_api",
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L503",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_rationale_531",
-      "target": "app_add_route_api",
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L531",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_rationale_599",
-      "target": "app_get_locations_api",
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "app.py",
-      "source_location": "L599",
+      "source_location": "L590",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
       "source": "app_rationale_614",
-      "target": "app_get_stops_after_api",
+      "target": "app_predict_arrival_api",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
@@ -4311,62 +5183,192 @@
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_669",
+      "source": "app_rationale_650",
+      "target": "app_add_arrival_record_api",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L650",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_696",
+      "target": "app_get_routes_api",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L696",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_724",
+      "target": "app_add_route_api",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L724",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_792",
+      "target": "app_get_locations_api",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L792",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_807",
+      "target": "app_get_stops_after_api",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L807",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_860",
+      "target": "app_edit_location_api",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L860",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_925",
+      "target": "app_delete_location_api",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L925",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_946",
       "target": "app_get_statistics_api",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L669",
+      "source_location": "L946",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_685",
+      "source": "app_rationale_963",
+      "target": "app_get_timezone_api",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L963",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_985",
       "target": "app_csv_response",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L685",
+      "source_location": "L985",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_694",
+      "source": "app_rationale_994",
       "target": "app_export_arrivals_csv",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L694",
+      "source_location": "L994",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_721",
+      "source": "app_rationale_1021",
       "target": "app_export_locations_csv",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L721",
+      "source_location": "L1021",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_732",
+      "source": "app_rationale_1032",
       "target": "app_export_preview_api",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L732",
+      "source_location": "L1032",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "app_rationale_759",
+      "source": "app_rationale_1059",
+      "target": "app_konduktor_status_api",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1059",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_1071",
+      "target": "app_konduktor_chat_api",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1071",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_1099",
+      "target": "app_stream_llm_response",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1099",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_1147",
+      "target": "app_get_konduktor_system_prompt",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1147",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_1209",
+      "target": "app_generate_konduktor_response",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1209",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_rationale_1353",
       "target": "app_not_found",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app.py",
-      "source_location": "L759",
+      "source_location": "L1353",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6300,6 +7302,1106 @@
       "_origin": "ast"
     },
     {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_enhanceselects",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_wrapselect",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L46",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_renderoptions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L133",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_togglepanel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L171",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_updatetrigger",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L182",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_syncdisabled",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L204",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_handlekeydown",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L217",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_currenthighlightedindex",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L264",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_scrolltooption",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L272",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_typetojump",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L279",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_highlightitem",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L298",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_selecthighlighted",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L313",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_hiddensetselected",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L321",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_valueofoption",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L332",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_onvaluechange",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L337",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select",
+      "target": "static_js_custom_select_enhanceselects",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L343",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_enhanceselects",
+      "target": "static_js_custom_select_wrapselect",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_wrapselect",
+      "target": "static_js_custom_select_renderoptions",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L85",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_wrapselect",
+      "target": "static_js_custom_select_togglepanel",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L103",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_wrapselect",
+      "target": "static_js_custom_select_handlekeydown",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L117",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_wrapselect",
+      "target": "static_js_custom_select_onvaluechange",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L121",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_wrapselect",
+      "target": "static_js_custom_select_syncdisabled",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L129",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_renderoptions",
+      "target": "static_js_custom_select_hiddensetselected",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L154",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_renderoptions",
+      "target": "static_js_custom_select_valueofoption",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L154",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_renderoptions",
+      "target": "static_js_custom_select_updatetrigger",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L155",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_renderoptions",
+      "target": "static_js_custom_select_highlightitem",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L161",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_handlekeydown",
+      "target": "static_js_custom_select_currenthighlightedindex",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L225",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_handlekeydown",
+      "target": "static_js_custom_select_scrolltooption",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L226",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_handlekeydown",
+      "target": "static_js_custom_select_selecthighlighted",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L238",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_handlekeydown",
+      "target": "static_js_custom_select_typetojump",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L257",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_typetojump",
+      "target": "static_js_custom_select_currenthighlightedindex",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L280",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_typetojump",
+      "target": "static_js_custom_select_highlightitem",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L290",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_selecthighlighted",
+      "target": "static_js_custom_select_hiddensetselected",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L316",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_selecthighlighted",
+      "target": "static_js_custom_select_updatetrigger",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L317",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_onvaluechange",
+      "target": "static_js_custom_select_updatetrigger",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L338",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_custom_select_onvaluechange",
+      "target": "static_js_custom_select_syncdisabled",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/custom-select.js",
+      "source_location": "L339",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_cacheelements",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_init",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L46",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_bindevents",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L57",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_detectcontext",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L81",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_checkllmstatus",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L98",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_updatemodeindicator",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L110",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_togglepanel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L124",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_openpanel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L128",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_closepanel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L137",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_addwelcomemessage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L149",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_addbotmessage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L155",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_addusermessage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L162",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_createmessageelement",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L169",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_formatmessage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L198",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_showtyping",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L207",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_hidetyping",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L223",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_scrolltobottom",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L227",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_formattime",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L231",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_loadquickactions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L238",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_getcontextualquickactions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L252",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_updatequickactions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L297",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_sendmessage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L313",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_shownotification",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L365",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_hidenotification",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L373",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_escapehtml",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L381",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_openpanel",
+      "relation": "indirect_call",
+      "context": "collection",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L391",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_closepanel",
+      "relation": "indirect_call",
+      "context": "collection",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L392",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_shownotification",
+      "relation": "indirect_call",
+      "context": "collection",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L401",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_sendmessage",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L395",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_loadquickactions",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L399",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_updatemodeindicator",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L404",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_init",
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L412",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor",
+      "target": "static_js_konduktor_init",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L414",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_init",
+      "target": "static_js_konduktor_cacheelements",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L47",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_init",
+      "target": "static_js_konduktor_bindevents",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L50",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_init",
+      "target": "static_js_konduktor_detectcontext",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L51",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_init",
+      "target": "static_js_konduktor_loadquickactions",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L52",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_init",
+      "target": "static_js_konduktor_checkllmstatus",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L53",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_init",
+      "target": "static_js_konduktor_addwelcomemessage",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_bindevents",
+      "target": "static_js_konduktor_togglepanel",
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_bindevents",
+      "target": "static_js_konduktor_closepanel",
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L59",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_bindevents",
+      "target": "static_js_konduktor_sendmessage",
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L60",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_bindevents",
+      "target": "static_js_konduktor_sendmessage",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L64",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_bindevents",
+      "target": "static_js_konduktor_closepanel",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L71",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_checkllmstatus",
+      "target": "static_js_konduktor_updatemodeindicator",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L104",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_togglepanel",
+      "target": "static_js_konduktor_closepanel",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L125",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_togglepanel",
+      "target": "static_js_konduktor_openpanel",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L125",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_openpanel",
+      "target": "static_js_konduktor_hidenotification",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L134",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_addwelcomemessage",
+      "target": "static_js_konduktor_addbotmessage",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L152",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_addbotmessage",
+      "target": "static_js_konduktor_createmessageelement",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L156",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_addbotmessage",
+      "target": "static_js_konduktor_scrolltobottom",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L158",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_addusermessage",
+      "target": "static_js_konduktor_createmessageelement",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L163",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_addusermessage",
+      "target": "static_js_konduktor_scrolltobottom",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L165",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_createmessageelement",
+      "target": "static_js_konduktor_formatmessage",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L182",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_createmessageelement",
+      "target": "static_js_konduktor_formattime",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L186",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_showtyping",
+      "target": "static_js_konduktor_scrolltobottom",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L219",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_loadquickactions",
+      "target": "static_js_konduktor_getcontextualquickactions",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L239",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_loadquickactions",
+      "target": "static_js_konduktor_escapehtml",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L241",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_loadquickactions",
+      "target": "static_js_konduktor_sendmessage",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L247",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_updatequickactions",
+      "target": "static_js_konduktor_escapehtml",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L299",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_updatequickactions",
+      "target": "static_js_konduktor_sendmessage",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L305",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_sendmessage",
+      "target": "static_js_konduktor_addusermessage",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L317",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_sendmessage",
+      "target": "static_js_konduktor_showtyping",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L322",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_sendmessage",
+      "target": "static_js_konduktor_hidetyping",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L335",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_sendmessage",
+      "target": "static_js_konduktor_addbotmessage",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L338",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_sendmessage",
+      "target": "static_js_konduktor_updatequickactions",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L340",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_konduktor_sendmessage",
+      "target": "static_js_konduktor_updatemodeindicator",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/konduktor.js",
+      "source_location": "L347",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
       "source": "static_js_script",
       "target": "static_js_script_predictform",
       "relation": "contains",
@@ -6371,11 +8473,21 @@
     },
     {
       "source": "static_js_script",
+      "target": "static_js_script_estimate_timezone_offset",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/script.js",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "static_js_script",
       "target": "static_js_script_crowdclass",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L49",
+      "source_location": "L67",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6385,7 +8497,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L120",
+      "source_location": "L138",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6395,7 +8507,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L168",
+      "source_location": "L186",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6405,7 +8517,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L210",
+      "source_location": "L228",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6415,7 +8527,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L251",
+      "source_location": "L269",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6425,7 +8537,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L276",
+      "source_location": "L294",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6435,7 +8547,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L285",
+      "source_location": "L303",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6446,7 +8558,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L75",
+      "source_location": "L93",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6457,7 +8569,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L101",
+      "source_location": "L119",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6468,7 +8580,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L212",
+      "source_location": "L230",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6479,7 +8591,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L242",
+      "source_location": "L260",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6490,7 +8602,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L246",
+      "source_location": "L264",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6501,7 +8613,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L247",
+      "source_location": "L265",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6512,7 +8624,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L272",
+      "source_location": "L290",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6523,7 +8635,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L277",
+      "source_location": "L295",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6534,7 +8646,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L280",
+      "source_location": "L298",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6545,7 +8657,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L281",
+      "source_location": "L299",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6556,7 +8668,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L288",
+      "source_location": "L306",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -6567,7 +8679,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "static/js/script.js",
-      "source_location": "L307",
+      "source_location": "L325",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7604,11 +9716,21 @@
     },
     {
       "source": "utils_validators",
+      "target": "utils_validators_local_now_from_offset",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "utils/validators.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "utils_validators",
       "target": "utils_validators_inputvalidator",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L9",
+      "source_location": "L49",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7618,7 +9740,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L12",
+      "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7628,7 +9750,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L23",
+      "source_location": "L63",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7638,7 +9760,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L34",
+      "source_location": "L74",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7648,7 +9770,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L45",
+      "source_location": "L96",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7658,7 +9780,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L61",
+      "source_location": "L112",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7668,7 +9790,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L70",
+      "source_location": "L121",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7678,7 +9800,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L79",
+      "source_location": "L130",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7688,7 +9810,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L93",
+      "source_location": "L144",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7698,7 +9820,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L102",
+      "source_location": "L153",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7708,7 +9830,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L126",
+      "source_location": "L177",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7718,7 +9840,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L137",
+      "source_location": "L188",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7728,7 +9850,18 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L145",
+      "source_location": "L196",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "utils_validators_inputvalidator_validate_not_future",
+      "target": "utils_validators_local_now_from_offset",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "utils/validators.py",
+      "source_location": "L89",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7743,112 +9876,122 @@
       "_origin": "ast"
     },
     {
-      "source": "utils_validators_rationale_13",
+      "source": "utils_validators_rationale_23",
+      "target": "utils_validators_local_now_from_offset",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "utils/validators.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "utils_validators_rationale_53",
       "target": "utils_validators_inputvalidator_validate_time",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L13",
+      "source_location": "L53",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "utils_validators_rationale_24",
+      "source": "utils_validators_rationale_64",
       "target": "utils_validators_inputvalidator_validate_date",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L24",
+      "source_location": "L64",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "utils_validators_rationale_35",
+      "source": "utils_validators_rationale_75",
       "target": "utils_validators_inputvalidator_validate_not_future",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L35",
+      "source_location": "L75",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "utils_validators_rationale_46",
+      "source": "utils_validators_rationale_97",
       "target": "utils_validators_inputvalidator_validate_departure_before_arrival",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L46",
+      "source_location": "L97",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "utils_validators_rationale_62",
+      "source": "utils_validators_rationale_113",
       "target": "utils_validators_inputvalidator_validate_location_name",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L62",
+      "source_location": "L113",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "utils_validators_rationale_71",
+      "source": "utils_validators_rationale_122",
       "target": "utils_validators_inputvalidator_validate_route_name",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L71",
+      "source_location": "L122",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "utils_validators_rationale_80",
+      "source": "utils_validators_rationale_131",
       "target": "utils_validators_inputvalidator_validate_model_route",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L80",
+      "source_location": "L131",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "utils_validators_rationale_94",
+      "source": "utils_validators_rationale_145",
       "target": "utils_validators_inputvalidator_validate_model_stop",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L94",
+      "source_location": "L145",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "utils_validators_rationale_103",
+      "source": "utils_validators_rationale_154",
       "target": "utils_validators_inputvalidator_validate_stop_names",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L103",
+      "source_location": "L154",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "utils_validators_rationale_127",
+      "source": "utils_validators_rationale_178",
       "target": "utils_validators_inputvalidator_validate_stop_sequence",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L127",
+      "source_location": "L178",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "utils_validators_rationale_147",
+      "source": "utils_validators_rationale_199",
       "target": "utils_validators_inputvalidator_validate_arrival_record",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "utils/validators.py",
-      "source_location": "L147",
+      "source_location": "L199",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7870,7 +10013,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.95,
       "source_file": "app.py",
-      "source_location": "L132",
+      "source_location": "L187",
       "weight": 0.8,
       "_origin": "ast"
     },
@@ -7881,7 +10024,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.95,
       "source_file": "app.py",
-      "source_location": "L135",
+      "source_location": "L190",
       "weight": 0.8,
       "_origin": "ast"
     },
@@ -7897,26 +10040,14 @@
       "_origin": "ast"
     },
     {
-      "source": "app_index",
+      "source": "app_trip_planner",
       "target": "data_routes_config_get_all_routes",
       "relation": "calls",
       "context": "call",
       "confidence": "INFERRED",
       "confidence_score": 0.85,
       "source_file": "app.py",
-      "source_location": "L221",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "app_bus_arrivals",
-      "target": "data_routes_config_get_all_routes",
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "app.py",
-      "source_location": "L242",
+      "source_location": "L282",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7928,7 +10059,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.85,
       "source_file": "app.py",
-      "source_location": "L254",
+      "source_location": "L303",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7940,7 +10071,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.85,
       "source_file": "app.py",
-      "source_location": "L266",
+      "source_location": "L315",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7952,7 +10083,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.85,
       "source_file": "app.py",
-      "source_location": "L271",
+      "source_location": "L320",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7964,7 +10095,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.85,
       "source_file": "app.py",
-      "source_location": "L272",
+      "source_location": "L321",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7976,7 +10107,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.85,
       "source_file": "app.py",
-      "source_location": "L280",
+      "source_location": "L329",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -7988,7 +10119,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.85,
       "source_file": "app.py",
-      "source_location": "L318",
+      "source_location": "L367",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -8000,7 +10131,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.85,
       "source_file": "app.py",
-      "source_location": "L325",
+      "source_location": "L374",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -8012,7 +10143,43 @@
       "confidence": "INFERRED",
       "confidence_score": 0.85,
       "source_file": "app.py",
-      "source_location": "L337",
+      "source_location": "L386",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_trip_plan_api",
+      "target": "data_routes_config_resolve_route_id",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "app.py",
+      "source_location": "L457",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_trip_plan_api",
+      "target": "data_routes_config_get_model_route_name",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "app.py",
+      "source_location": "L464",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "app_trip_plan_api",
+      "target": "data_routes_config_get_model_stop_name",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "app.py",
+      "source_location": "L473",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -8024,7 +10191,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.85,
       "source_file": "app.py",
-      "source_location": "L511",
+      "source_location": "L704",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -8036,7 +10203,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.85,
       "source_file": "app.py",
-      "source_location": "L545",
+      "source_location": "L738",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -8048,7 +10215,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.85,
       "source_file": "app.py",
-      "source_location": "L573",
+      "source_location": "L766",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -8060,7 +10227,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.85,
       "source_file": "app.py",
-      "source_location": "L580",
+      "source_location": "L773",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -8216,7 +10383,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "utils/validators.py",
-      "source_location": "L151",
+      "source_location": "L203",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -8228,7 +10395,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "utils/validators.py",
-      "source_location": "L161",
+      "source_location": "L213",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -8240,7 +10407,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "utils/validators.py",
-      "source_location": "L166",
+      "source_location": "L218",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -8252,7 +10419,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "utils/validators.py",
-      "source_location": "L172",
+      "source_location": "L226",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -8264,7 +10431,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "utils/validators.py",
-      "source_location": "L178",
+      "source_location": "L232",
       "weight": 1.0,
       "_origin": "ast"
     }
@@ -8289,6 +10456,8 @@
     "/Users/karlofamoso/Documents/vscode files/ByaHero/models/arrival_predictor_v2.py",
     "/Users/karlofamoso/Documents/vscode files/ByaHero/public/static/js/script.js",
     "/Users/karlofamoso/Documents/vscode files/ByaHero/smoke_test.py",
+    "/Users/karlofamoso/Documents/vscode files/ByaHero/static/js/custom-select.js",
+    "/Users/karlofamoso/Documents/vscode files/ByaHero/static/js/konduktor.js",
     "/Users/karlofamoso/Documents/vscode files/ByaHero/static/js/script.js",
     "/Users/karlofamoso/Documents/vscode files/ByaHero/templates/.claude/settings.json",
     "/Users/karlofamoso/Documents/vscode files/ByaHero/tools/prep_logo.py",
