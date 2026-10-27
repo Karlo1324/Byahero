@@ -43,6 +43,11 @@
 
                 <div class="form-row">
                     <div class="form-group">
+                        <label for="departureTime">Departure Time (Optional)</label>
+                        <input type="time" id="departureTime" name="departure_time">
+                    </div>
+
+                    <div class="form-group">
                         <label for="crowdLevel">Crowd Level</label>
                         <select id="crowdLevel" name="crowd_level">
                             <option value="Low">Low</option>
@@ -148,6 +153,7 @@ document.getElementById('arrivalRecordForm').addEventListener('submit', async (e
     const locationId = document.getElementById('addLocation').value;
     const arrivalDate = document.getElementById('arrivalDate').value;
     const arrivalTime = document.getElementById('arrivalTime').value;
+    const departureTime = document.getElementById('departureTime').value;
     const crowdLevel = document.getElementById('crowdLevel').value;
     const notes = document.getElementById('notes').value;
 
@@ -176,6 +182,7 @@ document.getElementById('arrivalRecordForm').addEventListener('submit', async (e
                 location_id: parseInt(locationId),
                 arrival_date: arrivalDate,
                 arrival_time: arrivalTime,
+                departure_time: departureTime || null,
                 crowd_level: crowdLevel,
                 notes: notes,
                 tz_offset_minutes: tzOffset

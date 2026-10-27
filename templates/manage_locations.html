@@ -148,11 +148,38 @@
 <script id="modelStopsData" type="application/json">{{ model_stops | tojson }}</script>
 
 <script>
-// --- Add new route --------------------------------------------------------
+// --- Shared helpers --------------------------------------------------------
+// This page calls escapeHtml() and scrollToElement(). They normally come from
+// base.html or a shared script; these fallbacks only apply if they are missing
+// (for example if they lived in a script that was removed with the departure
+// feature).
+
+if (typeof window.escapeHtml !== 'function') {
+    window.escapeHtml = function (value) {
+        const div = document.createElement('div');
+        div.textContent = value == null ? '' : String(value);
+        return div.innerHTML;
+    };
+}
+
+if (typeof window.scrollToElement !== 'function') {
+    window.scrollToElement = function (element) {
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    };
+}
+
+// --- Add new route ---------------------------------------------------------
 
 // The stop labels the trained model understands. Every stop on a new route
 // needs one, otherwise the encoders cannot encode the route.
-const modelStops = JSON.parse(document.getElementById('modelStopsData').textContent);
+let MODEL_STOPS = [];
+try {
+    MODEL_STOPS = JSON.parse(document.getElementById('modelStopsData').textContent) || [];
+} catch (error) {
+    console.error('Could not read the model stops:', error);
+}
 
 // One row of the stop builder: a name and the prediction basis for it.
 function buildStopRow() {
@@ -186,7 +213,7 @@ function buildStopRow() {
     placeholder.textContent = 'Select...';
     basisSelect.appendChild(placeholder);
 
-    modelStops.forEach(stop => {
+    MODEL_STOPS.forEach(stop => {
         const option = document.createElement('option');
         option.value = stop;
         option.textContent = stop;
@@ -216,7 +243,7 @@ function addStopRow() {
  */
 function collectRouteStops() {
     const names = [];
-    const modelStops = {};
+    const stopBasis = {};
 
     document.querySelectorAll('#routeStopsContainer .form-row').forEach(row => {
         const nameInput = row.querySelector('.route-stop-name');
@@ -225,10 +252,10 @@ function collectRouteStops() {
         if (!name) return;
 
         names.push(name);
-        modelStops[names.length - 1] = basisSelect ? basisSelect.value : '';
+        stopBasis[names.length - 1] = basisSelect ? basisSelect.value : '';
     });
 
-    return { names, modelStops };
+    return { names, stopBasis };
 }
 
 document.getElementById('addStopBtn').addEventListener('click', addStopRow);
@@ -245,14 +272,14 @@ document.getElementById('addRouteForm').addEventListener('submit', async (e) => 
         return;
     }
 
-    const { names, modelStops } = collectRouteStops();
+    const { names, stopBasis } = collectRouteStops();
 
     if (names.length < 2) {
         showRouteError('A route needs at least two stops');
         return;
     }
 
-    if (Object.values(modelStops).some(value => !value)) {
+    if (Object.values(stopBasis).some(value => !value)) {
         showRouteError('Every stop needs a prediction basis');
         return;
     }
@@ -273,15 +300,17 @@ document.getElementById('addRouteForm').addEventListener('submit', async (e) => 
                 description: description,
                 model_route: modelRoute,
                 stops: names,
-                model_stops: modelStops
+                model_stops: stopBasis
             })
         });
 
         const result = await response.json();
 
         if (result.success) {
+            // Clear the fields first, then show the message. Clearing the form
+            // must not hide the success panel, so it uses clearRouteForm().
+            clearRouteForm();
             showRouteSuccess(result.message || `Route "${name}" added successfully`);
-            resetRouteForm();
             loadAndDisplayLocations();
             refreshLocationRoutes();
         } else {
@@ -315,12 +344,18 @@ function clearRouteError() {
     document.getElementById('routeErrorSection').style.display = 'none';
 }
 
-function resetRouteForm() {
+/** Empty the route form and give the stop builder two blank rows again. */
+function clearRouteForm() {
     document.getElementById('addRouteForm').reset();
     const container = document.getElementById('routeStopsContainer');
     container.innerHTML = '';
     addStopRow();
     addStopRow();
+}
+
+/** "Add Another Route" button: clear the form and hide the result panels. */
+function resetRouteForm() {
+    clearRouteForm();
     document.getElementById('routeSuccessSection').style.display = 'none';
     document.getElementById('routeErrorSection').style.display = 'none';
 }
@@ -355,7 +390,8 @@ function refreshLocationRoutes() {
         .catch(error => console.error('Error refreshing routes:', error));
 }
 
-// Load and display current locations
+// --- Current locations -----------------------------------------------------
+
 async function loadAndDisplayLocations() {
     const container = document.getElementById('locationsContainer');
 
@@ -401,7 +437,14 @@ async function loadAndDisplayLocations() {
                         const locDiv = document.createElement('div');
                         locDiv.className = 'location-card';
                         const isActive = loc.active === 'true' || loc.active === true;
-                        locDiv.innerHTML = `\n                            <div class="location-header">\n                                <h4>${escapeHtml(loc.name)}</h4>\n                                <span class="location-sequence">Stop ${escapeHtml(loc.stop_sequence)}</span>\n                            </div>\n                            <p class="location-description">${escapeHtml(loc.description || 'No description')}</p>\n                            <span class="location-status${isActive ? '' : ' inactive'}">${isActive ? 'Active' : 'Inactive'}</span>\n                        `;
+                        locDiv.innerHTML = `
+                            <div class="location-header">
+                                <h4>${escapeHtml(loc.name)}</h4>
+                                <span class="location-sequence">Stop ${escapeHtml(String(loc.stop_sequence))}</span>
+                            </div>
+                            <p class="location-description">${escapeHtml(loc.description || 'No description')}</p>
+                            <span class="location-status${isActive ? '' : ' inactive'}">${isActive ? 'Active' : 'Inactive'}</span>
+                        `;
                         locationsDiv.appendChild(locDiv);
                     });
                 } else {
@@ -414,6 +457,8 @@ async function loadAndDisplayLocations() {
             });
     }
 }
+
+// --- Add new location ------------------------------------------------------
 
 document.getElementById('addLocationForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -451,8 +496,10 @@ document.getElementById('addLocationForm').addEventListener('submit', async (e) 
         const result = await response.json();
 
         if (result.success) {
+            // Clear the fields first, then show the message, so the success
+            // panel is not hidden again by the reset.
+            clearLocationForm();
             showSuccess(`Location "${name}" added successfully`);
-            resetLocationForm();
             loadAndDisplayLocations();
         } else {
             showError(result.error || 'Failed to add location');
@@ -485,9 +532,16 @@ function clearError() {
     document.getElementById('errorSection').style.display = 'none';
 }
 
-function resetLocationForm() {
+/** Empty the location form fields only. */
+function clearLocationForm() {
     document.getElementById('addLocationForm').reset();
+}
+
+/** "Add Another Location" button: clear the form and hide the result panels. */
+function resetLocationForm() {
+    clearLocationForm();
     document.getElementById('successSection').style.display = 'none';
+    document.getElementById('errorSection').style.display = 'none';
 }
 
 /** Download the location registry as a CSV file. */
