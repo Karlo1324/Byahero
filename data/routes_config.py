@@ -12,7 +12,12 @@ import os
 import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(BASE_DIR, "data")
+
+# On Vercel, the filesystem is read-only except for /tmp
+if os.environ.get('VERCEL') == '1':
+    DATA_DIR = '/tmp/data'
+else:
+    DATA_DIR = os.path.join(BASE_DIR, "data")
 UTILS_DIR = os.path.join(BASE_DIR, "utils")
 
 for _path in (UTILS_DIR, DATA_DIR):
@@ -298,8 +303,9 @@ def get_model_stop_name(route_id, location_id=None, fallback_name=None):
 
 def get_stops_after(route_id, current_stop_id):
     """
-    Returns stops that come after the current stop in the route sequence.
-    Useful for destination selection (can't go backwards).
+    Returns all stops on the route EXCEPT the current stop.
+    Previously only returned stops AFTER the current one, which
+    prevented reverse trips (e.g. Digos → Kapatagan).
     """
     route_stops = get_route_stops(route_id)
     try:
@@ -307,8 +313,7 @@ def get_stops_after(route_id, current_stop_id):
     except (TypeError, ValueError):
         return []
     if current_stop_id in route_stops:
-        idx = route_stops.index(current_stop_id)
-        return route_stops[idx + 1:]
+        return [s for s in route_stops if s != current_stop_id]
     return []
 
 

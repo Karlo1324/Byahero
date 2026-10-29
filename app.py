@@ -31,6 +31,14 @@ except ImportError:
 
 # Add paths for imports
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# On Vercel, the filesystem is read-only except for /tmp
+# Check for VERCEL environment variable
+if os.environ.get('VERCEL') == '1':
+    DATA_DIR = '/tmp/data'
+else:
+    DATA_DIR = os.path.join(BASE_DIR, "data")
+
 for _sub in ("data", "utils", "models"):
     _path = os.path.join(BASE_DIR, _sub)
     if _path not in sys.path:
@@ -104,7 +112,7 @@ def is_llm_available():
 # appears when the app is opened rather than on every panel. The key has to
 # stay the same across restarts or the browser gets a brand new session and
 # the splash comes back on every visit.
-SECRET_KEY_FILE = os.path.join(BASE_DIR, "data", ".secret_key")
+SECRET_KEY_FILE = os.path.join(DATA_DIR, ".secret_key")
 
 
 def _load_or_create_secret_key():
@@ -140,7 +148,7 @@ model_time = saved_data["model_time"]
 model_depart = saved_data["model_depart"]
 encoders = saved_data["encoders"]
 
-ARRIVALS_FILE = os.path.join(BASE_DIR, "data", "bus_arrivals.csv")
+ARRIVALS_FILE = os.path.join(DATA_DIR, "bus_arrivals.csv")
 COMMUTE_FILE = os.path.join(BASE_DIR, "commute_data.csv")
 
 # The encoders only recognise the routes and stops the model was fitted on.
@@ -1081,7 +1089,8 @@ def konduktor_chat_api():
 
         # Try LLM if enabled and configured
         if is_llm_available():
-            return stream_llm_response(message, context)
+            chat_messages = data.get('messages', [])
+            return stream_llm_response(message, context, chat_messages)
 
         # Use enhanced rule-based with trip planning
         response_text, suggestions, trip_plan, updated_context = generate_konduktor_response(message, context)
@@ -1154,18 +1163,18 @@ def weather_api():
         return jsonify({'success': False, 'error': str(e)}), 500
 
 
-def stream_llm_response(message, context):
+def stream_llm_response(message, context, messages=None):
     """Call LLM API and return response"""
     system_prompt = get_konduktor_system_prompt(context)
+    chat_history = messages or []
 
     try:
         if LLM_CONFIG['provider'] == 'anthropic':
             response = _anthropic_client.messages.create(
                 model=LLM_CONFIG['model'],
                 max_tokens=LLM_CONFIG['max_tokens'],
-                temperature=LLM_CONFIG['temperature'],
                 system=system_prompt,
-                messages=[{"role": "user", "content": message}]
+                messages=chat_history + [{"role": "user", "content": message}]
             )
             response_text = response.content[0].text
         else: # OpenAI
@@ -1173,6 +1182,7 @@ def stream_llm_response(message, context):
                 model=LLM_CONFIG['model'],
                 messages=[
                     {"role": "system", "content": system_prompt},
+                    *chat_history,
                     {"role": "user", "content": message}
                 ],
                 max_tokens=LLM_CONFIG['max_tokens'],

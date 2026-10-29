@@ -1,0 +1,32 @@
+# Vercel ignore file - exclude data files from deployment
+# Local data files won't work on Vercel's serverless environment
+
+# Data files
+data/*.csv
+data/*.db
+data/*.bak
+data/.secret_key
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test files
+smoke_test.py
+generate_data.py
+train_model.py
+
+# Documentation
+*.md
+!README.md

@@ -23,7 +23,13 @@ if models_dir not in sys.path:
 # project root, and starting the app from anywhere else made it come up
 # looking like every record the user had entered had vanished.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(BASE_DIR, 'data')
+
+# On Vercel, the filesystem is read-only except for /tmp
+# Use /tmp for writable data files in serverless environment
+if os.environ.get('VERCEL') == '1':
+    DATA_DIR = '/tmp/data'
+else:
+    DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 # The route definitions live next to the data files.
 if DATA_DIR not in sys.path:
@@ -373,8 +379,8 @@ class DataManager:
                         return {"success": False, "error": f"Location '{name}' already exists on this route"}
                     existing_names.add(name.lower())
 
-                # Get max location_id for this route
-                cursor.execute("SELECT COALESCE(MAX(location_id), 0) FROM locations WHERE route_id = ?", (route_id,))
+                # Get max location_id globally to avoid conflicts
+                cursor.execute("SELECT COALESCE(MAX(location_id), 0) FROM locations")
                 next_id = cursor.fetchone()[0] + 1
 
                 rows = []

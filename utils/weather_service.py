@@ -13,7 +13,12 @@ from pathlib import Path
 
 # Cache TTL: 10 minutes between API calls per location.
 _CACHE_TTL_SECONDS = 600
-_DB_DIR = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) / "data"
+
+# On Vercel, the filesystem is read-only except for /tmp
+if os.environ.get('VERCEL') == '1':
+    _DB_DIR = Path('/tmp/data')
+else:
+    _DB_DIR = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) / "data"
 _CACHE_FILE = _DB_DIR / "weather_cache.json"
 
 # Mock weather data for testing/fallback when API unavailable.
