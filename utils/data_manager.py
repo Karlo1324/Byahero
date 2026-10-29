@@ -35,6 +35,12 @@ try:
 except ImportError:
     PREDICTOR_AVAILABLE = False
 
+try:
+    from db_manager import get_db_connection, init_db
+    DB_AVAILABLE = True
+except ImportError:
+    DB_AVAILABLE = False
+
 # Suffix of the safety copy kept next to every data file.
 BACKUP_SUFFIX = ".bak"
 
@@ -48,7 +54,7 @@ class DataManager:
 
     LOCATION_COLUMNS = [
         'location_id', 'name', 'description', 'route_id', 'stop_sequence',
-        'active',
+        'active', 'latitude', 'longitude',
     ]
 
     def __init__(self, data_dir=None):
@@ -228,12 +234,21 @@ class DataManager:
     # ============ LOCATIONS ============
 
     def get_locations(self):
-        """Load all locations from CSV"""
+        """Load all locations from SQLite, falling back to CSV if unavailable."""
+        if DB_AVAILABLE:
+            try:
+                conn = get_db_connection()
+                cursor = conn.cursor()
+                cursor.execute("SELECT * FROM locations WHERE active IN ('true', '1', 'yes') ORDER BY stop_sequence")
+                rows = cursor.fetchall()
+                conn.close()
+                return [dict(row) for row in rows]
+            except Exception as e:
+                print(f"Error loading locations from DB: {e}")
         try:
             df = self._read_csv(self.locations_file, self.LOCATION_COLUMNS)
             if 'active' not in df.columns:
                 return self._records(df)
-            # Normalize mixed bool/string representations of the active flag
             active = df['active'].astype(str).str.strip().str.lower()
             df = df[active.isin(['true', '1', 'yes'])]
             return self._records(df)
@@ -242,7 +257,20 @@ class DataManager:
             return []
 
     def get_locations_by_route(self, route_id):
-        """Get all locations for a specific route, ordered by sequence"""
+        """Get all active locations for a route, ordered by sequence."""
+        if DB_AVAILABLE:
+            try:
+                conn = get_db_connection()
+                cursor = conn.cursor()
+                cursor.execute(
+                    "SELECT * FROM locations WHERE route_id = ? AND active IN ('true', '1', 'yes') ORDER BY stop_sequence",
+                    (route_id,)
+                )
+                rows = cursor.fetchall()
+                conn.close()
+                return [dict(row) for row in rows]
+            except Exception as e:
+                print(f"Error loading locations for route {route_id} from DB: {e}")
         try:
             df = self._read_csv(self.locations_file, self.LOCATION_COLUMNS)
             if 'route_id' not in df.columns:
@@ -257,43 +285,64 @@ class DataManager:
             print(f"Error loading locations for route {route_id}: {e}")
             return []
 
-    def add_location(self, name, description, route_id, stop_sequence, active=True):
-        """Add a new location"""
+    def add_location(self, name, description, route_id, stop_sequence, active=True, latitude=None, longitude=None):
+        """Add a new location to SQLite or CSV."""
+        if DB_AVAILABLE:
+            try:
+                conn = get_db_connection()
+                cursor = conn.cursor()
+                cursor.execute(
+                    "SELECT location_id FROM locations WHERE name = ? AND route_id = ?",
+                    (name, route_id)
+                )
+                if cursor.fetchone():
+                    conn.close()
+                    return {"success": False, "error": f"Location '{name}' already exists on this route"}
+                cursor.execute(
+                    "INSERT INTO locations (name, description, route_id, stop_sequence, active, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                    (name, description or '', route_id, stop_sequence, 'true' if active else 'false', latitude, longitude)
+                )
+                conn.commit()
+                new_id = cursor.lastrowid
+                conn.close()
+                self._sync_to_csv('locations.csv', self.LOCATION_COLUMNS)
+                return {"success": True, "location_id": new_id, "message": f"Location '{name}' added successfully"}
+            except Exception as e:
+                print(f"Error adding location to DB: {e}")
         try:
             df = self._read_csv(self.locations_file, self.LOCATION_COLUMNS)
-
-            # Check for duplicates
             existing = df[(df['name'] == name) &
                           (df['route_id'].astype('int64') == int(route_id))]
             if not existing.empty:
-                return {
-                    "success": False,
-                    "error": f"Location '{name}' already exists on this route"
-                }
-
-            # Get next location_id
+                return {"success": False, "error": f"Location '{name}' already exists on this route"}
             next_id = self._next_id(df, 'location_id')
-
-            # Add new location
             new_location = {
                 'location_id': next_id,
                 'name': name,
                 'description': description or '',
                 'route_id': route_id,
                 'stop_sequence': stop_sequence,
-                'active': 'true' if active else 'false'
+                'active': 'true' if active else 'false',
+                'latitude': latitude,
+                'longitude': longitude
             }
-
             df = pd.concat([df, pd.DataFrame([new_location])], ignore_index=True)
             self._write_csv(self.locations_file, df)
-
-            return {
-                "success": True,
-                "location_id": next_id,
-                "message": f"Location '{name}' added successfully"
-            }
+            return {"success": True, "location_id": next_id, "message": f"Location '{name}' added successfully"}
         except Exception as e:
             return {"success": False, "error": str(e)}
+
+    def _sync_to_csv(self, filename, columns):
+        """Write current SQLite state for a table back to CSV for legacy fallback."""
+        if not DB_AVAILABLE or not self._table_path(filename).exists():
+            return
+        try:
+            conn = get_db_connection()
+            df = pd.read_sql_query(f"SELECT * FROM {filename[:-4]}", conn)
+            conn.close()
+            self._write_csv(self._table_path(filename), df)
+        except Exception as e:
+            print(f"Error syncing {filename} to CSV: {e}")
 
     def add_locations(self, route_id, stops):
         """
@@ -306,6 +355,69 @@ class DataManager:
 
         Returns a dict with "success" and the created "locations".
         """
+        if DB_AVAILABLE:
+            try:
+                conn = get_db_connection()
+                cursor = conn.cursor()
+                # Check existing names on this route
+                cursor.execute(
+                    "SELECT name FROM locations WHERE route_id = ? AND active IN ('true', '1', 'yes')",
+                    (route_id,)
+                )
+                existing_names = {row['name'].strip().lower() for row in cursor.fetchall()}
+
+                for stop in stops or []:
+                    name = str(stop.get('name') or '').strip()
+                    if name.lower() in existing_names:
+                        conn.close()
+                        return {"success": False, "error": f"Location '{name}' already exists on this route"}
+                    existing_names.add(name.lower())
+
+                # Get max location_id for this route
+                cursor.execute("SELECT COALESCE(MAX(location_id), 0) FROM locations WHERE route_id = ?", (route_id,))
+                next_id = cursor.fetchone()[0] + 1
+
+                rows = []
+                created = []
+
+                for index, stop in enumerate(stops or []):
+                    location_id = next_id + index
+                    cursor.execute(
+                        "INSERT INTO locations (location_id, name, description, route_id, stop_sequence, active, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                        (location_id,
+                         str(stop.get('name') or '').strip(),
+                         stop.get('description') or '',
+                         route_id,
+                         index + 1,
+                         'true',
+                         stop.get('latitude'),
+                         stop.get('longitude'))
+                    )
+                    rows.append({
+                        'location_id': location_id,
+                        'name': str(stop.get('name') or '').strip(),
+                        'description': stop.get('description') or '',
+                        'route_id': route_id,
+                        'stop_sequence': index + 1,
+                        'active': 'true',
+                        'latitude': stop.get('latitude'),
+                        'longitude': stop.get('longitude')
+                    })
+                    created.append({
+                        'location_id': location_id,
+                        'name': str(stop.get('name') or '').strip(),
+                        'model_stop': stop.get('model_stop') or '',
+                    })
+
+                conn.commit()
+                conn.close()
+                self._sync_to_csv('locations.csv', self.LOCATION_COLUMNS)
+
+                return {"success": True, "locations": created}
+            except Exception as e:
+                print(f"Error adding locations to DB: {e}")
+
+        # CSV fallback
         try:
             df = self._read_csv(self.locations_file, self.LOCATION_COLUMNS)
 
@@ -320,10 +432,7 @@ class DataManager:
             for stop in stops or []:
                 name = str(stop.get('name') or '').strip()
                 if name.lower() in existing_names:
-                    return {
-                        "success": False,
-                        "error": f"Location '{name}' already exists on this route"
-                    }
+                    return {"success": False, "error": f"Location '{name}' already exists on this route"}
                 existing_names.add(name.lower())
 
             next_id = self._next_id(df, 'location_id')
@@ -338,7 +447,9 @@ class DataManager:
                     'description': stop.get('description') or '',
                     'route_id': route_id,
                     'stop_sequence': index + 1,
-                    'active': 'true'
+                    'active': 'true',
+                    'latitude': stop.get('latitude'),
+                    'longitude': stop.get('longitude')
                 })
                 created.append({
                     'location_id': location_id,
@@ -355,7 +466,18 @@ class DataManager:
             return {"success": False, "error": str(e)}
 
     def deactivate_location(self, location_id):
-        """Deactivate a location"""
+        """Deactivate a location in SQLite or CSV."""
+        if DB_AVAILABLE:
+            try:
+                conn = get_db_connection()
+                cursor = conn.cursor()
+                cursor.execute("UPDATE locations SET active = 'false' WHERE location_id = ?", (location_id,))
+                conn.commit()
+                conn.close()
+                self._sync_to_csv('locations.csv', self.LOCATION_COLUMNS)
+                return {"success": True, "message": "Location deactivated"}
+            except Exception as e:
+                print(f"Error deactivating location in DB: {e}")
         try:
             df = self._read_csv(self.locations_file, self.LOCATION_COLUMNS)
             df.loc[df['location_id'].astype('int64') == int(location_id), 'active'] = 'false'
@@ -367,7 +489,27 @@ class DataManager:
     # ============ BUS ARRIVALS ============
 
     def get_arrivals(self, route_id=None, location_id=None, limit=100):
-        """Get bus arrivals with optional filters"""
+        """Get bus arrivals with optional filters, from SQLite or CSV."""
+        if DB_AVAILABLE:
+            try:
+                conn = get_db_connection()
+                cursor = conn.cursor()
+                query = "SELECT * FROM bus_arrivals WHERE 1=1"
+                params = []
+                if route_id:
+                    query += " AND route_id = ?"
+                    params.append(int(route_id))
+                if location_id:
+                    query += " AND location_id = ?"
+                    params.append(int(location_id))
+                query += " ORDER BY recorded_at DESC LIMIT ?"
+                params.append(limit)
+                cursor.execute(query, params)
+                rows = cursor.fetchall()
+                conn.close()
+                return [dict(row) for row in rows]
+            except Exception as e:
+                print(f"Error loading arrivals from DB: {e}")
         try:
             df = self._read_csv(self.arrivals_file, self.ARRIVAL_COLUMNS)
 
@@ -386,7 +528,51 @@ class DataManager:
 
     def add_arrival_record(self, route_id, location_id, arrival_time, arrival_date,
                            departure_time=None, crowd_level=None, notes=None):
-        """Add a new bus arrival record"""
+        """Add a new bus arrival record to SQLite or CSV."""
+        if DB_AVAILABLE:
+            try:
+                conn = get_db_connection()
+                cursor = conn.cursor()
+                # Check for duplicates (same route/location/date/time within 5 min window)
+                cursor.execute(
+                    "SELECT arrival_time, arrival_date FROM bus_arrivals WHERE route_id = ? AND location_id = ? AND arrival_date = ?",
+                    (int(route_id), int(location_id), arrival_date)
+                )
+                rows = cursor.fetchall()
+                try:
+                    arrival_dt = pd.to_datetime(f"{arrival_date} {arrival_time}")
+                except Exception:
+                    arrival_dt = None
+                for row in rows:
+                    try:
+                        existing_dt = pd.to_datetime(f"{row['arrival_date']} {row['arrival_time']}")
+                        if arrival_dt and abs((arrival_dt - existing_dt).total_seconds() / 60) < 5:
+                            conn.close()
+                            return {"success": False, "error": "Similar arrival already recorded within 5 minutes"}
+                    except Exception:
+                        continue
+
+                cursor.execute(
+                    "INSERT INTO bus_arrivals (route_id, location_id, arrival_time, arrival_date, departure_time, crowd_level, notes, recorded_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                    (int(route_id), int(location_id), arrival_time, arrival_date, departure_time or '', crowd_level or 'Medium', notes or '', datetime.now().isoformat())
+                )
+                conn.commit()
+                new_id = cursor.lastrowid
+                conn.close()
+                self._sync_to_csv('bus_arrivals.csv', self.ARRIVAL_COLUMNS)
+
+                # Retrain the per-location model with the new data included.
+                if PREDICTOR_AVAILABLE:
+                    try:
+                        df = self._read_csv(self.arrivals_file, self.ARRIVAL_COLUMNS)
+                        predictor = ArrivalPredictor(df)
+                        predictor.train_improved_model(location_id)
+                    except Exception as e:
+                        print(f"Error training improved model: {e}")
+
+                return {"success": True, "arrival_id": new_id, "message": "Arrival record saved"}
+            except Exception as e:
+                print(f"Error adding arrival to DB: {e}")
         try:
             df = self._read_csv(self.arrivals_file, self.ARRIVAL_COLUMNS)
 

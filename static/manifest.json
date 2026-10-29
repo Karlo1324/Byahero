@@ -1,0 +1,28 @@
+{
+  "name": "ByaHero - Smart Commute Predictor",
+  "short_name": "ByaHero",
+  "description": "Real-time mini-bus commute predictions and arrival tracking for Digos City.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#5C6BC0",
+  "theme_color": "#5C6BC0",
+  "categories": ["travel", "navigation"],
+  "icons": [
+    {
+      "src": "img/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "img/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1098,6 +1098,62 @@ def konduktor_chat_api():
         return jsonify({'success': False, 'error': str(e)}), 400
 
 
+# ============ LIVE BUS TRACKING & WEATHER ============
+
+@app.route('/api/retrain-model', methods=['POST'])
+def retrain_model_api():
+    """Trigger a fresh retrain of the per-location arrival predictor on all logged arrivals."""
+    try:
+        from arrival_predictor_v2 import ArrivalPredictor
+        df = data_manager.get_commute_data()
+        if df is None or len(df) == 0:
+            return jsonify({'success': False, 'error': 'No training data available'}), 400
+        locations = data_manager.get_locations()
+        trained = 0
+        for loc in locations:
+            try:
+                predictor = ArrivalPredictor(df)
+                predictor.train_improved_model(loc['location_id'])
+                trained += 1
+            except Exception as e:
+                print(f"Error training for location {loc.get('location_id')}: {e}")
+        return jsonify({'success': True, 'message': f'Retrained {trained} location models'})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/weather', methods=['GET'])
+def weather_api():
+    """Return current weather for a stop, with optional caching and fallback."""
+    try:
+        from weather_service import get_weather_for_location
+        location_id = request.args.get('location_id', type=int)
+        locations = data_manager.get_locations() if location_id is None else [
+            loc for loc in data_manager.get_locations() if loc.get('location_id') == location_id
+        ]
+        if not locations:
+            return jsonify({'success': False, 'error': 'Location not found'}), 404
+        force_refresh = request.args.get('refresh', type=str, default='0') == '1'
+        if force_refresh:
+            from weather_service import _load_cache, _save_cache, _cache_key
+            cache = _load_cache()
+            for loc in locations:
+                lat, lng = loc.get('latitude'), loc.get('longitude')
+                if lat and lng:
+                    cache.pop(_cache_key(float(lat), float(lng)), None)
+            _save_cache(cache)
+        results = []
+        for loc in locations:
+            info = get_weather_for_location(loc)
+            if info:
+                results.append(info)
+        if not results:
+            return jsonify({'success': False, 'error': 'Weather data unavailable for location'}), 503
+        return jsonify({'success': True, 'weather': results})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
 def stream_llm_response(message, context):
     """Call LLM API and return response"""
     system_prompt = get_konduktor_system_prompt(context)
@@ -1191,6 +1247,7 @@ You are the expert on ByaHero, a mini-bus predictor for Digos City.
 - Prediction: Uses a Random Forest ML model for travel time and statistical analysis for bus arrivals.
 - Crowd Levels: Low (Comfortable), Medium (Normal), High (Standing room only/Delays).
 - Validation: Future arrivals are not allowed; departures must be after arrivals.
+- Weather Integration: Weather can affect travel times. Rain, thunderstorms, and heavy precipitation typically add 15-40% to travel time. When users ask about weather, check the /api/weather endpoint and reference actual conditions, but never invent delays or claim weather directly confirms a bus delay.
 
 ## 5. TRIP PLANNING CAPABILITIES
 When users ask about trips:
@@ -1688,6 +1745,7 @@ You are the expert on ByaHero, a mini-bus predictor for Digos City.
 - Prediction: Uses a Random Forest ML model for travel time and statistical analysis for bus arrivals.
 - Crowd Levels: Low (Comfortable), Medium (Normal), High (Standing room only/Delays).
 - Validation: Future arrivals are not allowed; departures must be after arrivals.
+- Weather Integration: Weather can affect travel times. Rain, thunderstorms, and heavy precipitation typically add 15-40% to travel time. When users ask about weather, check the /api/weather endpoint and reference actual conditions, but never invent delays or claim weather directly confirms a bus delay.
 
 ## 5. TRIP PLANNING CAPABILITIES
 When users ask about trips:

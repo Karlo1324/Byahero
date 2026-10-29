@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
     <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/pixelated.css') }}">
 </head>
 <body{% if show_splash %} class="is-loading"{% endif %}>
@@ -77,6 +78,7 @@
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/custom-select.js') }}"></script>
     <script src="{{ url_for('static', filename='js/konduktor.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pwa.js') }}"></script>
     {% block scripts %}{% endblock %}
 
     <!-- Konduktor Chatbot -->

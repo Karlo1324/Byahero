@@ -9,6 +9,50 @@ import pandas as pd
 from routes_config import get_all_routes, resolve_route_id, get_stops_after
 from data_manager import data_manager
 
+try:
+    from weather_service import get_weather, get_weather_for_location, get_weather_factor, _weather_text
+    WEATHER_AVAILABLE = True
+except ImportError:
+    WEATHER_AVAILABLE = False
+
+# Approximate coordinates for Digos City / Kapatagan route stops (fallback).
+STOP_COORDS = {
+    1: (6.7580, 125.3520),   # Kapatagan
+    2: (6.8000, 125.3400),   # Soong
+    3: (6.8300, 125.3300),   # Binaton
+    4: (6.8500, 125.3200),   # Digos Terminal
+}
+
+WEATHER_CODES = {
+    0: "clear sky",
+    1: "mainly clear",
+    2: "partly cloudy",
+    3: "overcast",
+    45: "fog",
+    48: "depositing rime fog",
+    51: "light drizzle",
+    53: "moderate drizzle",
+    55: "dense drizzle",
+    56: "freezing drizzle",
+    57: "freezing drizzle",
+    61: "slight rain",
+    63: "moderate rain",
+    65: "heavy rain",
+    66: "freezing rain",
+    71: "slight snow",
+    73: "moderate snow",
+    75: "heavy snow",
+    77: "snow grains",
+    80: "slight rain showers",
+    81: "moderate rain showers",
+    82: "violent rain showers",
+    85: "slight snow showers",
+    86: "heavy snow showers",
+    95: "thunderstorm",
+    96: "thunderstorm with slight hail",
+    99: "thunderstorm with heavy hail",
+}
+
 class CommuteReasoner:
     def __init__(self, predictor_factory):
         self.get_predictor = predictor_factory
@@ -80,6 +124,36 @@ class CommuteReasoner:
         # In a real app, we'd call the ML model here
         travel_time = 45 # Default fallback
 
+        # 3. Adjust travel time for current weather at the origin stop.
+        weather_factor = 1.0
+        weather_label = None
+        weather_reason = None
+        if WEATHER_AVAILABLE:
+            # Prefer coordinates from the DB if available, fallback to STOP_COORDS.
+            locs = data_manager.get_locations()
+            origin_loc = next((l for l in locs if l.get('location_id') == origin_id), None)
+            if origin_loc and origin_loc.get('latitude') is not None and origin_loc.get('longitude') is not None:
+                w = get_weather_for_location(origin_loc)
+                if w:
+                    weather_factor, weather_reason = get_weather_factor(
+                        w.get('weather_code'),
+                        w.get('precipitation_mm', 0.0),
+                        w.get('temperature_c', 25.0)
+                    )
+                    weather_label = _weather_text(w.get('weather_code'))
+            elif origin_id in STOP_COORDS:
+                lat, lng = STOP_COORDS[origin_id]
+                w = get_weather(lat, lng)
+                if w and 'current' in w:
+                    c = w['current']
+                    weather_factor, weather_reason = get_weather_factor(
+                        c.get('weather_code', 0),
+                        c.get('precipitation', 0.0) or 0.0,
+                        c.get('temperature_2m', 25.0)
+                    )
+                    weather_label = _weather_text(c.get('weather_code'))
+        travel_time = int(travel_time * weather_factor)
+
         # 3. Calculate recommended departure
         target_dt = datetime.strptime(target_time, '%H:%M')
         if trip_data.get('time_type') == 'arrival':
@@ -98,6 +172,9 @@ class CommuteReasoner:
 
         if next_bus:
             response += f"The next bus is predicted to arrive at {next_bus}."
+
+        if weather_label and weather_reason:
+            response += f" Current weather: {weather_label} ({weather_reason}), so travel time is adjusted accordingly."
 
         return trip_data, response
 

@@ -46,6 +46,9 @@
                     <button type="button" class="btn btn-primary" id="exportBtn" onclick="exportCsv()">
                         Export CSV
                     </button>
+                    <button type="button" class="btn btn-primary" id="retrainBtn" onclick="retrainModel()">
+                        ↻ Retrain Model
+                    </button>
                 </div>
                 <p id="exportStatus" class="export-status"></p>
             </form>
@@ -320,5 +323,34 @@ document.addEventListener('DOMContentLoaded', () => {
     loadLocationsForFilter();
     loadHistoricalData();
 });
+
+async function retrainModel() {
+    const button = document.getElementById('retrainBtn');
+    const status = document.getElementById('exportStatus');
+    const originalText = button ? button.textContent : '';
+    if (button) {
+        button.disabled = true;
+        button.textContent = 'Retraining...';
+    }
+    if (status) status.textContent = '';
+
+    try {
+        const res = await fetch('/api/retrain-model', { method: 'POST' });
+        const data = await res.json();
+        if (data.success) {
+            if (status) status.textContent = data.message || 'Model retrained successfully.';
+        } else {
+            if (status) status.textContent = data.error || 'Retraining failed.';
+        }
+    } catch (error) {
+        console.error('Error retraining model:', error);
+        if (status) status.textContent = 'Could not retrain the model. Please try again.';
+    } finally {
+        if (button) {
+            button.disabled = false;
+            button.textContent = originalText;
+        }
+    }
+}
 </script>
 {% endblock %}
