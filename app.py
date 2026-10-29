@@ -66,7 +66,9 @@ try:
 except ImportError:
     PREDICTOR_V2_AVAILABLE = False
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_folder=os.path.join(BASE_DIR, 'static'),
+            template_folder=os.path.join(BASE_DIR, 'templates'))
 
 # ============ LLM CONFIGURATION ============
 # LLM-powered Konduktor (optional, falls back to rule-based)
