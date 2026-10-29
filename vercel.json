@@ -6,7 +6,8 @@
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "50mb",
-        "runtime": "python3.10"
+        "runtime": "python3.10",
+        "maxDuration": 30
       }
     }
   ],
@@ -25,10 +26,5 @@
   ],
   "env": {
     "PYTHONPATH": "."
-  },
-  "functions": {
-    "wsgi.py": {
-      "maxDuration": 30
-    }
   }
 }
