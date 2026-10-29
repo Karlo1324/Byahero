@@ -10,6 +10,56 @@ const predictForm = document.getElementById('predictForm');
 const resultsSection = document.getElementById('resultsSection');
 const errorSection = document.getElementById('errorSection');
 
+// --- Weather widget in header ----------------------------------------------
+
+async function loadHeaderWeather() {
+    const weatherEl = document.getElementById('headerWeather');
+    if (!weatherEl) return;
+
+    try {
+        const response = await fetch('/api/weather');
+        const data = await response.json();
+
+        if (data.success && data.weather && data.weather.length > 0) {
+            // Use the first location (Kapatagan) as default weather
+            const w = data.weather[0];
+            const temp = Math.round(w.temperature_c);
+            const icon = getWeatherIcon(w.weather_code);
+            weatherEl.querySelector('.weather-icon').textContent = icon;
+            weatherEl.querySelector('.weather-text').textContent = w.weather_text;
+            weatherEl.setAttribute('data-temp', `${temp}°C`);
+        } else {
+            weatherEl.querySelector('.weather-icon').textContent = '🌤️';
+            weatherEl.querySelector('.weather-text').textContent = 'No data';
+        }
+    } catch (error) {
+        console.error('Error loading weather:', error);
+        weatherEl.querySelector('.weather-icon').textContent = '🌤️';
+        weatherEl.querySelector('.weather-text').textContent = 'Unavailable';
+    }
+}
+
+function getWeatherIcon(code) {
+    if (code === 0) return '☀️';
+    if (code === 1) return '🌤️';
+    if (code === 2) return '⛅';
+    if (code === 3) return '☁️';
+    if (code === 45 || code === 48) return '🌫️';
+    if (code >= 51 && code <= 57) return '🌦️';
+    if (code >= 61 && code <= 67) return '🌧️';
+    if (code >= 71 && code <= 77) return '❄️';
+    if (code >= 80 && code <= 82) return '🌦️';
+    if (code >= 85 && code <= 86) return '🌨️';
+    if (code >= 95) return '⛈️';
+    return '🌤️';
+}
+
+// Initialize weather on page load
+document.addEventListener('DOMContentLoaded', loadHeaderWeather);
+
+// Refresh weather every 10 minutes
+setInterval(loadHeaderWeather, 10 * 60 * 1000);
+
 // --- Shared helpers -------------------------------------------------------
 
 /** Show a panel that is hidden with an inline `style="display: none"`. */

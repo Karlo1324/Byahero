@@ -321,13 +321,20 @@
 
         const typingEl = showTyping();
 
+        // Send last 10 messages as conversation history
+        const history = state.messages.slice(-10).map(m => ({
+            role: m.sender === 'user' ? 'user' : 'assistant',
+            content: m.text
+        }));
+
         try {
             const response = await fetch('/api/konduktor/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     message: text,
-                    context: state.context
+                    context: state.context,
+                    messages: history
                 })
             });
 

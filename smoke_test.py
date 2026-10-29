@@ -20,6 +20,7 @@ DATA_FILES = [
     os.path.join(ROOT, 'data', 'bus_arrivals.csv'),
     os.path.join(ROOT, 'data', 'locations.csv'),
     os.path.join(ROOT, 'data', 'routes.csv'),
+    os.path.join(ROOT, 'data', 'byahero.db'),
 ]
 
 # The data manager keeps a .bak copy of every file it writes. Those are
