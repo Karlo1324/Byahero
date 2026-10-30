@@ -48,3 +48,6 @@ commute_data.csv
 data/*.bak
 data/.*.tmp
 data/.secret_key
+
+
+.env
