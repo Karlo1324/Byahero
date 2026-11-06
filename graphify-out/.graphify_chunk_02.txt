@@ -1,0 +1,7 @@
+/Users/karlofamoso/Documents/vscode files/ByaHero/public/static/img/favicon.png
+/Users/karlofamoso/Documents/vscode files/ByaHero/public/static/img/logo.png
+/Users/karlofamoso/Documents/vscode files/ByaHero/static/img/Monochrome Conductor Robot Badge.png
+/Users/karlofamoso/Documents/vscode files/ByaHero/static/img/favicon.png
+/Users/karlofamoso/Documents/vscode files/ByaHero/static/img/logo.png
+/Users/karlofamoso/Documents/vscode files/ByaHero/templates/Konduktor Avatar/Monochrome Conductor Robot Badge.png
+/Users/karlofamoso/Documents/vscode files/ByaHero/templates/Logo/Monochrome Isometric BA Monogram Emblem.png

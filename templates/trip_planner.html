@@ -81,61 +81,51 @@
         </div>
     </section>
 
-    <section id="resultsSection" style="display: none;">
-        <div class="card results-card trip-results">
-            <h2>Your Trip Plan</h2>
-
-            <!-- Trip Summary & Bus Timeline Side by Side -->
+    <!-- Trip Plan Results Modal -->
+    <div class="modal-overlay" id="resultsModal" onclick="closeTripResults()">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <button class="modal-close-dark" onclick="closeTripResults()" aria-label="Close">&times;</button>
+            <h2 class="modal-title">Your Trip Plan</h2>
             <div class="trip-results-grid">
-                <!-- Left: Trip Summary -->
                 <div class="trip-summary-panel">
                     <div class="result-row">
                         <div class="result-box">
-                            <span class="result-label"><span class="icon icon-sm icon-route" style="margin-right:6px;"></span>Route</span>
+                            <span class="result-label">Route</span>
                             <span class="result-value trip-route" id="tripRoute">--</span>
                         </div>
                     </div>
-
                     <div class="result-row">
                         <div class="result-box">
-                            <span class="result-label"><span class="icon icon-sm icon-location" style="margin-right:6px;"></span>Origin → Destination</span>
+                            <span class="result-label">Origin → Destination</span>
                             <span class="result-value" id="tripStops">--</span>
                         </div>
                     </div>
-
                     <div class="result-row highlight">
                         <div class="result-box">
-                            <span class="result-label"><span class="icon icon-sm icon-clock" style="margin-right:6px;"></span>Estimated Travel Time</span>
+                            <span class="result-label">Estimated Travel Time</span>
                             <span class="result-value" id="travelTimeResult">--</span>
                         </div>
                     </div>
-
                     <div class="result-row highlight">
                         <div class="result-box">
-                            <span class="result-label"><span class="icon icon-sm icon-bus" style="margin-right:6px;"></span>Expected Bus Arrival</span>
+                            <span class="result-label">Expected Bus Arrival</span>
                             <span class="result-value" id="expectedBusTime">--</span>
                         </div>
                     </div>
-
                     <div class="result-row">
                         <div class="result-box">
-                            <span class="result-label"><span class="icon icon-sm icon-check" style="margin-right:6px;"></span>Recommended Action</span>
+                            <span class="result-label">Recommended Action</span>
                             <span class="result-value decision" id="decisionResult">--</span>
                         </div>
                     </div>
-
                     <div class="insights">
-                        <h3><span class="icon icon-sm icon-info" style="margin-right:6px;"></span>Insights</h3>
+                        <h3>Insights</h3>
                         <div id="insightsContent"></div>
                     </div>
                 </div>
-
-                <!-- Right: Bus Arrival Timeline -->
                 <div class="bus-timeline-panel">
-                    <h3><span class="icon icon-sm icon-clock" style="margin-right:6px;"></span>Bus Arrival Timeline</h3>
-                    <div class="timeline-container" id="busTimeline">
-                        <!-- Timeline items inserted here -->
-                    </div>
+                    <h3>Bus Arrival Timeline</h3>
+                    <div class="timeline-container" id="busTimeline"></div>
                     <div class="timeline-legend">
                         <span class="legend-item"><span class="legend-dot current"></span>Your Stop</span>
                         <span class="legend-item"><span class="legend-dot past"></span>Completed</span>
@@ -143,12 +133,11 @@
                     </div>
                 </div>
             </div>
-
             <div class="button-row">
-                <button class="btn btn-secondary" onclick="resetForm()">New Trip Plan</button>
+                <button class="btn btn-secondary" onclick="closeTripResults(); resetForm();">New Trip Plan</button>
             </div>
         </div>
-    </section>
+    </div>
 
     <section id="errorSection" style="display: none;">
         <div class="card panel-error">
@@ -263,7 +252,17 @@ document.getElementById('tripForm').addEventListener('submit', async function(e)
     }
 });
 
-/** Display the complete trip plan */
+/** Open the trip plan results modal */
+function openTripResults() {
+    document.getElementById('resultsModal').classList.add('open');
+}
+
+/** Close the trip plan results modal */
+function closeTripResults() {
+    document.getElementById('resultsModal').classList.remove('open');
+}
+
+/** Display the complete trip plan in a modal popup */
 function displayTripPlan(plan) {
     document.getElementById('errorSection').style.display = 'none';
 
@@ -289,8 +288,8 @@ function displayTripPlan(plan) {
     // Bus Timeline
     renderBusTimeline(plan.arrivals, plan.origin_stop_id, plan.destination_stop_id);
 
-    document.getElementById('resultsSection').style.display = 'block';
-    scrollToElement(document.getElementById('resultsSection'));
+    // Open modal
+    openTripResults();
 }
 
 /** Render bus arrival timeline */
@@ -367,20 +366,19 @@ function confidenceClass(confidence) {
 
 /** Show error message */
 function showError(message) {
+    closeTripResults();
     document.getElementById('errorSection').style.display = 'block';
     document.getElementById('errorMessage').textContent = message;
-    document.getElementById('resultsSection').style.display = 'none';
-    scrollToElement(document.getElementById('errorSection'));
 }
 
 /** Reset form to initial state */
 function resetForm() {
+    closeTripResults();
     document.getElementById('tripForm').reset();
     document.getElementById('origin').innerHTML = '<option value="">Select origin...</option>';
     document.getElementById('origin').disabled = true;
     document.getElementById('destination').innerHTML = '<option value="">Select destination...</option>';
     document.getElementById('destination').disabled = true;
-    document.getElementById('resultsSection').style.display = 'none';
     document.getElementById('errorSection').style.display = 'none';
 }
 

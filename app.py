@@ -283,8 +283,14 @@ def _location_name_map():
 
 @app.route('/')
 def index():
-    """Redirect to trip planner as the main page"""
-    return redirect(url_for('trip_planner'))
+    """Home page: display greeting, quick trip, and dashboard stats"""
+    locations = data_manager.get_locations()
+    routes = get_all_routes()
+
+    return render_template('index.html',
+                           locations=locations,
+                           routes=routes,
+                           show_splash=_wants_splash())
 
 
 @app.route('/trip-planner')
@@ -966,6 +972,82 @@ def get_statistics_api():
         })
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 400
+
+
+@app.route('/api/dashboard-stats', methods=['GET'])
+def dashboard_stats_api():
+    """Get aggregated statistics for the home page dashboard"""
+    try:
+        # Get today's date
+        today = datetime.now().strftime('%Y-%m-%d')
+
+        # Get all arrivals
+        all_arrivals = data_manager.get_arrivals(limit=1000)
+
+        # Filter for today
+        today_arrivals = [a for a in all_arrivals if a.get('arrival_date') == today]
+
+        # Calculate averages
+        avg_travel_time = 0
+        busiest_route = '-'
+        if today_arrivals:
+            # Count by route
+            route_counts = {}
+            total_minutes = 0
+            travel_time_count = 0
+
+            for arrival in today_arrivals:
+                route_id = arrival.get('route_id')
+                route_counts[route_id] = route_counts.get(route_id, 0) + 1
+
+                # Calculate travel time if we have departure time
+                dep_time = arrival.get('departure_time')
+                arr_time = arrival.get('arrival_time')
+                if dep_time and arr_time and dep_time != 'nan':
+                    try:
+                        from datetime import datetime as dt
+                        dep = dt.strptime(dep_time, '%H:%M')
+                        arr = dt.strptime(arr_time, '%H:%M')
+                        minutes = abs((arr - dep).total_seconds() / 60)
+                        if minutes > 0 and minutes < 180:  # Sanity check
+                            total_minutes += minutes
+                            travel_time_count += 1
+                    except:
+                        pass
+
+            # Find busiest route
+            if route_counts:
+                busiest_route_id = max(route_counts.items(), key=lambda x: x[1])[0]
+                route_names = {loc['route_id']: loc.get('route_name', f'Route {busiest_route_id}')
+                              for loc in data_manager.get_locations()}
+                busiest_route = route_names.get(busiest_route_id, f'Route {busiest_route_id}')
+
+            avg_travel_time = round(total_minutes / travel_time_count) if travel_time_count > 0 else 0
+        else:
+            # Get overall stats if no today data
+            if all_arrivals:
+                route_counts = {}
+                for arrival in all_arrivals:
+                    route_id = arrival.get('route_id')
+                    route_counts[route_id] = route_counts.get(route_id, 0) + 1
+                if route_counts:
+                    busiest_route_id = max(route_counts.items(), key=lambda x: x[1])[0]
+                    busiest_route = f'Route {busiest_route_id}'
+
+        return jsonify({
+            'success': True,
+            'today_count': len(today_arrivals),
+            'avg_travel_time': avg_travel_time,
+            'busiest_route': busiest_route
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e),
+            'today_count': 0,
+            'avg_travel_time': 0,
+            'busiest_route': '-'
+        }), 400
 
 
 # ============ API ENDPOINTS - TIMEZONE ============
