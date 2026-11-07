@@ -31,18 +31,22 @@
 
     <!-- Main Dashboard Grid -->
     <div class="dash-grid">
-        <!-- Quick Plan Card (full-width) -->
-        <div class="card dash-card dash-plan" onclick="toggleQuickPlan()">
-            <svg class="plan-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="3 11 22 2 13 21 11 13 3 11"/>
-            </svg>
-            <div class="card-content">
-                <h3>Quick Plan</h3>
-                <p id="quickPlanText" class="dash-hint">Tap to plan your trip</p>
+        <!-- Live Status - with Route Selector (full width, above Next Bus) -->
+        <div class="card dash-card dash-live">
+            <div class="dash-label">Live Status</div>
+            <select class="live-route-select" id="liveRouteSelect" onchange="loadLiveForRoute()">
+                <option value="">Select route...</option>
+                {% for route_id, route in routes.items() %}
+                <option value="{{ route_id }}"{% if loop.first %} selected{% endif %}>{{ route.name }}</option>
+                {% endfor %}
+            </select>
+            <div class="live-indicator" id="liveIndicator">
+                <span class="pulse-dot"></span>
+                <span id="liveText">Checking...</span>
             </div>
-            <svg class="arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
+            <div class="live-timeline" id="liveArrivals">
+                <span class="saved-empty">Choose a route above</span>
+            </div>
         </div>
 
         <!-- Next Bus Card -->
@@ -57,25 +61,6 @@
                     <line x1="12" y1="16" x2="12" y2="12"/>
                     <line x1="12" y1="8" x2="12.01" y2="8"/>
                 </svg>
-            </div>
-        </div>
-
-        <!-- Live Status - with Route Selector -->
-        <div class="card dash-card dash-live">
-            <div class="dash-label">Live Status</div>
-            <select class="live-route-select" id="liveRouteSelect" onchange="loadLiveForRoute()">
-                <option value="">Select route...</option>
-                {% for route_id, route in routes.items() %}
-                <option value="{{ route_id }}"{% if loop.first %} selected{% endif %}>{{ route.name }}</option>
-                {% endfor %}
-            </select>
-            <div class="live-indicator" id="liveIndicator">
-                <span class="pulse-dot"></span>
-                <span id="liveText">Checking...</span>
-            </div>
-            <div class="live-timeline" id="liveArrivals">
-                <div class="timeline-line"></div>
-                <span class="saved-empty">Choose a route above</span>
             </div>
         </div>
 
@@ -108,40 +93,6 @@
             </div>
         </div>
 
-    </div>
-
-    <!-- Quick Plan Modal -->
-    <div class="modal-overlay" id="quickPlanModal" onclick="toggleQuickPlan()">
-        <div class="modal-card" onclick="event.stopPropagation()">
-            <button class="modal-close-dark" onclick="toggleQuickPlan()" aria-label="Close">✕</button>
-            <h2 class="modal-title">Plan Your Trip</h2>
-            <form id="quickTripForm" class="modal-form">
-                <div class="modal-field">
-                    <label>Route</label>
-                    <select id="quickRoute" onchange="updateQuickOrigins()" class="modal-select">
-                        <option value="">Select route...</option>
-                        {% for route_id, route in routes.items() %}
-                        <option value="{{ route_id }}">{{ route.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="modal-field-row">
-                    <div class="modal-field">
-                        <label>From</label>
-                        <select id="quickOrigin" required class="modal-select">
-                            <option value="">Select...</option>
-                        </select>
-                    </div>
-                    <div class="modal-field">
-                        <label>To</label>
-                        <select id="quickDest" required class="modal-select">
-                            <option value="">Select...</option>
-                        </select>
-                    </div>
-                </div>
-                <button type="button" class="btn-plan-trip" onclick="quickPlanTrip()">Plan This Trip</button>
-            </form>
-        </div>
     </div>
 </div>
 
@@ -201,104 +152,6 @@ function updateGreeting() {
         .catch(() => {});
 }
 
-/** Toggle quick plan modal */
-function toggleQuickPlan() {
-    const modal = document.getElementById('quickPlanModal');
-    modal.classList.toggle('open');
-    if (modal.classList.contains('open')) {
-        setTimeout(() => {
-            if (typeof enhanceControls === 'function') {
-                enhanceControls();
-            }
-            document.getElementById('quickRoute').focus();
-        }, 100);
-    }
-}
-
-/** Update origin/destination dropdowns */
-function updateQuickOrigins() {
-    const routeId = document.getElementById('quickRoute').value;
-    const originSelect = document.getElementById('quickOrigin');
-    const destSelect = document.getElementById('quickDest');
-
-    originSelect.innerHTML = '<option value="">Select...</option>';
-    destSelect.innerHTML = '<option value="">Select...</option>';
-    destSelect.disabled = true;
-
-    if (!routeId) return;
-
-    fetch(`/api/get-locations?route_id=${routeId}`)
-        .then(r => r.json())
-        .then(data => {
-            if (data.success) {
-                data.locations.forEach(loc => {
-                    originSelect.innerHTML += `<option value="${loc.location_id}">${loc.name}</option>`;
-                });
-                destSelect.innerHTML = originSelect.innerHTML;
-                destSelect.disabled = false;
-                setTimeout(() => {
-                    if (typeof enhanceControls === 'function') {
-                        enhanceControls();
-                    }
-                }, 50);
-            }
-        });
-}
-
-/** Handle quick trip form submission */
-function quickPlanTrip() {
-    const routeId = document.getElementById('quickRoute').value;
-    const originId = document.getElementById('quickOrigin').value;
-    const destId = document.getElementById('quickDest').value;
-
-    if (!routeId || !originId || !destId) {
-        alert('Please fill in all fields');
-        return;
-    }
-
-    saveRecentRoute(routeId, originId, destId);
-    toggleQuickPlan();
-    showToast(`Route saved: ${document.getElementById('quickRoute').selectedOptions[0]?.text || 'Route'}`, 'success');
-    setTimeout(() => {
-        window.location.href = `/trip-planner?route=${routeId}&origin=${originId}&destination=${destId}`;
-    }, 800);
-}
-
-/** Save recent route to localStorage */
-function saveRecentRoute(routeId, originId, destId) {
-    let recentRoutes = JSON.parse(localStorage.getItem('recentRoutes') || '[]');
-    const newRoute = { route_id: routeId, origin_id: originId, dest_id: destId, timestamp: Date.now() };
-    recentRoutes = recentRoutes.filter(r => !(r.route_id === routeId && r.origin_id === originId && r.dest_id === destId));
-    recentRoutes.unshift(newRoute);
-    recentRoutes = recentRoutes.slice(0, 3);
-    localStorage.setItem('recentRoutes', JSON.stringify(recentRoutes));
-    loadRecentRoutes();
-}
-
-/** Load and display recent routes */
-async function loadRecentRoutes() {
-    const container = document.getElementById('savedRoutesList');
-    if (!container) return;
-    const recentRoutes = JSON.parse(localStorage.getItem('recentRoutes') || '[]');
-
-    if (recentRoutes.length === 0) {
-        container.innerHTML = '<span class="saved-empty">No saved routes yet</span>';
-        return;
-    }
-
-    const names = await getLocationNames(recentRoutes[0].route_id);
-    container.innerHTML = recentRoutes.map((route, idx) =>
-        `<div class="saved-route-chip" onclick="openSavedRoute(${idx})">${names[route.origin_id] || 'A'} → ${names[route.dest_id] || 'B'}</div>`
-    ).join('');
-}
-
-/** Open saved route in trip planner */
-function openSavedRoute(idx) {
-    const recentRoutes = JSON.parse(localStorage.getItem('recentRoutes') || '[]');
-    const route = recentRoutes[idx];
-    if (route) window.location.href = `/trip-planner?route=${route.route_id}&origin=${route.origin_id}&destination=${route.dest_id}`;
-}
-
 /** Load next bus prediction */
 function loadNextBus() {
     const recentRoutes = JSON.parse(localStorage.getItem('recentRoutes') || '[]');
@@ -346,7 +199,7 @@ function loadLiveForRoute() {
     const routeId = document.getElementById('liveRouteSelect').value;
     const container = document.getElementById('liveArrivals');
     if (!routeId) {
-        container.innerHTML = '<div class="timeline-line"></div><span class="saved-empty">Choose a route above</span>';
+        container.innerHTML = '<span class="saved-empty">Choose a route above</span>';
         document.getElementById('liveText').textContent = 'Checking...';
         document.getElementById('liveIndicator').classList.remove('active');
         return;
@@ -355,26 +208,25 @@ function loadLiveForRoute() {
         .then(r => r.json())
         .then(data => {
             if (!data.success || !data.arrivals || data.arrivals.length === 0) {
-                container.innerHTML = '<div class="timeline-line"></div><span class="saved-empty">No arrivals for this route</span>';
+                container.innerHTML = '<span class="saved-empty">No arrivals for this route</span>';
                 document.getElementById('liveText').textContent = 'No data';
                 document.getElementById('liveIndicator').classList.remove('active');
                 return;
             }
-            container.innerHTML = '<div class="timeline-line"></div>' +
-                data.arrivals.map(a => `
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-time">${formatTime12(a.arrival_time)}</div>
-                            <div class="timeline-location">${a.location_name || ('Stop ' + a.location_id)}</div>
-                        </div>
+            container.innerHTML = data.arrivals.map(a => `
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-time">${formatTime12(a.arrival_time)}</div>
+                        <div class="timeline-location">${a.location_name || ('Stop ' + a.location_id)}</div>
                     </div>
-                `).join('');
+                </div>
+            `).join('');
             document.getElementById('liveText').textContent = 'Active';
             document.getElementById('liveIndicator').classList.add('active');
         })
         .catch(() => {
-            container.innerHTML = '<div class="timeline-line"></div><span class="saved-empty">Error loading</span>';
+            container.innerHTML = '<span class="saved-empty">Error loading</span>';
             document.getElementById('liveText').textContent = 'Error';
             document.getElementById('liveIndicator').classList.remove('active');
         });
@@ -448,7 +300,6 @@ async function getLocationNames(routeId) {
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     updateGreeting();
-    loadRecentRoutes();
     loadNextBus();
     loadLiveArrivals();
     loadStats();

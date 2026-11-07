@@ -244,7 +244,7 @@ async function updateDestinations() {
 
     if (!routeId || !originId) return;
 
-    // Disable the dropdown while it loads so a stale value can't be submitted.
+    // Disable the dropdown while it loads so a stale value can't be ~submitted.
     stopSelect.disabled = true;
 
     try {

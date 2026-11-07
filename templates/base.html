@@ -105,6 +105,17 @@
     <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
     <script src="{{ url_for('static', filename='js/konduktor.js') }}"></script>
     <script src="{{ url_for('static', filename='js/pwa.js') }}"></script>
+    <script>
+      // Page transition animation - fades in body smoothly
+      (function() {
+        var body = document.body;
+        body.style.opacity = '0';
+        body.style.transition = 'opacity 0.5s ease-in-out';
+        window.addEventListener('load', function() {
+          body.style.opacity = '1';
+        });
+      })();
+    </script>
     {% block scripts %}{% endblock %}
 
     <!-- Konduktor Chatbot -->
