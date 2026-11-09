@@ -59,7 +59,30 @@ from data_manager import data_manager
 from validators import validator
 from commute_reasoner import CommuteReasoner
 
-# Import arrival predictor v2 for improved predictions
+# Import DB manager and initialize on startup
+try:
+    from db_manager import init_db
+    DB_INITIALIZED = False
+except ImportError:
+    DB_INITIALIZED = True
+
+app = Flask(__name__,
+            static_folder=os.path.join(BASE_DIR, 'static'),
+            template_folder=os.path.join(BASE_DIR, 'templates'))
+
+def ensure_db_initialized():
+    """Ensure the database is initialized and seeded from CSVs."""
+    global DB_INITIALIZED
+    if not DB_INITIALIZED:
+        try:
+            init_db()
+            DB_INITIALIZED = True
+        except Exception as e:
+            print(f"⚠️  DB init failed: {e}")
+
+@app.before_request
+def before_request():
+    ensure_db_initialized()
 try:
     from arrival_predictor_v2 import ArrivalPredictor as ArrivalPredictorV2
     PREDICTOR_V2_AVAILABLE = True

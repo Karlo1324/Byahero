@@ -196,7 +196,7 @@
         const avatar = document.createElement('div');
         avatar.className = 'konduktor-message-avatar';
         avatar.innerHTML = sender === 'bot'
-            ? '<img class="konduktor-msg-avatar-img" src="/static/img/Monochrome Conductor Robot Badge.png" alt="Konduktor">'
+            ? '<img class="konduktor-msg-avatar-img" src="/static/img/conduktor-avatar.png" alt="Konduktor">'
             : '<svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>';
 
         const bubble = document.createElement('div');

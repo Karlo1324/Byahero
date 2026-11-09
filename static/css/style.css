@@ -191,6 +191,8 @@ body {
 .main-content {
   padding: var(--space-lg) var(--mobile-padding) var(--space-2xl) !important;
   max-width: 640px !important;
+  padding-bottom: calc(var(--nav-height) + var(--space-2xl)) !important;
+  overflow-y: auto;
 }
 
 .page-container {
@@ -207,7 +209,7 @@ body {
   gap: var(--space-md);
   height: calc(100vh - var(--nav-height) - 32px);
   max-height: calc(100vh - var(--nav-height) - 32px);
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 /* ── Cards ────────────────────────────────── */
@@ -1309,13 +1311,18 @@ body {
 /* ── Footer ───────────────────────────────── */
 
 .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: var(--bg-surface) !important;
   border-top: 1px solid var(--border-color) !important;
-  padding: var(--space-lg) var(--space-lg) calc(var(--nav-height) + var(--space-xl)) !important;
+  padding: var(--space-xs) var(--space-lg) var(--space-xs) !important;
   text-align: center;
   color: var(--text-tertiary);
-  font-size: 0.82rem;
-  line-height: 1.6;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  z-index: 199;
 }
 
 .footer a {
